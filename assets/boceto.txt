@@ -1,0 +1,17 @@
+
+# LUMEN — Controles, Alcance y Stack Tecnológico
+
+## ⌨️ Esquema de Controles
+
+| **Acción** | **Tecla / Control** | **Descripción** |
+|---|---|---|
+| **Movimiento** | `WASD` / `Flechas` | Desplazamiento isométrico de M-4. |
+| **Interactuar / Reparar** | `Clic Izquierdo` / `E` | Uso del Kit de Reparación en circuitos y mecanismos. |
+| **Combate / Esquiva** | `Clic Izquierdo` / `Espacio` | Defenderse de unidades corruptas y esquivar ataques. |
+| **Inventario / Codex** | `TAB` / `I` | Abrir la interfaz de registros y el almacenamiento de ítems. |
+
+---
+<a id="gestion-del-alcance"></a>
+## 📋 Gestión del Alcance
+- [⬆️ Regresar a la Tabla de Contenidos](#descripcion-general)
+
