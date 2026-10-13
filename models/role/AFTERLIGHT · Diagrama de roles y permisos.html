@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AFTERLIGHT · Diagrama de roles y permisos</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#090c11;--panel:#11171e;--card:#101a22;--card2:#152832;--line:#29343f;--ink:#eef2f4;--mut:#a2adb7;--sub:#75b9b0;--teal:#8ce5d2;--gold:#eccb91;--coral:#ff876d;--glow1:#12302c55;--glow2:#1028392b;--mono:'DM Mono',Consolas,monospace;--sans:Manrope,'Segoe UI',sans-serif;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root[data-theme=light]{--bg:#f3f6f7;--panel:#fff;--card:#fff;--card2:#eef4f5;--line:#cfd9de;--ink:#13202a;--mut:#51636f;--sub:#2a7f74;--glow1:#8ce5d233;--glow2:#79c8ee22;color-scheme:light}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:radial-gradient(ellipse at 75% 6%,var(--glow1),transparent 35rem),radial-gradient(ellipse at 15% 45%,var(--glow2),transparent 35rem),var(--bg);color:var(--ink);font:14px/1.5 var(--sans);overflow-x:hidden;transition:background .3s}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,.role:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+header{display:flex;gap:12px;align-items:center;justify-content:space-between;max-width:1180px;margin:0 auto;padding:18px 18px 0;flex-wrap:wrap}
+header small{font:500 11px var(--mono);letter-spacing:.16em;color:var(--sub)}
+.btns{display:flex;gap:8px}.btn{padding:7px 12px;border:1px solid var(--line);border-radius:4px;background:var(--panel);font:12px var(--mono);transition:.2s}.btn:hover{border-color:var(--teal);color:var(--teal)}
+h1{font:800 clamp(24px,4vw,42px)/1.1 var(--sans);text-align:center;margin:22px 14px 6px;letter-spacing:-.01em}
+.sub{text-align:center;color:var(--mut);max-width:720px;margin:0 auto 10px;padding:0 16px}
+.quote{text-align:center;font:italic 500 13px var(--sans);color:var(--sub);margin-bottom:26px}
+#stage{position:relative;max-width:1180px;margin:0 auto;padding:0 18px 20px;display:grid;gap:20px 86px;grid-template-columns:1fr minmax(210px,250px) 1fr;grid-template-areas:"L hub R"}
+#lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.ln{fill:none;stroke-width:1.7;opacity:.55;transition:opacity .25s,stroke-width .25s}.ln.p{stroke-dasharray:5 6;animation:dash 1.3s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-22}}
+.on .ln{opacity:.08}.on .ln.hot{opacity:1;stroke-width:2.8}
+.fl{position:absolute;z-index:1;transform:translate(-50%,-50%);padding:1px 8px;border-radius:99px;background:var(--bg);border:1px solid var(--line);font:500 10px var(--mono);color:var(--mut);white-space:nowrap;pointer-events:none;transition:.25s}
+.on .fl{opacity:.15}.on .fl.hot{opacity:1;color:var(--ink)}
+.hub{grid-area:hub;align-self:center;justify-self:center;z-index:2;width:min(240px,100%);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;text-align:center;padding:24px;background:radial-gradient(circle,var(--card2),var(--card) 75%);border:1.5px solid var(--teal);box-shadow:0 0 0 7px var(--bg),0 0 0 8px var(--line),0 0 46px #8ce5d233;animation:breath 3.6s ease-in-out infinite}
+@keyframes breath{50%{box-shadow:0 0 0 7px var(--bg),0 0 0 8px var(--line),0 0 70px #8ce5d255}}
+.hub i{font-size:34px;font-style:normal;color:var(--teal)}.hub strong{display:block;font:800 23px/1 var(--sans);letter-spacing:.05em}.hub strong b{color:var(--gold)}
+.hub span{display:block;font:11px/1.5 var(--mono);color:var(--mut);margin-top:8px}
+.col{display:grid;gap:17px;align-content:center;z-index:1}#L{grid-area:L}#R{grid-area:R}
+.role{--c:var(--teal);position:relative;display:flex;gap:12px;align-items:center;padding:11px 13px 11px 10px;background:linear-gradient(135deg,var(--card2),var(--card));border:1px solid color-mix(in srgb,var(--c) 55%,var(--line));border-radius:8px;cursor:pointer;outline:none;transition:transform .2s,box-shadow .2s,opacity .25s,border-color .2s;animation:in .6s both}
+.role.p{border-style:dashed}
+.role:hover,.role.sel{transform:translateY(-3px);border-color:var(--c);box-shadow:0 0 0 1px var(--c),0 10px 28px color-mix(in srgb,var(--c) 22%,transparent)}
+.on .role:not(.sel):not(.rel){opacity:.35}
+@keyframes in{from{opacity:0;transform:scale(.95)}}
+.ico{flex:none;width:50px;height:50px;border-radius:50%;display:grid;place-items:center;font-size:23px;background:var(--bg);border:2px solid var(--c)}
+.role h2{margin:0 0 4px;font:700 15px/1.2 var(--sans);color:var(--c)}
+.role ul{list-style:none;margin:0;padding:0;font-size:12.5px;color:var(--ink);opacity:.85}
+.role li::before{content:"";display:inline-block;width:5px;height:5px;margin-right:7px;border-radius:50%;background:var(--c);vertical-align:middle}
+.tag{position:absolute;top:-10px;right:14px;padding:1px 8px;font:500 9.5px var(--mono);border-radius:3px;background:var(--bg);border:1px solid var(--line);color:var(--mut)}
+.legend{max-width:1180px;margin:8px auto 0;padding:0 18px;display:flex;flex-wrap:wrap;gap:10px 24px;font:11.5px var(--mono);color:var(--mut)}
+.legend span{display:flex;align-items:center;gap:8px}.sw{width:26px;height:0;border-top:2px solid var(--teal)}.sw.p{border-top-style:dashed;border-color:var(--gold)}.dot{width:10px;height:10px;border-radius:50%;border:2px solid}
+section.mx{max-width:1180px;margin:40px auto 60px;padding:0 18px}
+section.mx h2{font:800 24px var(--sans);margin:0 0 4px}.mx p{color:var(--mut);margin:0 0 14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}.chip{padding:5px 12px;border:1px solid var(--line);border-radius:99px;background:var(--panel);font:12px var(--mono);transition:.2s}.chip.on{background:var(--teal);color:#07201b;border-color:var(--teal)}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:760px}th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:center;font-size:12.5px}th{font:600 11.5px var(--mono);color:var(--mut)}th:first-child,td:first-child{text-align:left;font-weight:600;color:var(--ink);font-size:13px}
+tr:last-child td{border-bottom:0}tbody tr{animation:in .4s both}tbody tr:hover{background:var(--card2)}
+.ops{display:inline-flex;gap:3px}.op{width:20px;height:20px;border-radius:4px;display:grid;place-items:center;font:500 10px var(--mono);border:1px solid var(--line);color:var(--mut);opacity:.5}.op.pr{opacity:1;color:var(--gold);border-color:var(--gold);background:#eccb9116}.op.dn{opacity:1;color:var(--coral);border-color:var(--coral)}
+.key{margin-top:12px;font:11.5px var(--mono);color:var(--mut)}
+aside{position:fixed;top:0;right:0;bottom:0;width:min(400px,92vw);z-index:30;background:var(--panel);border-left:1px solid var(--line);padding:22px 22px 30px;overflow:auto;transform:translateX(105%);transition:transform .35s cubic-bezier(.2,.8,.2,1);box-shadow:-20px 0 60px #0006;padding-top:calc(22px + env(safe-area-inset-top,0px))}
+aside.open{transform:none}
+aside h3{font:700 11px var(--mono);letter-spacing:.14em;color:var(--sub);margin:20px 0 8px;text-transform:uppercase}
+aside h2{margin:6px 0 8px;font:800 24px/1.1 var(--sans)}aside ul{margin:0;padding-left:18px;color:var(--ink)}aside li{margin:3px 0}
+.x{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--card);font-size:18px;line-height:1}
+.pill{display:inline-block;margin:0 6px 6px 0;padding:3px 10px;border:1px solid var(--line);border-radius:99px;font:12px var(--mono);background:var(--card)}.pill:hover{border-color:var(--teal)}
+.bd{display:inline-block;padding:2px 9px;border-radius:3px;font:11px var(--mono);border:1px solid}.bd.d{color:var(--teal);border-color:#35594f}.bd.p{color:var(--gold);border-color:#594b31}
+@media(max-width:940px){#stage{grid-template-columns:1fr;grid-template-areas:"hub" "L" "R"}#lines,.fl{display:none}.hub{width:210px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.pt{display:none}}
+</style>
+</head>
+<body>
+<header><small>AFTERLIGHT · CIUDAD DE LUMEN</small><div class="btns"><button class="btn" id="th">Tema claro</button><button class="btn" id="rs">Restablecer selección</button></div></header>
+<h1>Diagrama de roles y permisos de AFTERLIGHT</h1>
+<p class="sub">Quién habita Lumen, quién controla a M-4 y qué perfiles y plataformas podrían compartir el progreso. Selecciona un rol para ver sus límites.</p>
+<p class="quote">Las historias se recuerdan; los sistemas, se diseñan.</p>
+<main id="stage"><svg id="lines" aria-hidden="true"></svg><div class="col" id="L"></div><div class="hub"><div><i>⌖</i><strong>AFTER<b>LIGHT</b></strong><span>Sistema de roles<br>narrativa + servicios</span></div></div><div class="col" id="R"></div></main>
+<div class="legend"><span><i class="sw"></i>Documentado en las fuentes</span><span><i class="sw p"></i>Propuesta de arquitectura *</span><span><i class="dot" style="color:#eccb91"></i><i class="dot" style="color:#8ce5d2"></i><i class="dot" style="color:#ffad55"></i><i class="dot" style="color:#79c8ee"></i><i class="dot" style="color:#ff876d"></i>Color por tipo de actor</span><span>* Pendiente de validar: no hay implementación comprobable</span></div>
+<section class="mx"><h2>Matriz de permisos por módulo</h2><p>Modelo conceptual: no representa controles activos en ningún servidor.</p><div class="chips" id="chips"></div><div class="tw"><table><thead id="mh"></thead><tbody id="mb"></tbody></table></div><div class="key"><b style="color:var(--gold)">◐</b> propuesto · <b style="color:var(--coral)">✖</b> denegado · gris = no definido o no aplica · L consultar · C crear · M modificar · E eliminar</div></section>
+<aside id="dp" aria-live="polite"></aside>
+<script>
+const R=[{"id":"player","name":"Jugador","short":"Jugador","ico":"🎮","c":"#eccb91","g":"narr","flow":"controla","fn":["Controla a M-4 en la partida","Descubre registros y memorias","Avanza misiones y la historia"],"st":"d","no":["No se describen permisos administrativos en el videojuego."],"perm":null,"rel":["m4","unity"]},{"id":"m4","name":"M-4 · Protagonista","short":"M-4","ico":"🤖","c":"#8ce5d2","g":"narr","flow":"protagoniza","fn":["Explora Lumen y repara sistemas","Resuelve puzzles y combate","Recopila registros"],"st":"d","no":["No es una cuenta, rol RBAC ni administrador del software."],"perm":null,"rel":["player","pip","core","robots","bosses"]},{"id":"pip","name":"PIP · Compañero","short":"PIP","ico":"📨","c":"#8ce5d2","g":"narr","flow":"guía","fn":["Da pistas y direcciones","Introduce misiones secundarias","Entrega su mensaje pendiente"],"st":"d","no":["No es un usuario autenticado del sistema técnico."],"perm":null,"rel":["m4","robots"]},{"id":"core","name":"CORE · IA de Lumen","short":"CORE","ico":"🧠","c":"#ffad55","g":"narr","flow":"ordena · RESTORE","fn":["Mantiene la ciudad operativa","Emite órdenes centrales","Activa el protocolo RESTORE"],"st":"d","no":["No se le atribuye acceso a cuentas, base de datos ni panel de administración real."],"perm":null,"rel":["m4","robots"]},{"id":"robots","name":"Robots del mundo","short":"Robots","ico":"🦾","c":"#79c8ee","g":"narr","flow":"pueblan","fn":["De rutina y despiertos","Defectuosos y reiniciados","Reflejan la vida de Lumen"],"st":"d","no":["No son usuarios o cuentas del producto."],"perm":null,"rel":["m4","pip","core"]},{"id":"bosses","name":"Jefes","short":"Jefes","ico":"👁️","c":"#ff876d","g":"narr","flow":"desafían","fn":["The Gardener","The Conductor","The Watcher"],"st":"d","no":["No son perfiles de autorización ni clientes técnicos."],"perm":null,"rel":["m4"]},{"id":"guest","name":"Jugador invitado","short":"Invitado","ico":"👤","c":"#eccb91","g":"tec","flow":"juega local","fn":["Juega sin registrar cuenta","Progreso solo local","Sin sincronización entre equipos"],"st":"p","no":["Sin cuenta no se presupone identidad remota ni acceso a datos de otra persona."],"perm":{"Partida local":{"consultar":"propuesto","crear":"propuesto","modificar":"propuesto","eliminar":"nd"},"Progreso remoto":{"consultar":"nd","crear":"nd","modificar":"nd","eliminar":"nd"}},"rel":[]},{"id":"registered","name":"Jugador registrado","short":"Registrado","ico":"🔑","c":"#eccb91","g":"tec","flow":"sincroniza","fn":["Consulta progreso y logros","Ve registros desbloqueados","Actualiza solo sus datos"],"st":"p","no":["Sin sistema de identidad, endpoints o autorización no hay permisos efectivos que reportar."],"perm":{"Progreso propio":{"consultar":"propuesto","crear":"propuesto","modificar":"propuesto","eliminar":"nd"},"Logros":{"consultar":"propuesto","crear":"nd","modificar":"nd","eliminar":"nd"},"Registros":{"consultar":"propuesto","crear":"nd","modificar":"nd","eliminar":"nd"},"Cuentas ajenas":{"consultar":"denegado","crear":"na","modificar":"na","eliminar":"na"}},"rel":[]},{"id":"admin","name":"Admin técnico","short":"Admin técnico","ico":"🛡️","c":"#eccb91","g":"tec","flow":"administra","fn":["Gestiona cuentas y permisos","Supervisa configuración","Consulta registros técnicos"],"st":"p","no":["No se confirma que exista una cuenta administradora o interfaz administrativa."],"perm":{"Cuentas":{"consultar":"propuesto","crear":"propuesto","modificar":"propuesto","eliminar":"nd"},"Configuración":{"consultar":"propuesto","crear":"nd","modificar":"propuesto","eliminar":"nd"},"Registros técnicos":{"consultar":"propuesto","crear":"na","modificar":"na","eliminar":"nd"}},"rel":[]},{"id":"unity","name":"Cliente Unity","short":"Unity","ico":"🕹️","c":"#8ce5d2","g":"plat","flow":"ejecuta","fn":["Ejecuta el juego","Envía progreso","Sincroniza logros"],"st":"p","no":["No hay endpoints, cliente Unity ni comprobaciones de autorización disponibles aquí."],"perm":{"Progreso":{"consultar":"propuesto","crear":"propuesto","modificar":"propuesto","eliminar":"nd"},"Logros":{"consultar":"propuesto","crear":"propuesto","modificar":"nd","eliminar":"nd"},"Registros":{"consultar":"propuesto","crear":"nd","modificar":"nd","eliminar":"nd"}},"rel":["player"]},{"id":"pwa","name":"Terminal PWA","short":"Terminal PWA","ico":"🖥️","c":"#8ce5d2","g":"plat","flow":"consulta","fn":["Consulta la enciclopedia","Explora mapa y puntos","Revisa logros autorizados"],"st":"p","no":["No existe aplicación, API ni política de permisos comprobable en este repositorio."],"perm":{"Enciclopedia":{"consultar":"propuesto","crear":"na","modificar":"na","eliminar":"na"},"Progreso propio":{"consultar":"propuesto","crear":"nd","modificar":"nd","eliminar":"nd"},"Logros":{"consultar":"propuesto","crear":"na","modificar":"na","eliminar":"na"}},"rel":[]},{"id":"mobile","name":"App móvil","short":"App móvil","ico":"📱","c":"#8ce5d2","g":"plat","flow":"consulta","fn":["Consulta el codex","Ve el progreso autorizado","Accede a datos de la API"],"st":"p","no":["No se encontró aplicación móvil ni API."],"perm":{"Codex":{"consultar":"propuesto","crear":"na","modificar":"na","eliminar":"na"},"Progreso propio":{"consultar":"propuesto","crear":"nd","modificar":"nd","eliminar":"nd"}},"rel":[]}];
+const $=s=>document.querySelector(s),by=Object.fromEntries(R.map(r=>[r.id,r])),G={narr:'Actor narrativo',tec:'Perfil técnico',plat:'Plataforma'};
+R.forEach((r,i)=>{const a=document.createElement('article');a.className='role'+(r.st==='p'?' p':'');a.id='n-'+r.id;a.tabIndex=0;a.style.setProperty('--c',r.c);a.style.animationDelay=(.1+i*.07)+'s';
+a.innerHTML=`<span class="tag">${G[r.g]}${r.st==='p'?' *':''}</span><div class="ico">${r.ico}</div><div><h2>${r.name}</h2><ul>${r.fn.map(f=>`<li>${f}</li>`).join('')}</ul></div>`;
+a.onclick=()=>pick(r.id);a.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(r.id)}};$(r.g==='narr'?'#L':'#R').append(a)});
+const stage=$('#stage'),svg=$('#lines'),NS='http://www.w3.org/2000/svg';let sel=null;
+const ctr=el=>{const s=stage.getBoundingClientRect(),b=el.getBoundingClientRect();return[b.left-s.left+b.width/2,b.top-s.top+b.height/2]};
+function draw(){svg.replaceChildren();stage.querySelectorAll('.fl').forEach(e=>e.remove());if(getComputedStyle(svg).display==='none')return;const[hx,hy]=ctr($('.hub'));
+R.forEach((r,i)=>{const[x,y]=ctr($('#n-'+r.id)),d=`M${hx},${hy} L${x},${y}`,p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('class','ln'+(r.st==='p'?' p':''));p.style.stroke=r.c;p.dataset.id=r.id;svg.append(p);
+if(r.st==='d'){const c=document.createElementNS(NS,'circle'),m=document.createElementNS(NS,'animateMotion');c.setAttribute('r','3.5');c.setAttribute('class','pt');c.style.fill=r.c;m.setAttribute('path',d);m.setAttribute('dur',(3+i*.4)+'s');m.setAttribute('repeatCount','indefinite');c.append(m);svg.append(c)}
+const t=.62,l=document.createElement('span');l.className='fl';l.dataset.id=r.id;l.textContent=r.flow+(r.st==='p'?' *':'');l.style.left=(hx+(x-hx)*t)+'px';l.style.top=(hy+(y-hy)*t)+'px';stage.append(l)})}
+function mark(){stage.classList.toggle('on',!!sel);const rel=sel?new Set(by[sel].rel):new Set();R.forEach(r=>{const n=$('#n-'+r.id);n.classList.toggle('sel',r.id===sel);n.classList.toggle('rel',rel.has(r.id))});document.querySelectorAll('.ln,.fl').forEach(e=>e.classList.toggle('hot',e.dataset.id===sel))}
+const sym={propuesto:['L','pr'],denegado:['✖','dn']},OPS=['consultar','crear','modificar','eliminar'],LET=['L','C','M','E'];
+function cell(v){return`<span class="ops">${OPS.map((o,i)=>{const s=v[o];return`<span class="op ${s==='propuesto'?'pr':s==='denegado'?'dn':''}" title="${o}: ${s||'nd'}">${s==='denegado'?'✖':LET[i]}</span>`}).join('')}</span>`}
+function pick(id){sel=id;mark();const r=by[id];$('#dp').innerHTML=`<button class="x" aria-label="Cerrar">×</button><span class="bd ${r.st}">${r.st==='d'?'Documentado':'Propuesta por validar *'}</span><h2>${r.name}</h2><div style="color:var(--mut)">${G[r.g]}</div><h3>Qué puede hacer</h3><ul>${r.fn.map(f=>`<li>${f}</li>`).join('')}</ul><h3>Qué no puede hacer</h3><ul>${r.no.map(f=>`<li>${f}</li>`).join('')}</ul><h3>Con quién interactúa</h3>${r.rel.map(x=>`<button class="pill" data-o="${x}">${by[x].short}</button>`).join('')||'<span style="color:var(--mut)">Sin relaciones directas entre roles.</span>'}${r.perm?`<h3>Permisos (propuestos)</h3>${Object.entries(r.perm).map(([k,v])=>`<div style="display:flex;justify-content:space-between;align-items:center;margin:6px 0"><span>${k}</span>${cell(v)}</div>`).join('')}`:''}`;
+$('#dp').classList.add('open');$('#dp .x').onclick=clear;document.querySelectorAll('#dp [data-o]').forEach(b=>b.onclick=()=>pick(b.dataset.o))}
+function clear(){sel=null;mark();$('#dp').classList.remove('open')}
+$('#rs').onclick=()=>{clear();mod='Todos';matrix()};addEventListener('keydown',e=>{if(e.key==='Escape')clear()});
+const T=$('#th');T.onclick=()=>{const l=document.documentElement.dataset.theme==='dark';document.documentElement.dataset.theme=l?'light':'dark';T.textContent=l?'Tema oscuro':'Tema claro'};
+const prm=R.filter(r=>r.perm),mods=[...new Set(prm.flatMap(r=>Object.keys(r.perm)))];let mod='Todos';
+function matrix(){$('#chips').innerHTML=['Todos',...mods].map(m=>`<button class="chip ${m===mod?'on':''}" data-m="${m}">${m}</button>`).join('');
+$('#chips').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{mod=b.dataset.m;matrix()});
+$('#mh').innerHTML=`<tr><th>Módulo</th>${prm.map(r=>`<th>${r.short}${r.st==='p'?' *':''}</th>`).join('')}</tr>`;
+$('#mb').innerHTML=mods.filter(m=>mod==='Todos'||m===mod).map((m,i)=>`<tr style="animation-delay:${i*.04}s"><td>${m}</td>${prm.map(r=>`<td>${r.perm[m]?cell(r.perm[m]):'—'}</td>`).join('')}</tr>`).join('')}
+matrix();addEventListener('resize',draw);document.fonts.ready.then(()=>setTimeout(()=>{draw();mark()},80));draw();
+document.querySelectorAll('.role').forEach(n=>{n.addEventListener('mouseenter',()=>{if(!sel){stage.classList.add('on');document.querySelectorAll('.ln,.fl').forEach(e=>e.classList.toggle('hot',e.dataset.id===n.id.slice(2)))}});n.addEventListener('mouseleave',()=>{if(!sel){stage.classList.remove('on');document.querySelectorAll('.hot').forEach(e=>e.classList.remove('hot'))}})});
+</script>
+</body></html>
