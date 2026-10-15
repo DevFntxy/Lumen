@@ -8,6 +8,12 @@
   <strong>"Una aventura post-humana de exploración, puzzles y narrativa en las ruinas automatizadas de una metrópoli olvidada."</strong>
 </p>
 
+<br>
+
+## Logo de la empresa
+
+<img src="assets/dimatrek_logo.png">
+<br>
 
 ## Descripción del proyecto
 
