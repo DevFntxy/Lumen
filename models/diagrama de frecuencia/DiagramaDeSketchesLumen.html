@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Diagrama interactivo de secuencia de pantallas móviles para LUMEN.">
+    <meta name="theme-color" content="#090c11">
+    <title>LUMEN — Diagrama de Secuencia de Pantallas Móviles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #090c11;
+            --panel: #11171e;
+            --panel-card: #151d26;
+            --line: #29343f;
+            --line-light: #3a4856;
+            --ink: #eef2f4;
+            --muted: #a2adb7;
+            --teal: #8ce5d2;
+            --teal-glow: rgba(140, 229, 210, 0.25);
+            --gold: #eccb91;
+            --gold-glow: rgba(236, 203, 145, 0.25);
+            --purple: #b388ff;
+            --purple-glow: rgba(179, 136, 255, 0.25);
+            --cyan: #70bbfd;
+            --danger: #ff6b6b;
+            --mono: 'DM Mono', monospace;
+            --sans: 'Manrope', system-ui, -apple-system, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 80% 10%, #15302c33, transparent 40rem), var(--bg);
+            color: var(--ink);
+            font-family: var(--sans);
+            font-size: 14px;
+            line-height: 1.5;
+            overflow: hidden;
+        }
+
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* ENCABEZADO PRINCIPAL */
+        .topbar {
+            height: 68px;
+            background: rgba(9, 12, 17, 0.95);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 100;
+            flex-shrink: 0;
+        }
+
+        .brand-group {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-mark {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--teal);
+            border-radius: 9px;
+            background: rgba(140, 229, 210, 0.1);
+            display: grid;
+            place-items: center;
+            color: var(--teal);
+            font-family: var(--mono);
+            font-weight: 800;
+            font-size: 13px;
+        }
+
+        .brand-text h1 {
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-pills {
+            display: flex;
+            gap: 6px;
+            margin-top: 2px;
+        }
+
+        .pill-tag {
+            font-family: var(--mono);
+            font-size: 9px;
+            padding: 2px 7px;
+            border-radius: 4px;
+            border: 1px solid var(--line);
+            background: var(--panel);
+            color: var(--muted);
+        }
+
+        .pill-tag.teal { border-color: rgba(140, 229, 210, 0.3); color: var(--teal); }
+        .pill-tag.gold { border-color: rgba(236, 203, 145, 0.3); color: var(--gold); }
+
+        .meta-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .meta-box {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 5px 12px;
+        }
+
+        .meta-box strong { color: var(--ink); }
+
+        /* NAVEGACIÓN POR PESTAÑAS (MODOS DE VISTA) */
+        .tab-bar {
+            height: 48px;
+            background: var(--panel);
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            gap: 8px;
+            z-index: 90;
+            flex-shrink: 0;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--muted);
+            font-family: var(--sans);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover { color: var(--ink); background: rgba(255, 255, 255, 0.03); }
+
+        .tab-btn.active {
+            background: var(--teal);
+            color: #09110f;
+            font-weight: 700;
+        }
+
+        .tab-badge {
+            font-family: var(--mono);
+            font-size: 9px;
+            background: rgba(0,0,0,0.25);
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+
+        /* BARRA DE HERRAMIENTAS Y FILTROS */
+        .toolbar {
+            height: 48px;
+            background: rgba(13, 18, 24, 0.9);
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            gap: 16px;
+            z-index: 80;
+            flex-shrink: 0;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .filter-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-right: 4px;
+        }
+
+        .btn-filter {
+            background: var(--bg);
+            border: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-filter:hover { border-color: var(--teal); color: var(--ink); }
+        .btn-filter.active { background: rgba(140, 229, 210, 0.12); border-color: var(--teal); color: var(--teal); }
+        .btn-filter.gold.active { background: rgba(236, 203, 145, 0.12); border-color: var(--gold); color: var(--gold); }
+        .btn-filter.purple.active { background: rgba(179, 136, 255, 0.12); border-color: var(--purple); color: var(--purple); }
+
+        .search-input {
+            background: var(--bg);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 4px 10px 4px 28px;
+            color: var(--ink);
+            font-size: 11px;
+            outline: none;
+            width: 180px;
+        }
+
+        .search-input:focus { border-color: var(--teal); }
+
+        .zoom-controls {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            border: 1px solid var(--line);
+            background: var(--bg);
+            color: var(--ink);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .btn-icon:hover { border-color: var(--teal); color: var(--teal); }
+
+        /* VISTAS CONTENEDORAS */
+        .view-content {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            display: none;
+        }
+
+        .view-content.active { display: flex; }
+
+        /* VISTA 1: DIAGRAMA DE SECUENCIA SECUENCIAL */
+        .viewport-diagram {
+            flex: 1;
+            height: 100%;
+            overflow: auto;
+            position: relative;
+            background-color: #07090d;
+            background-image: 
+                linear-gradient(rgba(41, 52, 63, 0.18) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(41, 52, 63, 0.18) 1px, transparent 1px);
+            background-size: 28px 28px;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .viewport-diagram:active { cursor: grabbing; }
+
+        .diagram-stage {
+            position: absolute;
+            transform-origin: 0 0;
+            padding: 40px;
+            min-width: 2800px;
+            min-height: 1800px;
+        }
+
+        /* FASES DE SECUENCIA EN COLUMNAS */
+        .sequence-phases-container {
+            display: flex;
+            gap: 60px;
+            position: relative;
+            z-index: 20;
+        }
+
+        .phase-column {
+            width: 360px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .phase-header {
+            background: rgba(17, 23, 30, 0.9);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .phase-title {
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: var(--teal);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .phase-title.gold { color: var(--gold); }
+        .phase-title.purple { color: var(--purple); }
+
+        /* TARJETA DE PANTALLA MÓVIL EN DIAGRAMA */
+        .screen-node-card {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 12px;
+            position: relative;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .screen-node-card:hover {
+            border-color: var(--teal);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.6);
+        }
+
+        .screen-node-card.selected {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px var(--teal-glow);
+        }
+
+        .screen-node-card.dimmed { opacity: 0.25; filter: grayscale(0.5); }
+
+        .node-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .node-badge {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(140, 229, 210, 0.1);
+            color: var(--teal);
+            border: 1px solid rgba(140, 229, 210, 0.3);
+        }
+
+        .node-badge.gold { color: var(--gold); background: rgba(236, 203, 145, 0.1); border-color: rgba(236, 203, 145, 0.3); }
+        .node-badge.purple { color: var(--purple); background: rgba(179, 136, 255, 0.1); border-color: rgba(179, 136, 255, 0.3); }
+
+        .node-role {
+            font-family: var(--mono);
+            font-size: 9px;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        .node-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+
+        /* MINI WIREFRAME MÓVIL DENTRO DE TARJETA */
+        .node-wireframe-frame {
+            height: 250px;
+            background: #0b0f14;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 10px;
+        }
+
+        .node-actions-footer {
+            margin-top: 8px;
+            padding-top: 6px;
+            border-top: 1px dashed var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 10px;
+            color: var(--muted);
+        }
+
+        .node-actions-footer span strong { color: var(--teal); }
+
+        /* OVERLAY SVG DE FLECHAS DIRECCIONALES */
+        .svg-connections-layer {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .conn-line {
+            fill: none;
+            stroke: #253342;
+            stroke-width: 2;
+            transition: all 0.3s;
+        }
+
+        .conn-line.highlight-out { stroke: var(--teal); stroke-width: 3; filter: drop-shadow(0 0 5px var(--teal-glow)); }
+        .conn-line.highlight-in { stroke: var(--gold); stroke-width: 3; filter: drop-shadow(0 0 5px var(--gold-glow)); }
+        .conn-line.dimmed { opacity: 0.1; }
+
+        /* MODAL POP-UP FLOTANTE DE DETALLES */
+        .popup-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 8, 12, 0.75);
+            backdrop-filter: blur(6px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .popup-backdrop.active { display: flex; }
+
+        .popup-card {
+            background: var(--panel);
+            border: 1px solid var(--line-light);
+            border-radius: 20px;
+            width: min(580px, 100%);
+            max-height: 88vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            position: relative;
+            overflow: hidden;
+            animation: popupSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes popupSlide { from { transform: translateY(12px) scale(0.97); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
+
+        .popup-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--line);
+            background: rgba(9, 12, 17, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .popup-header-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-close-popup {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: var(--bg);
+            color: var(--muted);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .btn-close-popup:hover { border-color: var(--teal); color: var(--ink); }
+
+        .popup-body {
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .popup-desc {
+            font-size: 12px;
+            color: #b0bec5;
+            line-height: 1.6;
+        }
+
+        /* CONTENEDOR Y MARCO PROPORCIONAL DE SKETCH EN POP-UP */
+        .popup-sketch-container {
+            background: #080b0f;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-phone-frame {
+            width: 290px;
+            height: 440px;
+            background: #0d1217;
+            border: 2px solid var(--line-light);
+            border-radius: 28px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .popup-section-title {
+            font-family: var(--mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--teal);
+            margin-bottom: 8px;
+        }
+
+        .popup-section-title.gold { color: var(--gold); }
+
+        .popup-conn-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .popup-conn-item {
+            background: var(--panel-card);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .popup-conn-item:hover {
+            border-color: var(--teal);
+            background: rgba(140, 229, 210, 0.05);
+        }
+
+        /* VISTA 2: SIMULADOR DE SKETCHES */
+        .simulator-layout {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 24px;
+            width: 100%;
+            height: 100%;
+            padding: 24px;
+            overflow: auto;
+        }
+
+        .sim-phone-display {
+            width: 320px;
+            height: 580px;
+            background: #0d1217;
+            border: 3px solid var(--line-light);
+            border-radius: 36px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            position: relative;
+        }
+
+        /* VISTA 3: MATRIZ DE INTERACCIÓN (TABLA) */
+        .matrix-container {
+            width: 100%;
+            height: 100%;
+            padding: 24px;
+            overflow: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+            background: var(--panel);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+        }
+
+        .data-table th, .data-table td {
+            padding: 12px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .data-table th {
+            background: rgba(9, 12, 17, 0.8);
+            font-family: var(--mono);
+            color: var(--teal);
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
+        .data-table tr:hover { background: rgba(255, 255, 255, 0.02); }
+
+        /* VISTA 4: MODO PRESENTACIÓN */
+        .presentation-layout {
+            padding: 30px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow-y: auto;
+        }
+
+        /* VISTA 5: PROMPT ARCHIFY AI */
+        .prompt-layout {
+            padding: 24px;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .code-box {
+            background: #080b0e;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 16px;
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--teal);
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+
+        /* COMPONENTES DE WIREFRAME ESTILIZADOS */
+        .wf-box {
+            border: 1px solid var(--line-light);
+            border-radius: 6px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .wf-header-text {
+            font-family: var(--mono);
+            font-size: 9px;
+            color: var(--teal);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .wf-input {
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            background: rgba(0,0,0,0.3);
+            padding: 5px 8px;
+            font-family: var(--mono);
+            font-size: 9px;
+            color: #8898a8;
+            margin-bottom: 5px;
+        }
+
+        .wf-btn {
+            background: var(--teal);
+            color: #09110f;
+            font-weight: 700;
+            font-size: 9px;
+            padding: 6px;
+            border-radius: 5px;
+            text-align: center;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .wf-btn.gold { background: var(--gold); color: #120e07; }
+        .wf-btn.secondary { background: var(--panel-card); color: var(--ink); border: 1px solid var(--line-light); }
+        .wf-btn.danger { background: rgba(255, 107, 107, 0.15); color: var(--danger); border: 1px solid rgba(255, 107, 107, 0.4); }
+
+        .wf-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+        .wf-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- ENCABEZADO PRINCIPAL -->
+        <header class="topbar">
+            <div class="brand-group">
+                <div class="brand-mark">LUM</div>
+                <div class="brand-text">
+                    <h1>Diagrama de Secuencia de Pantallas Móviles: LUMEN</h1>
+                    <div class="brand-pills">
+                        <span class="pill-tag teal">Práctica 06 · Flujo de Navegación</span>
+                        <span class="pill-tag gold">Ecosistema Mobile Companion</span>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-info">
+                <div class="meta-box">Estudiante por equipo: <strong>Dimatrek</strong></div>
+                <div class="meta-box">Fecha: <strong>10/OCT/2026</strong></div>
+            </div>
+        </header>
+
+        <!-- BARRA DE PESTAÑAS (MODOS DE VISTA) -->
+        <nav class="tab-bar">
+            <button class="tab-btn active" id="tab-diagram" onclick="switchTab('diagram')">
+                🌐 Diagrama de Secuencia <span class="tab-badge">21 Pantallas</span>
+            </button>
+            <button class="tab-btn" id="tab-simulator" onclick="switchTab('simulator')">
+                📱 Simulador de Sketches
+            </button>
+            <button class="tab-btn" id="tab-matrix" onclick="switchTab('matrix')">
+                📊 Matriz de Interacción
+            </button>
+            <button class="tab-btn" id="tab-presentation" onclick="switchTab('presentation')">
+                ▶ Modo Presentación
+            </button>
+            <button class="tab-btn" id="tab-prompt" onclick="switchTab('prompt')">
+                🤖 Prompt Archify AI
+            </button>
+        </nav>
+
+        <!-- BARRA DE FILTROS Y CONTROLES -->
+        <div class="toolbar">
+            <div class="filter-group">
+                <span class="filter-label">Filtrar Rol:</span>
+                <button class="btn-filter active" id="flt-all" onclick="filterRole('all')">Todas (21)</button>
+                <button class="btn-filter" id="flt-jugador" onclick="filterRole('Jugador')">Jugador</button>
+                <button class="btn-filter gold" id="flt-admin" onclick="filterRole('Administrador')">Administrador</button>
+                <button class="btn-filter purple" id="flt-shared" onclick="filterRole('Shared')">Compartidas</button>
+            </div>
+
+            <div class="filter-group">
+                <input type="text" class="search-input" id="search-box" placeholder="🔍 Buscar pantalla..." oninput="onSearch(this.value)">
+            </div>
+
+            <div class="zoom-controls">
+                <button class="btn-icon" onclick="adjustZoom(0.1)" title="Acercar">+</button>
+                <span style="font-family:var(--mono); font-size:10px; min-width:36px; text-align:center;" id="zoom-lbl">100%</span>
+                <button class="btn-icon" onclick="adjustZoom(-0.1)" title="Alejar">−</button>
+                <button class="btn-icon" onclick="resetZoom()" title="Restablecer">⟲</button>
+            </div>
+        </div>
+
+        <!-- VISTA 1: DIAGRAMA DE SECUENCIA EN FASES -->
+        <div class="view-content active" id="view-diagram">
+            <div class="viewport-diagram" id="diagram-viewport">
+                <div class="diagram-stage" id="diagram-stage">
+                    <svg class="svg-connections-layer" id="svg-layer"></svg>
+                    <div class="sequence-phases-container" id="phases-container"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISTA 2: SIMULADOR DE SKETCHES -->
+        <div class="view-content" id="view-simulator">
+            <div class="simulator-layout">
+                <div id="sim-control-panel"></div>
+                <div style="display:grid; place-items:center; background:#080b0f; border-radius:16px; border:1px solid var(--line); padding:20px;">
+                    <div class="sim-phone-display" id="sim-phone-frame"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISTA 3: MATRIZ DE INTERACCIÓN -->
+        <div class="view-content" id="view-matrix">
+            <div class="matrix-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Pantalla</th>
+                            <th>Rol</th>
+                            <th>Disparador (Trigger)</th>
+                            <th>Acción de Usuario</th>
+                            <th>Siguiente Pantalla</th>
+                            <th>Detalle UX / Experiencia</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="matrix-tbody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- VISTA 4: MODO PRESENTACIÓN -->
+        <div class="view-content" id="view-presentation">
+            <div class="presentation-layout">
+                <div style="background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:24px; margin-bottom:20px;">
+                    <span class="pill-tag teal">RECORRIDO GUIADO PASO A PASO</span>
+                    <h2 style="font-size:20px; font-weight:800; margin:10px 0 6px;">Secuencia UX del Usuario en LUMEN</h2>
+                    <p style="font-size:12px; color:var(--muted);">Selecciona una ruta para simular la navegación entre pantallas.</p>
+                    <div style="margin-top:16px; display:flex; gap:10px;">
+                        <button class="tab-btn active" id="btn-route-jugador" onclick="loadPresentationRoute('jugador')">Ruta 1: Experiencia Jugador (8 Pasos)</button>
+                        <button class="tab-btn gold" id="btn-route-admin" onclick="loadPresentationRoute('admin')">Ruta 2: Suite Administrador (5 Pasos)</button>
+                    </div>
+                </div>
+                <div id="presentation-step-card"></div>
+            </div>
+        </div>
+
+        <!-- VISTA 5: PROMPT ARCHIFY AI -->
+        <div class="view-content" id="view-prompt">
+            <div class="prompt-layout">
+                <div style="margin-bottom:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <div>
+                        <h2 style="font-size:16px; font-weight:800;">Especificación JSON / Markdown del Diagrama</h2>
+                        <p style="font-size:11px; color:var(--muted);">Arquitectura completa estructurada para agentes y herramientas de diagramación.</p>
+                    </div>
+                    <button class="wf-btn" onclick="navigator.clipboard.writeText(document.getElementById('prompt-code').textContent); alert('¡Prompt copiado al portapapeles!');">📋 Copiar Prompt</button>
+                </div>
+                <div class="code-box" id="prompt-code"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TARJETA POP-UP FLOTANTE (DETALLE DE PANTALLA & SKETCH) -->
+    <div class="popup-backdrop" id="popup-backdrop" onclick="closePopup()">
+        <div class="popup-card" onclick="event.stopPropagation()">
+            <div class="popup-header">
+                <div class="popup-header-title">
+                    <span class="node-badge" id="pop-id">SCR-00</span>
+                    <h3 style="font-size:15px; font-weight:800;" id="pop-title">Título de Pantalla</h3>
+                </div>
+                <button class="btn-close-popup" onclick="closePopup()" title="Cerrar (Esc)">✕</button>
+            </div>
+            <div class="popup-body">
+                <div>
+                    <div style="display:flex; gap:6px; margin-bottom:8px;">
+                        <span class="pill-tag teal" id="pop-role">Jugador</span>
+                        <span class="pill-tag" id="pop-type">Original</span>
+                        <span class="pill-tag gold" id="pop-cat">Categoría</span>
+                    </div>
+                    <p class="popup-desc" id="pop-desc">Descripción del propósito de la pantalla en la aplicación móvil.</p>
+                </div>
+
+                <!-- SKETCH VISUAL EN MARCO MÓVIL PROPORCIONAL -->
+                <div>
+                    <div class="popup-section-title">Representation Sketch / Wireframe</div>
+                    <div class="popup-sketch-container" id="pop-sketch-frame"></div>
+                </div>
+
+                <!-- ENLACE MANTENIDO PARA ABRIR EN EL SIMULADOR -->
+                <div id="pop-sim-link-container"></div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; background:rgba(0,0,0,0.25); padding:10px; border-radius:10px; border:1px solid var(--line);">
+                    <div>
+                        <div style="font-family:var(--mono); font-size:9px; color:var(--muted);">DISPARADOR (TRIGGER)</div>
+                        <div style="font-size:11px; font-weight:700;" id="pop-trigger">Carga Completa</div>
+                    </div>
+                    <div>
+                        <div style="font-family:var(--mono); font-size:9px; color:var(--muted);">ACCIÓN DE USUARIO</div>
+                        <div style="font-size:11px; font-weight:700;" id="pop-action">Tap en Elemento</div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="popup-section-title">Navegación Saliente (A dónde puede ir)</div>
+                    <div class="popup-conn-list" id="pop-outgoing-list"></div>
+                </div>
+
+                <div>
+                    <div class="popup-section-title gold">Navegación Entrante (De dónde proviene)</div>
+                    <div class="popup-conn-list" id="pop-incoming-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* BASE DE DATOS COMPLETA DE LAS 21 PANTALLAS CON SUS REPRODUCCIONES EXACTAS DE SKETCHES */
+        const SCREENS = [
+            // FASE 1: ENTRADA & AUTENTICACIÓN
+            {
+                id: "SCR-01", phase: 1, phaseName: "FASE 1: ENTRADA & INICIO",
+                title: "Splash / Onboarding", role: "Shared", type: "Original", category: "Autenticación",
+                desc: "Pantalla de bienvenida con logo LUMEN, versión, indicador de carga y secuencia de inicio CRT.",
+                trigger: "Apertura de App", action: "Carga Automática",
+                actions: [{ label: "Carga Inicial Completa", target: "SCR-02" }],
+                mockup: `
+                    <div class="wf-box" style="text-align:center; padding:35px 10px; background:rgba(140,229,210,0.03);">
+                        <div style="font-family:var(--mono); font-size:22px; font-weight:800; color:var(--teal); letter-spacing:0.1em; margin-bottom:8px;">[ LUMEN ]</div>
+                        <div style="font-size:9px; color:var(--muted); margin-bottom:28px;">TERMINAL CODEX v1.0.4</div>
+                        <div class="wf-btn" style="width:85%; margin:0 auto;">INICIALIZANDO FIRMWARE M-4...</div>
+                    </div>`
+            },
+            {
+                id: "SCR-02", phase: 1, phaseName: "FASE 1: ENTRADA & INICIO",
+                title: "Inicio de Sesión (Login)", role: "Shared", type: "Original", category: "Autenticación",
+                desc: "Campos de correo y contraseña, botones SSO (Google, Apple, GitHub), 'Forgot Password?' y 'Create Account'.",
+                trigger: "Pantalla Splash o Logout", action: "Submit Credenciales",
+                actions: [
+                    { label: "Login Exitoso (Jugador)", target: "SCR-05" },
+                    { label: "Login Exitoso (Admin)", target: "SCR-18" },
+                    { label: "Tap 'Create Account'", target: "SCR-03" },
+                    { label: "Tap 'Forgot Password?'", target: "SCR-04" }
+                ],
+                mockup: `
+                    <div style="border:1px solid var(--line-light); padding:10px; border-radius:8px; text-align:center;">
+                        <div style="font-family:var(--sans); font-weight:800; font-size:14px; letter-spacing:0.05em; margin-bottom:12px;">LUMEN ACCOUNT<br>LOGIN</div>
+                        <div style="text-align:left; font-size:9px; color:var(--muted); margin-bottom:2px;">✉ Email</div>
+                        <div class="wf-input">✉ user123@domain.com</div>
+                        <div style="text-align:left; font-size:9px; color:var(--muted); margin-bottom:2px;">Password</div>
+                        <div class="wf-input">••••••••</div>
+                        <div class="wf-btn" style="margin:8px 0;">LOG IN</div>
+                        <div style="display:flex; justify-content:space-between; font-size:8px; color:var(--teal); text-decoration:underline;">
+                            <span>Forgot Password?</span><span>Create Account</span>
+                        </div>
+                        <div style="font-size:8px; color:var(--muted); margin:10px 0 6px;">——— OR LOGIN WITH ———</div>
+                        <div class="wf-grid-3">
+                            <div class="wf-btn secondary" style="border-radius:50%; width:28px; height:28px; margin:0 auto; display:grid; place-items:center;">G</div>
+                            <div class="wf-btn secondary" style="border-radius:50%; width:28px; height:28px; margin:0 auto; display:grid; place-items:center;">🍎</div>
+                            <div class="wf-btn secondary" style="border-radius:50%; width:28px; height:28px; margin:0 auto; display:grid; place-items:center;">🐙</div>
+                        </div>
+                    </div>`
+            },
+            {
+                id: "SCR-03", phase: 1, phaseName: "FASE 1: ENTRADA & INICIO",
+                title: "Registro de Cuenta", role: "Shared", type: "Original", category: "Autenticación",
+                desc: "Campos de usuario, correo, contraseña, confirmación, checkbox de Términos y botones SSO.",
+                trigger: "Tap en 'Create Account'", action: "Enviar Formulario",
+                actions: [
+                    { label: "Registro Exitoso", target: "SCR-05" },
+                    { label: "Tap 'Ya tengo cuenta'", target: "SCR-02" }
+                ],
+                mockup: `
+                    <div style="border:1px solid var(--line-light); padding:10px; border-radius:8px; text-align:center;">
+                        <div style="font-family:var(--sans); font-weight:800; font-size:13px; margin-bottom:10px;">LUMEN ACCOUNT<br>REGISTRATION</div>
+                        <div class="wf-input">👤 Username</div>
+                        <div class="wf-input">✉ Email</div>
+                        <div class="wf-input">🔒 Password •••••S_p@$$</div>
+                        <div class="wf-input">🔒 Confirm Password</div>
+                        <div style="font-size:8px; text-align:left; color:var(--muted); margin-bottom:8px;">☑ I agree to the <u>Terms and Conditions</u></div>
+                        <div class="wf-btn">CREATE ACCOUNT</div>
+                        <div style="font-size:8px; color:var(--muted); margin:8px 0 4px;">——— OR SIGN UP WITH ———</div>
+                        <div class="wf-grid-3">
+                            <div class="wf-btn secondary" style="border-radius:50%; width:24px; height:24px; margin:0 auto; display:grid; place-items:center; font-size:8px;">G</div>
+                            <div class="wf-btn secondary" style="border-radius:50%; width:24px; height:24px; margin:0 auto; display:grid; place-items:center; font-size:8px;">🍎</div>
+                            <div class="wf-btn secondary" style="border-radius:50%; width:24px; height:24px; margin:0 auto; display:grid; place-items:center; font-size:8px;">🐙</div>
+                        </div>
+                    </div>`
+            },
+            {
+                id: "SCR-04", phase: 1, phaseName: "FASE 1: ENTRADA & INICIO",
+                title: "Recuperación de Contraseña", role: "Shared", type: "Original", category: "Autenticación",
+                desc: "Flujo de 3 pasos: 1. Ingresar correo; 2. Código de 6 dígitos; 3. Nueva contraseña.",
+                trigger: "Tap 'Forgot Password?'", action: "Validar Código 6 Dígitos",
+                actions: [{ label: "Confirmar Nueva Clave", target: "SCR-02" }],
+                mockup: `
+                    <div style="display:flex; flex-direction:column; gap:6px;">
+                        <div class="wf-box">
+                            <div style="font-weight:700; font-size:9px;">STEP 1: ENTER REGISTERED EMAIL</div>
+                            <div class="wf-input" style="margin-top:3px;">EMAIL ✉</div>
+                            <div class="wf-btn secondary" style="font-size:8px;">SEND CODE</div>
+                        </div>
+                        <div class="wf-box">
+                            <div style="font-weight:700; font-size:9px;">STEP 2: CODE SENT. CHECK EMAIL</div>
+                            <div style="font-size:8px; color:var(--muted);">ENTER 6-DIGIT CODE</div>
+                            <div style="display:flex; gap:3px; margin-top:3px;">
+                                <span class="wf-input" style="width:18px; text-align:center; padding:2px;">3</span>
+                                <span class="wf-input" style="width:18px; text-align:center; padding:2px;">9</span>
+                                <span class="wf-input" style="width:18px; text-align:center; padding:2px;">_</span>
+                                <span class="wf-input" style="width:18px; text-align:center; padding:2px;">_</span>
+                                <span class="wf-input" style="width:18px; text-align:center; padding:2px;">_</span>
+                                <span class="wf-input" style="width:18px; text-align:center; padding:2px;">_</span>
+                            </div>
+                        </div>
+                        <div class="wf-box">
+                            <div style="font-weight:700; font-size:9px;">STEP 3: SET NEW PASSWORD</div>
+                            <div class="wf-input">NEW PASSWORD 🔒</div>
+                            <div class="wf-btn" style="margin-top:3px;">RESET PASSWORD</div>
+                        </div>
+                    </div>`
+            },
+            {
+                id: "SCR-17", phase: 1, phaseName: "FASE 1: ENTRADA & INICIO",
+                title: "Confirmación Acción Crítica", role: "Shared", type: "Nueva", category: "Perfil",
+                desc: "Modal de confirmación de seguridad para re-validar credenciales antes de cerrar sesión o borrar cuenta.",
+                trigger: "Tap 'LOG OUT' o 'DELETE ACCOUNT'", action: "Confirmación Requerida",
+                actions: [
+                    { label: "Confirmar 'Cerrar Sesión'", target: "SCR-02" },
+                    { label: "Cancelar Acción", target: "SCR-06" }
+                ],
+                mockup: `
+                    <div class="wf-box" style="border-color:var(--gold); padding:14px; text-align:center;">
+                        <div style="font-family:var(--mono); color:var(--gold); font-weight:700; font-size:10px;">⚠ CONFIRMAR SEGURIDAD</div>
+                        <p style="font-size:9px; color:var(--muted); margin:8px 0;">¿Estás seguro de que deseas cerrar sesión en Terminal Lumen?</p>
+                        <div class="wf-btn gold" style="margin-bottom:6px;">SÍ, CERRAR SESIÓN</div>
+                        <div class="wf-btn secondary">CANCELAR</div>
+                    </div>`
+            },
+
+            // FASE 2: NÚCLEO DE JUEGO & NAVEGACIÓN
+            {
+                id: "SCR-05", phase: 2, phaseName: "FASE 2: NÚCLEO DE JUEGO",
+                title: "Home / Dashboard", role: "Jugador", type: "Original", category: "Dashboard",
+                desc: "Avatar, USERNAME_PLACEHOLDER, tarjeta ACT_STATUS_SUMMARY y botones PROGRESS_OVERVIEW, CODEX_INDEX, ACHIEVEMENTS_LOG.",
+                trigger: "Login Exitoso / Tap Home", action: "Selección de Función",
+                actions: [
+                    { label: "Tap 'PROGRESS_OVERVIEW'", target: "SCR-07" },
+                    { label: "Tap 'CODEX_INDEX'", target: "SCR-08" },
+                    { label: "Tap 'ACHIEVEMENTS_LOG'", target: "SCR-10" },
+                    { label: "Tap Notificaciones", target: "SCR-14" },
+                    { label: "Tap Avatar 'Profile'", target: "SCR-06" }
+                ],
+                mockup: `
+                    <div style="text-align:center;">
+                        <div style="width:36px; height:36px; border-radius:50%; border:1.5px solid var(--teal); margin:0 auto; display:grid; place-items:center;">👤</div>
+                        <div style="font-family:var(--mono); font-size:9px; font-weight:700; margin-top:3px;">USERNAME_PLACEHOLDER</div>
+                    </div>
+                    <div class="wf-box" style="margin-top:6px;">
+                        <div style="font-weight:800; font-size:10px;">ACT_STATUS_SUMMARY</div>
+                        <div style="font-size:8px; color:var(--muted); margin:2px 0;">Current Act: ACT_NAME_HERE</div>
+                        <div style="height:6px; background:var(--line); border-radius:3px; overflow:hidden; margin:3px 0;"><div style="width:52%; height:100%; background:var(--teal);"></div></div>
+                        <div style="font-size:8px; color:var(--muted);">Overall Completion: XX%</div>
+                    </div>
+                    <div style="display:flex; flex-direction:column; gap:4px; margin-top:6px;">
+                        <div class="wf-btn secondary" style="padding:8px; text-align:left;">PROGRESS_OVERVIEW ➔</div>
+                        <div class="wf-btn secondary" style="padding:8px; text-align:left;">CODEX_INDEX ➔</div>
+                        <div class="wf-btn secondary" style="padding:8px; text-align:left;">ACHIEVEMENTS_LOG ➔</div>
+                    </div>`
+            },
+            {
+                id: "SCR-06", phase: 2, phaseName: "FASE 2: NÚCLEO DE JUEGO",
+                title: "Perfil de Usuario", role: "Jugador", type: "Original", category: "Perfil",
+                desc: "SELECTABLE_AVATAR_PLACEHOLDER, USERNAME, EMAIL, ACCOUNT_CREATED, LINKED_PROVIDERS, LOG_OUT, DELETE_ACCOUNT.",
+                trigger: "Tap Avatar en Dashboard", action: "Ajuste de Perfil",
+                actions: [
+                    { label: "Tap 'LOG_OUT'", target: "SCR-17" },
+                    { label: "Tap 'Configuración'", target: "SCR-13" },
+                    { label: "Tap 'Soporte'", target: "SCR-16" }
+                ],
+                mockup: `
+                    <div class="wf-box" style="text-align:center;">
+                        <div style="font-size:8px; color:var(--muted);">[✓] SELECTABLE_AVATAR_PLACEHOLDER</div>
+                        <div style="width:40px; height:40px; border:1px solid var(--line); border-radius:8px; margin:4px auto; display:grid; place-items:center; font-size:20px;">🤖</div>
+                    </div>
+                    <div style="font-size:8px; font-family:var(--mono); margin:4px 0;">
+                        <div>USERNAME: Current_User_123</div>
+                        <div>EMAIL: user123@domain.com</div>
+                        <div>ACCOUNT_CREATED: 01/JAN/2023</div>
+                    </div>
+                    <div class="wf-box" style="font-size:8px;">
+                        <div style="font-weight:700;">LINKED_PROVIDERS:</div>
+                        <div>G Google_Acct_1</div>
+                        <div>🍎 Apple_Acct_1</div>
+                        <div>🐙 GitHub_Acct_1</div>
+                    </div>
+                    <div class="wf-btn secondary" style="margin-top:4px;">LOG_OUT ➔</div>
+                    <div class="wf-btn danger" style="margin-top:3px;">DELETE_ACCOUNT 🗑</div>`
+            },
+            {
+                id: "SCR-07", phase: 2, phaseName: "FASE 2: NÚCLEO DE JUEGO",
+                title: "Progreso de Partida", role: "Jugador", type: "Original", category: "Progreso",
+                desc: "[H: GAME_PROGRESS], P1: Current Act & Objective, P2: Act Completion Progress, P3: Stats, P4: M-4 Repair Kit Status.",
+                trigger: "Tap 'PROGRESS_OVERVIEW'", action: "Consultar Misión",
+                actions: [
+                    { label: "Tap 'Ver Mapa de Zonas'", target: "SCR-12" },
+                    { label: "Volver a Home", target: "SCR-05" }
+                ],
+                mockup: `
+                    <div style="font-family:var(--mono); font-size:9px; font-weight:700; color:var(--teal);">[H: GAME_PROGRESS]</div>
+                    <div class="wf-box" style="font-size:8px; margin-top:3px;">
+                        <div style="font-weight:700;">[P1: CURRENT ACT & OBJECTIVE]</div>
+                        <div>ACT: ACT III (The Sunken Factory)</div>
+                        <div style="color:var(--muted);">ACTIVE MISSION: Find main power coupler...</div>
+                    </div>
+                    <div class="wf-box" style="font-size:8px; margin-top:3px;">
+                        <div style="font-weight:700;">[P2: ACT COMPLETION PROGRESS]</div>
+                        <div>ACT I: [////////////---] (78%)</div>
+                        <div>ACT II: [////////-------] (52%)</div>
+                        <div>ACT III: [////----------] (21%)</div>
+                    </div>
+                    <div class="wf-box" style="font-size:8px; margin-top:3px;">
+                        <div>TOTAL PLAYTIME: 42h 15m 30s</div>
+                        <div>LAST VISITED: Sector G - Abandoned Foundry</div>
+                    </div>
+                    <div class="wf-box" style="font-size:8px; margin-top:3px;">
+                        <div>[P4: M-4_REPAIR_KIT_STATUS]</div>
+                        <div>L: M-4 KIT LVL: 3 / 5 🤖⚙●●●○○</div>
+                    </div>`
+            },
+            {
+                id: "SCR-12", phase: 2, phaseName: "FASE 2: NÚCLEO DE JUEGO",
+                title: "Mapa de Zonas y Progreso", role: "Jugador", type: "Original", category: "Progreso",
+                desc: "Mapa top-down simplificado de la ciudad dividido en zonas (Actos I-IV) con estado completado/pendiente y jefes.",
+                trigger: "Tap 'Ver Mapa de Zonas'", action: "Seleccionar Sector",
+                actions: [{ label: "Tap Sector Específico", target: "SCR-07" }],
+                mockup: `
+                    <div class="wf-header-text">MAPA DE SECTORES · LUMEN</div>
+                    <div class="wf-grid-2" style="height:120px; background:rgba(0,0,0,0.4); padding:6px; gap:4px;">
+                        <div class="wf-box" style="border-color:var(--teal); font-size:8px;">SECTOR A (100%)<br>✓ The Gardener</div>
+                        <div class="wf-box" style="border-color:var(--gold); font-size:8px;">SECTOR B (52%)<br>✓ The Conductor</div>
+                        <div class="wf-box" style="border-color:var(--muted); font-size:8px;">SECTOR C (21%)<br>🔒 The Watcher</div>
+                        <div class="wf-box" style="border-style:dashed; font-size:8px;">CORE NUCLEUS<br>🔒 Restringido</div>
+                    </div>`
+            },
+            {
+                id: "SCR-13", phase: 2, phaseName: "FASE 2: NÚCLEO DE JUEGO",
+                title: "Configuración General", role: "Shared", type: "Original", category: "Configuración",
+                desc: "Idioma, notificaciones push, gestión de cuentas vinculadas, cambiar contraseña y política de privacidad.",
+                trigger: "Tap 'Configuración'", action: "Cambiar Ajustes",
+                actions: [
+                    { label: "Tap 'Soporte y Errores'", target: "SCR-16" },
+                    { label: "Volver a Perfil", target: "SCR-06" }
+                ],
+                mockup: `
+                    <div class="wf-header-text">AJUSTES DE SISTEMA</div>
+                    <div class="wf-input">🌐 IDIOMA: Español (MX)</div>
+                    <div class="wf-input">🔔 NOTIFICACIONES: [ ON ]</div>
+                    <div class="wf-input">🔒 CAMBIAR CONTRASEÑA</div>
+                    <div class="wf-btn secondary" style="margin-top:6px;">REPORTAR UN ERROR 🛠</div>`
+            },
+            {
+                id: "SCR-14", phase: 2, phaseName: "FASE 2: NÚCLEO DE JUEGO",
+                title: "Centro de Notificaciones", role: "Jugador", type: "Nueva", category: "Dashboard",
+                desc: "Historial de alertas de sistema, avisos de nuevo fragmento encontrado y notificaciones de eventos.",
+                trigger: "Tap Icono Notificaciones", action: "Seleccionar Alerta",
+                actions: [
+                    { label: "Tap Alerta 'Logro Desbloqueado'", target: "SCR-15" },
+                    { label: "Tap Alerta 'Fragmento Memoria'", target: "SCR-11" },
+                    { label: "Volver a Home", target: "SCR-05" }
+                ],
+                mockup: `
+                    <div class="wf-header-text">NOTIFICACIONES & ALERTAS</div>
+                    <div class="wf-box" style="margin-bottom:4px; font-size:8px;">🏆 <strong>¡Logro Desbloqueado!</strong><br>Reparación de Fusible Sector G</div>
+                    <div class="wf-box" style="font-size:8px;">💾 <strong>Fragmento Encontrado</strong><br>Circuit Log #04 desbloqueado</div>`
+            },
+            {
+                id: "SCR-16", phase: 2, phaseName: "FASE 2: NÚCLEO DE JUEGO",
+                title: "Soporte y Reporte de Errores", role: "Jugador", type: "Nueva", category: "Soporte",
+                desc: "Formulario para reportar problemas técnicos, adjuntar logs de M-4 y enviar solicitud a administración.",
+                trigger: "Tap 'Reportar Error'", action: "Enviar Ticket",
+                actions: [{ label: "Submit Ticket de Soporte", target: "SCR-13" }],
+                mockup: `
+                    <div class="wf-header-text">REPORTAR FALLA TÉCNICA</div>
+                    <div class="wf-input">TIPO: Error de Guardado</div>
+                    <div class="wf-box" style="height:45px; font-size:8px; color:var(--muted);">Escriba los detalles aquí...</div>
+                    <div class="wf-btn" style="margin-top:6px;">ENVIAR TICKET ➔</div>`
+            },
+
+            // FASE 3: LORE & COLECCIONABLES
+            {
+                id: "SCR-08", phase: 3, phaseName: "FASE 3: LORE & COLECCIONABLES",
+                title: "Codex de Personajes", role: "Jugador", type: "Original", category: "Codex",
+                desc: "[H: CHARACTER_CODEX], cuadrícula de autómatas (MK-1, Sentinel, A-7, C-9, R-5, Scavenger) con EXPANDED_BIO_PANEL.",
+                trigger: "Tap 'CODEX_INDEX'", action: "Seleccionar Personaje",
+                actions: [{ label: "Tab 'Enemy & Boss Codex'", target: "SCR-09" }],
+                mockup: `
+                    <div style="font-family:var(--mono); font-size:9px; font-weight:700;">⚙ [H: CHARACTER_CODEX]</div>
+                    <div class="wf-grid-3" style="margin-top:4px; font-size:7px; text-align:center;">
+                        <div class="wf-box">🤖🔒<br>MK-1</div>
+                        <div class="wf-box">🤖🔒<br>Sentinel</div>
+                        <div class="wf-box">🤖🔒<br>A-7</div>
+                    </div>
+                    <div class="wf-box" style="margin-top:4px; border-color:var(--teal); font-size:7px;">
+                        <div style="font-weight:700; color:var(--teal);">EXPANDED_BIO_PANEL [✕]</div>
+                        <div>🤖 R-5 UNIT: DESIGNED FOR HAZARDOUS DATA EXTRACTION.</div>
+                        <div style="color:var(--muted);">UNLOCKED IN ACT II "SUNKEN FACTORY".</div>
+                    </div>`
+            },
+            {
+                id: "SCR-09", phase: 3, phaseName: "FASE 3: LORE & COLECCIONABLES",
+                title: "Codex de Enemigos y Jefes", role: "Jugador", type: "Original", category: "Codex",
+                desc: "[H: ENEMY_&_BOSS_CODEX], P1: ENEMY_CODEX_GRID (Security, Reset, Defective) y P2: BOSS_CODEX_ROSTER.",
+                trigger: "Tab 'Enemy & Boss Codex'", action: "Consultar Amenaza",
+                actions: [{ label: "Tab 'Character Codex'", target: "SCR-08" }],
+                mockup: `
+                    <div style="font-family:var(--mono); font-size:9px; font-weight:700;">[H: ENEMY_&_BOSS_CODEX]</div>
+                    <div style="font-size:7px; font-weight:700; margin-top:2px;">P1: ENEMY_CODEX_GRID</div>
+                    <div class="wf-grid-3" style="font-size:7px; text-align:center;">
+                        <div class="wf-box">🤖 SECURITY</div>
+                        <div class="wf-box">🤖 RESET</div>
+                        <div class="wf-box">🤖 DEFECTIVE</div>
+                    </div>
+                    <div style="font-size:7px; font-weight:700; margin-top:4px;">P2: BOSS_CODEX_ROSTER</div>
+                    <div class="wf-grid-3" style="font-size:7px; text-align:center;">
+                        <div class="wf-box">🤖✓ GARDENER</div>
+                        <div class="wf-box">🤖✓ CONDUCTOR</div>
+                        <div class="wf-box">🤖🔒 WATCHER</div>
+                    </div>`
+            },
+            {
+                id: "SCR-10", phase: 3, phaseName: "FASE 3: LORE & COLECCIONABLES",
+                title: "Logros / Achievements", role: "Jugador", type: "Original", category: "Progreso",
+                desc: "[H: ACHIEVEMENTS_LIST], lista vertical de logros con insignias de escudo, barras de progreso y fechas.",
+                trigger: "Tap 'ACHIEVEMENTS_LOG'", action: "Seleccionar Logro",
+                actions: [{ label: "Tap Logro Específico", target: "SCR-15" }],
+                mockup: `
+                    <div style="font-family:var(--mono); font-size:9px; font-weight:700;">[H: ACHIEVEMENTS_LIST]</div>
+                    <div style="display:flex; flex-direction:column; gap:3px; margin-top:3px; font-size:7px;">
+                        <div class="wf-box">🛡 L: CITY_EXPLORER_I <br><div style="height:4px; background:var(--line); margin:2px 0;"><div style="width:30%; height:100%; background:var(--teal);"></div></div>P: 15/50</div>
+                        <div class="wf-box">🛡 L: BOSS_TERMINATOR <br>(COMPLETED_DATE: 12/SEP/2026)</div>
+                        <div class="wf-box">🛡 L: COLLECTOR_EXTRAORDINAIRE <br>(COMPLETED_DATE: 20/SEP/2026)</div>
+                    </div>`
+            },
+            {
+                id: "SCR-11", phase: 3, phaseName: "FASE 3: LORE & COLECCIONABLES",
+                title: "Fragmentos de Memoria", role: "Jugador", type: "Original", category: "Codex",
+                desc: "[H: MEMORY_FRAGMENTS], pestañas por sector (T1-T5), cuadrícula de coleccionables y pop-up [F: CIRCUIT_LOG #04].",
+                trigger: "Tap Alerta de Lore", action: "Leer Registro",
+                actions: [{ label: "Volver a Notificaciones", target: "SCR-14" }],
+                mockup: `
+                    <div style="font-family:var(--mono); font-size:9px; font-weight:700;">[H: MEMORY_FRAGMENTS]</div>
+                    <div style="display:flex; gap:2px; font-size:6px; margin-top:2px;">
+                        <span class="wf-box">[T1: SECTOR 6]</span>
+                        <span class="wf-box">[T2: SUNKEN]</span>
+                        <span class="wf-box">[T3: CORE]</span>
+                    </div>
+                    <div class="wf-box" style="margin-top:3px; border-color:var(--teal); font-size:7px;">
+                        <div style="font-weight:700; color:var(--teal);">[F: CIRCUIT_LOG #04] [✕]</div>
+                        <div style="color:var(--muted);">LORE TEXT BLOCK... "Las unidades M continúan sin supervisión humana..."</div>
+                    </div>`
+            },
+            {
+                id: "SCR-15", phase: 3, phaseName: "FASE 3: LORE & COLECCIONABLES",
+                title: "Detalle de Recompensa", role: "Jugador", type: "Nueva", category: "Progreso",
+                desc: "Modal con insignia ampliada, recompensa de XP/arte, texto descriptivo y botón para compartir logro.",
+                trigger: "Tap en Logro Específico", action: "Compartir / Volver",
+                actions: [{ label: "Volver a Logros", target: "SCR-10" }],
+                mockup: `
+                    <div class="wf-box" style="text-align:center; padding:12px;">
+                        <div style="font-size:24px;">🏆</div>
+                        <div style="font-weight:800; font-size:10px; color:var(--gold);">MAESTRO DE REPARACIÓN</div>
+                        <p style="font-size:8px; color:var(--muted); margin:4px 0;">Restauraste 50 tableros de energía sin fallar ningún fusible.</p>
+                        <div class="wf-btn gold" style="margin-top:6px;">COMPARTIR ➔</div>
+                    </div>`
+            },
+
+            // FASE 4: SUITE DE ADMINISTRACIÓN
+            {
+                id: "SCR-18", phase: 4, phaseName: "FASE 4: SUITE ADMINISTRADOR",
+                title: "Dashboard Administrador", role: "Administrador", type: "Nueva", category: "Administración",
+                desc: "Panel exclusivo de control: usuarios activos, estado del Protocolo RESTORE, métricas de API y accesos rápidos.",
+                trigger: "Login de Cuenta Admin", action: "Gestión Global",
+                actions: [
+                    { label: "Tap 'Gestión Usuarios'", target: "SCR-19" },
+                    { label: "Tap 'Emisor Anuncios'", target: "SCR-20" },
+                    { label: "Tap 'Auditoría Logs'", target: "SCR-21" },
+                    { label: "Tap 'Cerrar Sesión Admin'", target: "SCR-17" }
+                ],
+                mockup: `
+                    <div class="wf-header-text" style="color:var(--gold);">ADMIN CONTROL CENTER</div>
+                    <div class="wf-box" style="border-color:var(--gold);">
+                        <div style="font-size:8px; color:var(--gold);">SISTEMA RESTORE: INACTIVO</div>
+                        <div style="font-size:11px; font-weight:700;">USERS ONLINE: 1,420</div>
+                    </div>
+                    <div class="wf-grid-2" style="margin-top:6px;">
+                        <div class="wf-btn gold">USUARIOS</div>
+                        <div class="wf-btn gold">ANUNCIOS</div>
+                    </div>`
+            },
+            {
+                id: "SCR-19", phase: 4, phaseName: "FASE 4: SUITE ADMINISTRADOR",
+                title: "Gestión de Usuarios (Admin)", role: "Administrador", type: "Nueva", category: "Administración",
+                desc: "Tabla/lista interactiva de usuarios registrados, estado de cuenta, nivel de M-4, opciones de suspensión.",
+                trigger: "Tap 'Gestión Usuarios'", action: "Modificar Usuario",
+                actions: [{ label: "Volver a Dashboard Admin", target: "SCR-18" }],
+                mockup: `
+                    <div class="wf-header-text" style="color:var(--gold);">GESTIÓN DE CUENTAS</div>
+                    <div class="wf-box" style="margin-bottom:3px; font-size:8px;">User_123 · Activo</div>
+                    <div class="wf-box" style="border-color:var(--danger); font-size:8px;">Bot_99 · Suspendido</div>`
+            },
+            {
+                id: "SCR-20", phase: 4, phaseName: "FASE 4: SUITE ADMINISTRADOR",
+                title: "Emisor de Anuncios Push", role: "Administrador", type: "Nueva", category: "Administración",
+                desc: "Consola para programar mensajes push globales, actualizar el banner de la terminal CRT y notificar eventos.",
+                trigger: "Tap 'Emisor Anuncios'", action: "Publicar Alerta",
+                actions: [
+                    { label: "Enviar Push Global", target: "SCR-14" },
+                    { label: "Volver a Dashboard Admin", target: "SCR-18" }
+                ],
+                mockup: `
+                    <div class="wf-header-text" style="color:var(--gold);">EMISOR PUSH GLOBAL</div>
+                    <div class="wf-input">MSG: Mantenimiento de Servidores</div>
+                    <div class="wf-btn gold" style="margin-top:4px;">PUBLICAR ALERT ➔</div>`
+            },
+            {
+                id: "SCR-21", phase: 4, phaseName: "FASE 4: SUITE ADMINISTRADOR",
+                title: "Auditoría de Logs del Sistema", role: "Administrador", type: "Nueva", category: "Administración",
+                desc: "Monitor en tiempo real de llamadas API REST, errores de sincronización de partidas y estado del servidor.",
+                trigger: "Tap 'Auditoría Logs'", action: "Inspeccionar Tráfico",
+                actions: [{ label: "Volver a Dashboard Admin", target: "SCR-18" }],
+                mockup: `
+                    <div class="wf-header-text" style="color:var(--gold);">LOGS DE SISTEMA</div>
+                    <div class="wf-box" style="font-family:var(--mono); font-size:7px; color:var(--gold);">
+                        [200 OK] GET /api/codex/robots<br>[201 OK] POST /api/player/sync<br>[500 ERR] POST /api/restore
+                    </div>`
+            }
+        ];
+
+        /* ESTADO GLOBAL Y PILA DE HISTORIAL DEL SIMULADOR */
+        let activeRole = 'all';
+        let searchQuery = '';
+        let zoomLevel = 1.0;
+        let selectedScreenId = 'SCR-01';
+        let simHistory = []; // Pila del historial de navegación para retroceder paso a paso
+
+        /* RENDERING PRINCIPAL */
+        function initApp() {
+            renderPhasesDiagram();
+            renderMatrixTable();
+            loadSimulatorScreen('SCR-01');
+            loadPresentationRoute('jugador');
+            generatePromptText();
+            setTimeout(drawSVGConnections, 150);
+            window.addEventListener('resize', drawSVGConnections);
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePopup(); });
+        }
+
+        /* VISTA 1: RENDER DIAGRAMA SECUENCIAL POR FASES */
+        function renderPhasesDiagram() {
+            const container = document.getElementById('phases-container');
+            container.innerHTML = '';
+
+            const phases = [
+                { id: 1, name: "FASE 1: ENTRADA & INICIO", badgeClass: "teal" },
+                { id: 2, name: "FASE 2: NÚCLEO DE JUEGO", badgeClass: "teal" },
+                { id: 3, name: "FASE 3: LORE & COLECCIONABLES", badgeClass: "purple" },
+                { id: 4, name: "FASE 4: SUITE ADMINISTRADOR", badgeClass: "gold" }
+            ];
+
+            phases.forEach(ph => {
+                const col = document.createElement('div');
+                col.className = 'phase-column';
+                col.dataset.phase = ph.id;
+
+                const screenList = SCREENS.filter(s => s.phase === ph.id);
+
+                col.innerHTML = `
+                    <div class="phase-header">
+                        <span class="phase-title ${ph.badgeClass}">${ph.name}</span>
+                        <span class="pill-tag">${screenList.length} Screens</span>
+                    </div>
+                `;
+
+                screenList.forEach(screen => {
+                    const card = document.createElement('div');
+                    card.className = `screen-node-card`;
+                    card.id = `node-${screen.id}`;
+                    card.onclick = () => openPopup(screen.id);
+
+                    const badgeClass = screen.role === 'Administrador' ? 'gold' : (screen.role === 'Shared' ? 'purple' : '');
+
+                    card.innerHTML = `
+                        <div class="node-header">
+                            <span class="node-badge ${badgeClass}">${screen.id}</span>
+                            <span class="node-role">${screen.role}</span>
+                        </div>
+                        <div class="node-title">${screen.title}</div>
+                        <div class="node-wireframe-frame">
+                            ${screen.mockup}
+                        </div>
+                        <div class="node-actions-footer">
+                            <span>Acciones: <strong>${screen.actions.length}</strong></span>
+                            <span>➔ Siguiente</span>
+                        </div>
+                    `;
+
+                    col.appendChild(card);
+                });
+
+                container.appendChild(col);
+            });
+        }
+
+        /* CONEXIONES SVG DIRECCIONALES ENTRE PANTALLAS */
+        function drawSVGConnections() {
+            const svgLayer = document.getElementById('svg-layer');
+            svgLayer.innerHTML = '';
+
+            const stageRect = document.getElementById('diagram-stage').getBoundingClientRect();
+
+            SCREENS.forEach(source => {
+                const srcNode = document.getElementById(`node-${source.id}`);
+                if (!srcNode || srcNode.style.display === 'none') return;
+
+                const sRect = srcNode.getBoundingClientRect();
+                const startX = (sRect.right - stageRect.left) / zoomLevel;
+                const startY = (sRect.top + sRect.height / 2 - stageRect.top) / zoomLevel;
+
+                source.actions.forEach(act => {
+                    const tgtNode = document.getElementById(`node-${act.target}`);
+                    if (!tgtNode || tgtNode.style.display === 'none') return;
+
+                    const tRect = tgtNode.getBoundingClientRect();
+                    const endX = (tRect.left - stageRect.left) / zoomLevel;
+                    const endY = (tRect.top + tRect.height / 2 - stageRect.top) / zoomLevel;
+
+                    const dx = Math.abs(endX - startX) * 0.5;
+                    const pathD = `M ${startX} ${startY} C ${startX + dx} ${startY}, ${endX - dx} ${endY}, ${endX} ${endY}`;
+
+                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path.setAttribute('d', pathD);
+                    path.setAttribute('class', 'conn-line');
+                    path.dataset.source = source.id;
+                    path.dataset.target = act.target;
+
+                    svgLayer.appendChild(path);
+                });
+            });
+        }
+
+        /* POP-UP FLOTANTE DE DETALLES Y SKETCH PROPORCIONAL */
+        function openPopup(id) {
+            selectedScreenId = id;
+            const screen = SCREENS.find(s => s.id === id);
+            if (!screen) return;
+
+            document.getElementById('pop-id').textContent = screen.id;
+            document.getElementById('pop-title').textContent = screen.title;
+            document.getElementById('pop-role').textContent = screen.role;
+            document.getElementById('pop-type').textContent = screen.type;
+            document.getElementById('pop-cat').textContent = screen.category;
+            document.getElementById('pop-desc').textContent = screen.desc;
+            document.getElementById('pop-trigger').textContent = screen.trigger;
+            document.getElementById('pop-action').textContent = screen.action;
+
+            // Renderizar el sketch en un marco de teléfono móvil con proporciones correctas
+            document.getElementById('pop-sketch-frame').innerHTML = `
+                <div class="popup-phone-frame">
+                    <div style="height:20px; display:flex; justify-content:space-between; align-items:center; font-size:9px; color:var(--muted); font-family:var(--mono); margin-bottom:4px;">
+                        <span>09:41</span>
+                        <div style="width:50px; height:6px; background:#000; border-radius:10px;"></div>
+                        <span>100% 🔋</span>
+                    </div>
+                    <div style="flex:1; padding:8px; overflow-y:auto; font-size:10px;">
+                        ${screen.mockup}
+                    </div>
+                    <div style="height:10px; display:grid; place-items:center; margin-top:4px;">
+                        <div style="width:80px; height:3px; background:rgba(255,255,255,0.2); border-radius:3px;"></div>
+                    </div>
+                </div>
+            `;
+
+            // Enlace 'Ver en el simulador' que se mantiene en la card
+            document.getElementById('pop-sim-link-container').innerHTML = `
+                <button class="wf-btn secondary" style="width:100%; font-size:11px; padding:8px; display:flex; align-items:center; justify-content:center; gap:6px;" 
+                        onclick="closePopup(); switchTab('simulator'); loadSimulatorScreen('${screen.id}');">
+                    📱 Ver en el simulador ➔
+                </button>
+            `;
+
+            // Lista de Salidas
+            const outContainer = document.getElementById('pop-outgoing-list');
+            outContainer.innerHTML = screen.actions.map(a => {
+                const tgt = SCREENS.find(s => s.id === a.target);
+                return `
+                    <div class="popup-conn-item" onclick="openPopup('${a.target}')">
+                        <div>
+                            <span style="font-family:var(--mono); font-size:9px; color:var(--gold);">${a.label}</span>
+                            <div style="font-weight:700; font-size:11px;">➔ ${tgt ? tgt.title : a.target}</div>
+                        </div>
+                        <span class="node-badge">${a.target}</span>
+                    </div>`;
+            }).join('') || '<p style="font-size:10px; color:var(--muted);">Sin salidas directas.</p>';
+
+            // Lista de Entradas
+            const inContainer = document.getElementById('pop-incoming-list');
+            const incoming = SCREENS.filter(s => s.actions.some(a => a.target === id));
+            inContainer.innerHTML = incoming.map(src => {
+                const act = src.actions.find(a => a.target === id);
+                return `
+                    <div class="popup-conn-item" onclick="openPopup('${src.id}')">
+                        <div>
+                            <span style="font-family:var(--mono); font-size:9px; color:var(--teal);">${src.title}</span>
+                            <div style="font-weight:700; font-size:11px;">← ${act.label}</div>
+                        </div>
+                        <span class="node-badge gold">${src.id}</span>
+                    </div>`;
+            }).join('') || '<p style="font-size:10px; color:var(--muted);">Punto de inicio.</p>';
+
+            // Resaltar en SVG y en tarjetas
+            document.querySelectorAll('.screen-node-card').forEach(c => c.classList.remove('selected', 'dimmed'));
+            document.querySelectorAll('.conn-line').forEach(l => l.classList.remove('highlight-out', 'highlight-in', 'dimmed'));
+
+            const selectedNode = document.getElementById(`node-${id}`);
+            if (selectedNode) selectedNode.classList.add('selected');
+
+            document.querySelectorAll('.conn-line').forEach(l => {
+                if (l.dataset.source === id) l.classList.add('highlight-out');
+                else if (l.dataset.target === id) l.classList.add('highlight-in');
+                else l.classList.add('dimmed');
+            });
+
+            // Mostrar Pop-up Flotante
+            document.getElementById('popup-backdrop').classList.add('active');
+        }
+
+        function closePopup() {
+            document.getElementById('popup-backdrop').classList.remove('active');
+            document.querySelectorAll('.screen-node-card').forEach(c => c.classList.remove('selected', 'dimmed'));
+            document.querySelectorAll('.conn-line').forEach(l => l.classList.remove('highlight-out', 'highlight-in', 'dimmed'));
+        }
+
+        /* CAMBIO DE PESTAÑAS (MODOS DE VISTA) */
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.view-content').forEach(v => v.classList.remove('active'));
+
+            document.getElementById(`tab-${tab}`).classList.add('active');
+            document.getElementById(`view-${tab}`).classList.add('active');
+
+            if (tab === 'diagram') setTimeout(drawSVGConnections, 100);
+        }
+
+        /* FILTROS Y BÚSQUEDA */
+        function filterRole(role) {
+            activeRole = role;
+            document.querySelectorAll('.toolbar .btn-filter').forEach(b => b.classList.remove('active'));
+            if (role === 'all') document.getElementById('flt-all').classList.add('active');
+            else if (role === 'Jugador') document.getElementById('flt-jugador').classList.add('active');
+            else if (role === 'Administrador') document.getElementById('flt-admin').classList.add('active');
+            else if (role === 'Shared') document.getElementById('flt-shared').classList.add('active');
+
+            applyDiagramFilters();
+        }
+
+        function onSearch(val) {
+            searchQuery = val.toLowerCase().trim();
+            applyDiagramFilters();
+        }
+
+        function applyDiagramFilters() {
+            SCREENS.forEach(s => {
+                const node = document.getElementById(`node-${s.id}`);
+                if (!node) return;
+
+                const matchRole = activeRole === 'all' || s.role === activeRole;
+                const matchSearch = !searchQuery || s.title.toLowerCase().includes(searchQuery) || s.id.toLowerCase().includes(searchQuery);
+
+                if (matchRole && matchSearch) {
+                    node.style.display = 'block';
+                } else {
+                    node.style.display = 'none';
+                }
+            });
+
+            drawSVGConnections();
+        }
+
+        /* ZOOM & CONTROLES DE ESCALA */
+        function adjustZoom(delta) {
+            zoomLevel = Math.min(Math.max(0.5, zoomLevel + delta), 1.6);
+            document.getElementById('diagram-stage').style.transform = `scale(${zoomLevel})`;
+            document.getElementById('zoom-lbl').textContent = `${Math.round(zoomLevel * 100)}%`;
+            drawSVGConnections();
+        }
+
+        function resetZoom() {
+            zoomLevel = 1.0;
+            document.getElementById('diagram-stage').style.transform = `scale(1)`;
+            document.getElementById('zoom-lbl').textContent = `100%`;
+            document.getElementById('diagram-viewport').scrollTop = 0;
+            document.getElementById('diagram-viewport').scrollLeft = 0;
+            drawSVGConnections();
+        }
+
+        /* SIMULADOR DE SKETCHES CON HISTORIAL DE NAVEGACIÓN PASO A PASO */
+        function loadSimulatorScreen(id, isBackAction = false) {
+            // Guardar pantalla actual en el historial si no es una acción de retroceso
+            if (!isBackAction && selectedScreenId && selectedScreenId !== id) {
+                simHistory.push(selectedScreenId);
+            }
+
+            selectedScreenId = id;
+            const screen = SCREENS.find(s => s.id === id) || SCREENS[0];
+            const panel = document.getElementById('sim-control-panel');
+            const frame = document.getElementById('sim-phone-frame');
+
+            const canGoBack = simHistory.length > 0;
+            const prevScreenId = canGoBack ? simHistory[simHistory.length - 1] : null;
+
+            // Selector desplegable con las 21 pantallas
+            const selectOptions = SCREENS.map(s => `
+                <option value="${s.id}" ${s.id === screen.id ? 'selected' : ''}>
+                    ${s.id} — ${s.title} (${s.role})
+                </option>
+            `).join('');
+
+            // Botones de transiciones de salida directa
+            const actionButtons = screen.actions.map(a => `
+                <button class="wf-btn gold" style="width:100%; margin-top:4px; text-align:left;" onclick="loadSimulatorScreen('${a.target}')">
+                    ➔ ${a.label} (${a.target})
+                </button>
+            `).join('');
+
+            panel.innerHTML = `
+                <div style="background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:20px; display:flex; flex-direction:column; gap:12px;">
+                    
+                    <!-- BOTÓN PARA REGRESAR A LA PANTALLA ANTERIOR -->
+                    <div>
+                        <button class="wf-btn secondary" style="width:100%; display:flex; align-items:center; justify-content:center; gap:6px; font-size:11px; padding:8px; ${canGoBack ? 'border-color:var(--teal); color:var(--teal); cursor:pointer;' : 'opacity:0.45; cursor:not-allowed;'}" 
+                                onclick="${canGoBack ? 'simGoBack()' : ''}" 
+                                ${!canGoBack ? 'disabled' : ''}>
+                            ⬅ Regresar a la pantalla anterior ${prevScreenId ? '[' + prevScreenId + ']' : ''}
+                        </button>
+                    </div>
+
+                    <div>
+                        <label style="font-family:var(--mono); font-size:10px; color:var(--teal); text-transform:uppercase;">Seleccionar Pantalla:</label>
+                        <select onchange="loadSimulatorScreen(this.value)" style="width:100%; background:var(--bg); border:1px solid var(--line); color:var(--ink); padding:8px; border-radius:8px; margin-top:4px; font-family:var(--sans); font-size:12px; outline:none; cursor:pointer;">
+                            ${selectOptions}
+                        </select>
+                    </div>
+
+                    <div style="border-top:1px solid var(--line); padding-top:10px;">
+                        <span class="node-badge">${screen.id}</span>
+                        <h2 style="font-size:16px; margin:6px 0 2px;">${screen.title}</h2>
+                        <span class="pill-tag teal">${screen.role}</span>
+                        <p style="font-size:11px; color:var(--muted); margin-top:6px;">${screen.desc}</p>
+                    </div>
+
+                    <div style="background:rgba(0,0,0,0.3); padding:10px; border-radius:8px; font-size:10px;">
+                        <div><strong>Trigger:</strong> ${screen.trigger}</div>
+                        <div><strong>Acción:</strong> ${screen.action}</div>
+                    </div>
+
+                    <div>
+                        <div style="font-family:var(--mono); font-size:9px; color:var(--gold); text-transform:uppercase;">Acciones de Navegación:</div>
+                        <div style="display:flex; flex-direction:column; gap:4px; margin-top:4px;">
+                            ${actionButtons || '<p style="font-size:10px; color:var(--muted);">Sin transiciones directas.</p>'}
+                        </div>
+                    </div>
+
+                    <button class="wf-btn secondary" onclick="switchTab('diagram'); openPopup('${screen.id}');">
+                        🌐 Ver en Diagrama de Secuencia
+                    </button>
+                </div>`;
+
+            frame.innerHTML = `
+                <div style="height:22px; display:flex; justify-content:space-between; align-items:center; font-size:9px; color:var(--muted); font-family:var(--mono);">
+                    <div style="display:flex; align-items:center; gap:4px;">
+                        ${canGoBack ? `<span onclick="simGoBack()" style="cursor:pointer; color:var(--teal); font-weight:700;">⬅ Volver</span>` : `<span>09:41</span>`}
+                    </div>
+                    <div style="width:60px; height:8px; background:#000; border-radius:10px;"></div>
+                    <span>100% 🔋</span>
+                </div>
+                <div style="flex:1; padding:10px; overflow-y:auto; margin-top:6px;">
+                    ${screen.mockup}
+                </div>
+                <div style="height:14px; display:grid; place-items:center; margin-top:4px;">
+                    <div style="width:100px; height:3px; background:rgba(255,255,255,0.2); border-radius:3px;"></div>
+                </div>`;
+        }
+
+        /* RETROCEDER PASO A PASO EN EL HISTORIAL DEL SIMULADOR */
+        function simGoBack() {
+            if (simHistory.length > 0) {
+                const prevId = simHistory.pop();
+                loadSimulatorScreen(prevId, true);
+            }
+        }
+
+        /* MATRIZ DE INTERACCIÓN (TABLA) */
+        function renderMatrixTable() {
+            const tbody = document.getElementById('matrix-tbody');
+            tbody.innerHTML = SCREENS.map(s => `
+                <tr>
+                    <td><span class="node-badge">${s.id}</span></td>
+                    <td><strong>${s.title}</strong></td>
+                    <td><span class="pill-tag">${s.role}</span></td>
+                    <td>${s.trigger}</td>
+                    <td>${s.action}</td>
+                    <td>${s.actions.map(a => `<span class="node-badge" style="margin-right:2px;">${a.target}</span>`).join('')}</td>
+                    <td style="color:var(--muted);">${s.desc}</td>
+                    <td><button class="wf-btn" onclick="openPopup('${s.id}')">Ver Detalle</button></td>
+                </tr>
+            `).join('');
+        }
+
+        /* MODO PRESENTACIÓN PASO A PASO */
+        function loadPresentationRoute(type) {
+            document.getElementById('btn-route-jugador').classList.toggle('active', type === 'jugador');
+            document.getElementById('btn-route-admin').classList.toggle('active', type === 'admin');
+
+            const stepCard = document.getElementById('presentation-step-card');
+            const route = type === 'jugador' 
+                ? ["SCR-01", "SCR-02", "SCR-05", "SCR-07", "SCR-12", "SCR-08", "SCR-10", "SCR-15"]
+                : ["SCR-01", "SCR-02", "SCR-18", "SCR-19", "SCR-20"];
+
+            let html = `<div style="display:flex; flex-direction:column; gap:12px;">`;
+            route.forEach((id, idx) => {
+                const s = SCREENS.find(sc => sc.id === id);
+                html += `
+                    <div style="background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px; display:flex; align-items:center; gap:14px;">
+                        <span class="node-badge gold" style="font-size:12px; padding:6px 10px;">Paso ${idx + 1}</span>
+                        <div style="flex:1;">
+                            <div style="font-weight:700;">${s.id} — ${s.title}</div>
+                            <div style="font-size:10px; color:var(--muted);">${s.desc}</div>
+                        </div>
+                        <button class="wf-btn" onclick="openPopup('${s.id}')">Ver Sketch</button>
+                    </div>`;
+            });
+            html += `</div>`;
+            stepCard.innerHTML = html;
+        }
+
+        /* GENERAR ARCHIFY PROMPT / JSON */
+        function generatePromptText() {
+            const promptBox = document.getElementById('prompt-code');
+            const schema = {
+                proyecto: "LUMEN Companion Mobile App",
+                estudiante_equipo: "Dimatrek",
+                total_pantallas: SCREENS.length,
+                roles: ["Jugador", "Administrador", "Shared"],
+                nodos: SCREENS.map(s => ({
+                    codigo: s.id,
+                    titulo: s.title,
+                    fase: s.phaseName,
+                    rol: s.role,
+                    transiciones: s.actions
+                }))
+            };
+            promptBox.textContent = JSON.stringify(schema, null, 2);
+        }
+
+        window.onload = initApp;
+    </script>
+</body>
+</html>
