@@ -1,3 +1,34 @@
+# DIMATREK
+
+|||
+|---|---|
+|<img src="assets/dimatrek_logo_oscuro.png" height=100>|<img src="assets/dimatrek_logo_claro.png" height=100>|
+|Logo Oscuro|Logo Claro|
+ 
+
+<br>
+
+# Índice
+- [Descripción del proyecto](#descripción-del-proyecto)
+- [Problematica](#problemática)
+- [Justificación](#justificación)
+- [Objetivo general](#objetivo-general)
+- [Objetivos específicos](#objetivos-específicos)
+- [Público objetivo](#público-objetivo)
+- [Alcance](#fuera-del-alcance-inicial)
+- [Tecnologías utilizadas](#tecnologías-utilizadas)
+- [Requerimientos funcionales](#requerimientos-funcionales)
+- [Requerimientos no funcionales](#requerimientos-no-funcionales)
+- [Historias de usuario](#historias-de-usuario)
+- [Reglas de negocio](#reglas-de-negocio)
+- [Evaluación del proyecto](#evaluación-del-proyecto)
+- [Conclusión](#conclusión)
+- [Diagramas](#diagramas-del-proyecto-y-modelos)
+- [Equipo de desarrollo](#equipo-de-desarrollo)
+- [Organigrama](#organigrama)
+
+<br>
+
 # LUMEN: Crónicas de una Ciudad Olvidada
 
 <p align="center">
@@ -8,6 +39,7 @@
   <strong>"Una aventura post-humana de exploración, puzzles y narrativa en las ruinas automatizadas de una metrópoli olvidada."</strong>
 </p>
 
+<br>
 
 ## Descripción del proyecto
 
@@ -256,7 +288,17 @@ La documentación establece una base para definir los objetivos, el alcance, los
 
 Antes de utilizarla como especificación definitiva, se deberán verificar las funcionalidades implementadas, los endpoints disponibles, los datos sincronizados y las características técnicas reales de la versión actual.
 
-## Equipo
+## Diagramas del Proyecto y Modelos
+
+
+
+| # | Diagrama | Descripción | Firmas | Estatus |
+|---:|---|---|---:|---
+| 04 | [Práctica 04 - Business Model Canvas Interactivo del Proyecto Integrador utilizando Achify](https://devfntxy.github.io/Lumen/models/canvas/proyecto_lumen_business_model_canvas.html) | El estudiante realizará un prompt para solicitar el modelo business canvas de su proyecto integrador  | -- | ✅ Completada |
+| 05 | [Práctica 05 - Diagrama de Roles de Usuario del Proyecto Integrador](https://devfntxy.github.io/Lumen/models/role/AFTERLIGHT%20%C2%B7%20Diagrama%20de%20roles%20y%20permisos.html) | El estudiante realizará un prompt para generar un diagrama interactivo de roles de usuario de su proyecto integrador  | -- | ✅ Completada |
+| 07 | [Práctica 07 - Diagrama de Navigation de Sketches del Proyecto Integrador](#) | El estudiante realizará un prompt para generar un diagrama interactivo de los sketches de su proyecto integrador  | -- |  Realizando  |
+
+## Equipo de desarrollo
 
 | Integrante | Rol | Principales responsabilidades | Perfil |
 |---|---|---|---|
@@ -264,6 +306,8 @@ Antes de utilizarla como especificación definitiva, se deberán verificar las f
 | Derek Sesni | Lead Programmer / Game Designer | Arquitectura en C#, mecánicas de juego, integración de FMOD y sincronización con la PWA. | [@DevFntxy](https://github.com/DevFntxy) |
 | Diego Rivera | Artista 2D / 3D / Compositor musical principal | Modelado low-poly en Blender, animaciones, texturizado PSX, interfaz visual y composición musical en LMMS/Cakewalk, diseño de SFX y mezcla en FMOD. | [@DiegoMiguel04](https://github.com/DiegoMiguel04) |
 | José García | Documentador principal / Tester QA | Creación de documentos guía para el desarrollo, pruebas de calidad y control de riesgos. | [@ppyo1234](https://github.com/ppyo1234) |
+
+## Organigrama
 
 ![Organigrama](assets/Organigrama.png)
 

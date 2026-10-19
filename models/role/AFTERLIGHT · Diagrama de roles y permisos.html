@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>AFTERLIGHT · Diagrama de roles y permisos</title>
+<title>LUMEN· Diagrama de roles y permisos</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#090c11;--panel:#11171e;--card:#101a22;--card2:#152832;--line:#29343f;--ink:#eef2f4;--mut:#a2adb7;--sub:#75b9b0;--teal:#8ce5d2;--gold:#eccb91;--coral:#ff876d;--glow1:#12302c55;--glow2:#1028392b;--mono:'DM Mono',Consolas,monospace;--sans:Manrope,'Segoe UI',sans-serif;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -62,12 +62,12 @@ aside h2{margin:6px 0 8px;font:800 24px/1.1 var(--sans)}aside ul{margin:0;paddin
 </style>
 </head>
 <body>
-<header><small>AFTERLIGHT · CIUDAD DE LUMEN</small><div class="btns"><button class="btn" id="th">Tema claro</button><button class="btn" id="rs">Restablecer selección</button></div></header>
-<h1>Diagrama de roles y permisos de AFTERLIGHT</h1>
-<p class="sub">Perfiles que pueden usar el juego y sus permisos propuestos. Selecciona un rol para consultar sus alcances.</p>
-<p class="quote">Acceso claro para cada tipo de jugador.</p>
-<main id="stage"><svg id="lines" aria-hidden="true"></svg><div class="col" id="L"></div><div class="hub"><div><i>⌖</i><strong>AFTER<b>LIGHT</b></strong><span>Cuentas y permisos<br>del juego</span></div></div><div class="col" id="R"></div></main>
-<div class="legend"><span><i class="sw p"></i>Permisos propuestos por validar</span><span>* El repositorio no confirma cuentas, autenticación ni panel administrativo implementados.</span></div>
+<header><small>PRACTICA05 - LUMEN · CIUDAD DE LUMEN</small><div class="btns"><button class="btn" id="th">Tema claro</button><button class="btn" id="rs">Restablecer selección</button></div></header>
+<h1>Diagrama de roles y permisos de LUMEN</h1>
+<p class="sub">Quién habita Lumen, quién controla a M-4 y qué perfiles y plataformas podrían compartir el progreso. Selecciona un rol para ver sus límites.</p>
+<p class="quote">Las historias se recuerdan; los sistemas, se diseñan.</p>
+<main id="stage"><svg id="lines" aria-hidden="true"></svg><div class="col" id="L"></div><div class="hub"><div><i>⌖</i><strong>LU<b>MEN</b></strong><span>Sistema de roles<br>narrativa + servicios</span></div></div><div class="col" id="R"></div></main>
+<div class="legend"><span><i class="sw"></i>Documentado en las fuentes</span><span><i class="sw p"></i>Propuesta de arquitectura *</span><span><i class="dot" style="color:#eccb91"></i><i class="dot" style="color:#8ce5d2"></i><i class="dot" style="color:#ffad55"></i><i class="dot" style="color:#79c8ee"></i><i class="dot" style="color:#ff876d"></i>Color por tipo de actor</span><span>* Pendiente de validar: no hay implementación comprobable</span></div>
 <section class="mx"><h2>Matriz de permisos por módulo</h2><p>Modelo conceptual: no representa controles activos en ningún servidor.</p><div class="chips" id="chips"></div><div class="tw"><table><thead id="mh"></thead><tbody id="mb"></tbody></table></div><div class="key"><b style="color:var(--gold)">◐</b> propuesto · <b style="color:var(--coral)">✖</b> denegado · gris = no definido o no aplica · L consultar · C crear · M modificar · E eliminar</div></section>
 <aside id="dp" aria-live="polite"></aside>
 <script>
