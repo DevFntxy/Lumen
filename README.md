@@ -296,7 +296,7 @@ Antes de utilizarla como especificación definitiva, se deberán verificar las f
 |---:|---|---|---:|---
 | 04 | [Práctica 04 - Business Model Canvas Interactivo del Proyecto Integrador utilizando Achify](https://devfntxy.github.io/Lumen/models/canvas/proyecto_lumen_business_model_canvas.html) | El estudiante realizará un prompt para solicitar el modelo business canvas de su proyecto integrador  | -- | ✅ Completada |
 | 05 | [Práctica 05 - Diagrama de Roles de Usuario del Proyecto Integrador](https://devfntxy.github.io/Lumen/models/role/AFTERLIGHT%20%C2%B7%20Diagrama%20de%20roles%20y%20permisos.html) | El estudiante realizará un prompt para generar un diagrama interactivo de roles de usuario de su proyecto integrador  | -- | ✅ Completada |
-| 07 | [Práctica 07 - Diagrama de Navigation de Sketches del Proyecto Integrador](#) | El estudiante realizará un prompt para generar un diagrama interactivo de los sketches de su proyecto integrador  | -- |  Realizando  |
+| 07 | [Práctica 07 - Diagrama de Navigation de Sketches del Proyecto Integrador](https://devfntxy.github.io/Lumen/models/diagrama%20de%20frecuencia/DiagramaDeSketchesLumen.html) | El estudiante realizará un prompt para generar un diagrama interactivo de los sketches de su proyecto integrador  | -- |  Realizando  |
 
 ## Equipo de desarrollo
 
