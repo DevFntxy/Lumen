@@ -24,6 +24,7 @@
 - [Evaluación del proyecto](#evaluación-del-proyecto)
 - [Conclusión](#conclusión)
 - [Diagramas](#diagramas-del-proyecto-y-modelos)
+- [Modelos](#modelos)
 - [Equipo de desarrollo](#equipo-de-desarrollo)
 - [Organigrama](#organigrama)
 
@@ -288,15 +289,25 @@ La documentación establece una base para definir los objetivos, el alcance, los
 
 Antes de utilizarla como especificación definitiva, se deberán verificar las funcionalidades implementadas, los endpoints disponibles, los datos sincronizados y las características técnicas reales de la versión actual.
 
-## Diagramas del Proyecto y Modelos
+## Modelos
 
+### Canvas del proyecto
 
+<p align="center">
+  <img src="assets/modelos/canvas.png" alt="Canvas del proyecto LUMEN" width="900" />
+</p>
 
-| # | Diagrama | Descripción | Firmas | Estatus |
-|---:|---|---|---:|---
-| 04 | [Práctica 04 - Business Model Canvas Interactivo del Proyecto Integrador utilizando Achify](https://devfntxy.github.io/Lumen/models/canvas/proyecto_lumen_business_model_canvas.html) | El estudiante realizará un prompt para solicitar el modelo business canvas de su proyecto integrador  | -- | ✅ Completada |
-| 05 | [Práctica 05 - Diagrama de Roles de Usuario del Proyecto Integrador](https://devfntxy.github.io/Lumen/models/role/AFTERLIGHT%20%C2%B7%20Diagrama%20de%20roles%20y%20permisos.html) | El estudiante realizará un prompt para generar un diagrama interactivo de roles de usuario de su proyecto integrador  | -- | ✅ Completada |
-| 07 | [Práctica 07 - Diagrama de Navigation de Sketches del Proyecto Integrador](https://devfntxy.github.io/Lumen/models/diagrama%20de%20frecuencia/DiagramaDeSketchesLumen.html) | El estudiante realizará un prompt para generar un diagrama interactivo de los sketches de su proyecto integrador  | -- |  Realizando  |
+### Diagrama de arquitectura
+
+<p align="center">
+  <img src="assets/modelos/diagramaArquitectura.png" alt="Diagrama de arquitectura de LUMEN" width="900" />
+</p>
+
+### Diagrama de roles
+
+<p align="center">
+  <img src="assets/modelos/diagramaRoles.png" alt="Diagrama de roles de LUMEN" width="900" />
+</p>
 
 ## Equipo de desarrollo
 
@@ -311,3 +322,10 @@ Antes de utilizarla como especificación definitiva, se deberán verificar las f
 
 ![Organigrama](assets/Organigrama.png)
 
+
+
+| # | Diagrama | Descripción | Firmas | Estatus |
+|---:|---|---|---:|---
+| 04 | [Práctica 04 - Business Model Canvas Interactivo del Proyecto Integrador utilizando Achify](https://devfntxy.github.io/Lumen/models/canvas/proyecto_lumen_business_model_canvas.html) | El estudiante realizará un prompt para solicitar el modelo business canvas de su proyecto integrador  | -- | ✅ Completada |
+| 05 | [Práctica 05 - Diagrama de Roles de Usuario del Proyecto Integrador](https://devfntxy.github.io/Lumen/models/role/AFTERLIGHT%20%C2%B7%20Diagrama%20de%20roles%20y%20permisos.html) | El estudiante realizará un prompt para generar un diagrama interactivo de roles de usuario de su proyecto integrador  | -- | ✅ Completada |
+| 07 | [Práctica 07 - Diagrama de Navigation de Sketches del Proyecto Integrador](https://devfntxy.github.io/Lumen/models/diagrama%20de%20frecuencia/DiagramaDeSketchesLumen.html) | El estudiante realizará un prompt para generar un diagrama interactivo de los sketches de su proyecto integrador  | -- |  Realizando  |
