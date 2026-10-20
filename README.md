@@ -37,6 +37,15 @@
 </p>
 
 <p align="center">
+  <img src="https://img.shields.io/badge/Unity-6-black?logo=unity&logoColor=white" alt="Unity 6" />
+  <img src="https://img.shields.io/badge/C%23-239120?logo=csharp&logoColor=white" alt="C sharp" />
+  <img src="https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white" alt="FastAPI" />
+  <img src="https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/Flutter-02569B?logo=flutter&logoColor=white" alt="Flutter" />
+  <img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white" alt="Docker" />
+</p>
+
+<p align="center">
   <strong>"Una aventura post-humana de exploración, puzzles y narrativa en las ruinas automatizadas de una metrópoli olvidada."</strong>
 </p>
 
