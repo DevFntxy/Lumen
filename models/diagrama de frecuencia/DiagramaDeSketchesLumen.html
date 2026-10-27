@@ -1,55 +1,968 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b1017"><title>LUMEN · Diagrama de pantallas</title><style>
-:root{--bg:#0b1017;--panel:#121a24;--line:#2b3b4b;--ink:#edf3f6;--muted:#9aaab6;--teal:#8ce5d2;--paper:#fffef8;--pencil:#262626}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 85% 0,#17352f 0,transparent 38rem),var(--bg);color:var(--ink);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}.topbar{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px clamp(18px,4vw,52px);background:#0b1017e8;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;backdrop-filter:blur(14px)}.brand{display:flex;align-items:center;gap:12px}.mark{height:36px;width:36px;border:1px solid var(--teal);border-radius:9px;display:grid;place-items:center;color:var(--teal);font:700 11px ui-monospace,monospace;background:#8ce5d215}.brand h1{font-size:16px;margin:0;letter-spacing:-.02em}.brand p{font:10px ui-monospace,monospace;color:var(--muted);margin:3px 0 0}.count{font:11px ui-monospace,monospace;color:var(--teal);border:1px solid #8ce5d250;padding:6px 9px;border-radius:6px;background:#8ce5d210;white-space:nowrap}main{padding:31px clamp(18px,4vw,52px) 55px}.intro{display:flex;justify-content:space-between;gap:28px;align-items:end;margin-bottom:23px}.intro h2{font-size:clamp(23px,3.4vw,34px);margin:0;letter-spacing:-.045em}.intro p{max-width:600px;color:var(--muted);margin:7px 0 0}.legend{font:10px ui-monospace,monospace;color:var(--muted);text-transform:uppercase;white-space:nowrap}.toolbar{display:flex;gap:10px;justify-content:space-between;align-items:center;padding:11px 12px;background:#121a24;border:1px solid var(--line);border-radius:12px;margin-bottom:26px}.filters{display:flex;gap:6px;overflow:auto}.filter{border:1px solid var(--line);color:var(--muted);background:#0d141d;border-radius:6px;padding:6px 10px;cursor:pointer;font-size:11px;font-weight:650;white-space:nowrap}.filter:hover,.filter.active{border-color:var(--teal);color:var(--teal);background:#8ce5d20c}.search{width:190px;max-width:36vw;background:#0d141d;border:1px solid var(--line);border-radius:6px;padding:7px 9px;color:var(--ink);font-size:11px;outline:0}.search:focus{border-color:var(--teal)}.phase{margin:31px 0 13px;display:flex;align-items:center;gap:11px}.phase h3{font:700 11px ui-monospace,monospace;letter-spacing:.08em;color:var(--teal);margin:0}.phase i{height:1px;flex:1;background:var(--line)}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(218px,1fr));gap:19px;align-items:start}.caption{min-height:42px;display:flex;justify-content:space-between;gap:8px;align-items:baseline;padding:0 3px 7px}.caption b{font-size:12px}.caption small{font:9px ui-monospace,monospace;color:var(--muted);text-transform:uppercase}.phone{cursor:pointer;min-height:353px;padding:12px 10px;overflow:hidden;position:relative;border:2px solid var(--pencil);border-radius:22px;background:var(--paper);color:var(--pencil);font-family:"Comic Sans MS","Segoe Print",cursive;box-shadow:3px 4px 0 #0005;transform:rotate(var(--r));transition:transform .18s,box-shadow .18s}.phone:hover{transform:translateY(-4px) rotate(var(--r));box-shadow:6px 8px 0 #0005}.phone:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.28;background:repeating-linear-gradient(0deg,transparent 0 6px,#3332 7px,transparent 8px),radial-gradient(#2229 .5px,transparent .7px);background-size:auto,5px 5px;mix-blend-mode:multiply}.phone>*{position:relative;z-index:1}.notch{width:49px;height:6px;border:1px solid var(--pencil);border-radius:10px;margin:0 auto 10px;background:repeating-linear-gradient(135deg,#fff 0 2px,#888 2px 3px)}.sketch-head{border-bottom:1.8px solid var(--pencil);padding:0 2px 7px;display:flex;justify-content:space-between;font-size:11px;font-weight:900}.sketch-head span:last-child{border:1px solid var(--pencil);border-radius:99px;width:18px;text-align:center}.sketch-title{font-size:17px;font-weight:900;line-height:1.05;margin:12px 2px 8px}.scribble{font-size:10px;border:1.5px solid var(--pencil);border-radius:6px 9px 5px 8px;padding:7px;margin:7px 0;background:#fffefa}.art{height:91px;border:1.7px solid var(--pencil);border-radius:6px 9px 5px 7px;margin:9px 0;background:repeating-linear-gradient(135deg,#fffef8 0 3px,#aaa 3px 4px);position:relative;overflow:hidden}.art:before{content:"";position:absolute;width:44px;height:44px;border:1.7px solid var(--pencil);border-radius:50% 46% 52% 45%;left:calc(50% - 22px);top:16px;background:repeating-linear-gradient(135deg,#fff 0 3px,#999 3px 4px)}.rows{display:grid;gap:6px}.row{height:25px;border:1.3px solid var(--pencil);border-radius:4px 7px 5px 6px;padding:4px 6px;font-size:9px;font-weight:bold;background:#fffefa}.row:after{content:"›";float:right;font-size:15px;line-height:11px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:9px}.card{height:45px;border:1.3px solid var(--pencil);border-radius:4px 7px 5px 6px;background:repeating-linear-gradient(135deg,#fff 0 3px,#aaa 3px 4px)}.card:nth-child(2){transform:rotate(.8deg)}.card:nth-child(3){transform:rotate(-.7deg)}.button{margin-top:9px;border:1.7px solid var(--pencil);background:#dedede;text-align:center;padding:7px;border-radius:4px 7px 5px 6px;font-size:10px;font-weight:bold;box-shadow:1px 1px #555}.tag{display:inline-block;font-size:9px;padding:2px 6px;border:1px solid var(--pencil);border-radius:9px;margin-bottom:4px}.modal{display:none;position:fixed;inset:0;background:#05090dcc;z-index:9;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(7px)}.modal.open{display:flex}.modal-box{display:grid;grid-template-columns:minmax(205px,260px) minmax(240px,390px);gap:24px;width:min(710px,100%);max-height:90vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:22px;box-shadow:0 22px 80px #000}.modal-box .phone{min-height:390px}.details h2{margin:8px 0;font-size:23px;letter-spacing:-.04em}.details p{color:var(--muted);font-size:13px}.pill{display:inline-block;border:1px solid #8ce5d250;color:var(--teal);background:#8ce5d210;border-radius:5px;padding:3px 6px;font:10px ui-monospace,monospace;margin-right:4px}.close{float:right;border:1px solid var(--line);background:#0b1017;color:var(--ink);border-radius:6px;cursor:pointer;width:29px;height:29px}.meta{margin-top:17px;display:grid;gap:8px}.meta div{padding:9px;border:1px solid var(--line);border-radius:7px;color:var(--muted);font-size:12px}.meta b{display:block;color:var(--teal);font:9px ui-monospace,monospace;margin-bottom:3px}@media(max-width:620px){.topbar{min-height:62px}.topbar .brand p,.legend{display:none}.toolbar{align-items:stretch;flex-direction:column}.search{width:100%;max-width:none}.modal-box{grid-template-columns:1fr}.modal-box .phone{width:238px;justify-self:center}.intro{display:block}.count{display:none}}
-</style></head><body><header class="topbar"><div class="brand"><div class="mark">LUM</div><div><h1>Diagrama de Secuencia · LUMEN</h1><p>Práctica 06 · Ecosistema Mobile Companion</p></div></div><div class="count">21 PANTALLAS</div></header><main><section class="intro"><div><h2>Flujo de pantallas móviles.</h2><p>La interfaz del diagrama usa una superficie oscura para separar claramente cada sketch blanco, dibujado a lápiz, del espacio de trabajo.</p></div><div class="legend">Click en un sketch para ver su detalle</div></section><div class="toolbar"><div class="filters" id="filters"></div><input class="search" id="search" placeholder="⌕ Buscar pantalla…"></div><div id="content"></div></main><div class="modal" id="modal" aria-modal="true" role="dialog"><div class="modal-box"><div id="modal-sketch"></div><section class="details"><button class="close" id="close">×</button><span class="pill" id="m-id"></span><span class="pill" id="m-role"></span><h2 id="m-title"></h2><p id="m-desc"></p><div class="meta"><div><b>DISPARADOR</b><span id="m-trigger"></span></div><div><b>ACCIÓN PRINCIPAL</b><span id="m-action"></span></div><div><b>FLUJO</b><span id="m-next"></span></div></div></section></div></div>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1017">
+  <title>LUMEN · Diagrama de pantallas</title>
+  <style>
+    :root {
+      --bg: #0b1017;
+      --panel: #121a24;
+      --panel-alt: #16212e;
+      --line: #2b3b4b;
+      --ink: #edf3f6;
+      --muted: #9aaab6;
+      --teal: #8ce5d2;
+      --teal-dim: #8ce5d222;
+      --teal-glow: #8ce5d255;
+      --amber: #f5b942;
+      --amber-dim: #f5b9421c;
+      --pencil: #262626;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(ellipse at 85% 0, #17352f 0, transparent 40rem),
+                  radial-gradient(ellipse at 10% 100%, #152736 0, transparent 35rem),
+                  var(--bg);
+      color: var(--ink);
+      font: 14px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      min-height: 100vh;
+    }
+    .topbar {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 13px clamp(18px, 4vw, 52px);
+      background: #0b1017ee;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .mark {
+      height: 38px;
+      width: 38px;
+      border: 1px solid var(--teal);
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      color: var(--teal);
+      font: 700 12px ui-monospace, monospace;
+      background: var(--teal-dim);
+      box-shadow: 0 0 15px var(--teal-dim);
+    }
+    .brand h1 {
+      font-size: 16px;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+    .brand p {
+      font: 11px ui-monospace, monospace;
+      color: var(--muted);
+      margin: 2px 0 0;
+    }
+    .count {
+      font: 11px ui-monospace, monospace;
+      color: var(--teal);
+      border: 1px solid var(--teal-glow);
+      padding: 6px 12px;
+      border-radius: 6px;
+      background: var(--teal-dim);
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+    }
+    main {
+      padding: 32px clamp(18px, 4vw, 52px) 60px;
+    }
+    .intro {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 26px;
+    }
+    .intro h2 {
+      font-size: clamp(23px, 3.4vw, 34px);
+      margin: 0;
+      letter-spacing: -0.045em;
+    }
+    .intro p {
+      max-width: 640px;
+      color: var(--muted);
+      margin: 8px 0 0;
+      line-height: 1.5;
+    }
+    .legend {
+      font: 10px ui-monospace, monospace;
+      color: var(--muted);
+      text-transform: uppercase;
+      white-space: nowrap;
+      background: #121a24;
+      border: 1px solid var(--line);
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 11px 14px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      margin-bottom: 28px;
+    }
+    .filters {
+      display: flex;
+      gap: 7px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+    .filter {
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: #0d141d;
+      border-radius: 6px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 650;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .filter:hover, .filter.active {
+      border-color: var(--teal);
+      color: var(--teal);
+      background: var(--teal-dim);
+    }
+    .search {
+      width: 220px;
+      max-width: 40vw;
+      background: #0d141d;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 7px 11px;
+      color: var(--ink);
+      font-size: 11px;
+      outline: 0;
+      transition: border-color 0.15s ease;
+    }
+    .search:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 8px var(--teal-dim);
+    }
+    .phase {
+      margin: 36px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .phase h3 {
+      font: 700 11px ui-monospace, monospace;
+      letter-spacing: 0.09em;
+      color: var(--teal);
+      margin: 0;
+      text-transform: uppercase;
+    }
+    .phase i {
+      height: 1px;
+      flex: 1;
+      background: var(--line);
+    }
+    .phase small {
+      font: 10px ui-monospace, monospace;
+      color: var(--muted);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+    .caption {
+      min-height: 38px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: baseline;
+      padding: 0 3px 6px;
+    }
+    .caption b {
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .caption small {
+      font: 9px ui-monospace, monospace;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .screen {
+      cursor: pointer;
+      border-radius: 20px;
+      transition: transform 0.18s ease;
+    }
+    .screen:hover {
+      transform: translateY(-4px);
+    }
+    .phone.real-sketch {
+      min-height: 0;
+      padding: 10px;
+      background: #101820;
+      border: 1px solid #36485c;
+      border-radius: 18px;
+      box-shadow: 0 6px 18px #00000066;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      transform: rotate(var(--r, 0deg));
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+    .screen:hover .phone.real-sketch {
+      border-color: var(--teal);
+      box-shadow: 0 10px 24px #00000099, 0 0 12px var(--teal-dim);
+    }
+    .sketch-head {
+      padding: 2px 3px 7px;
+      border-bottom: 1px solid #2e3e50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #d9e8ed;
+      font-family: ui-monospace, monospace;
+    }
+    .sketch-head span:last-child {
+      color: var(--teal);
+      border: 1px solid #568678;
+      border-radius: 99px;
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 10px;
+    }
+    .sketch-title {
+      margin: 9px 3px 6px;
+      color: #f3f7f8;
+      font-size: 13.5px;
+      font-weight: 700;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .tag {
+      display: inline-block;
+      font: 9px ui-monospace, monospace;
+      padding: 2px 7px;
+      border: 1px solid #4a6c62;
+      border-radius: 6px;
+      margin: 0 3px 8px;
+      color: var(--teal);
+      background: #8ce5d20f;
+    }
+    .tag.auth { color: #f5b942; border-color: #7d632c; background: #f5b9420f; }
+    .tag.game { color: #8ce5d2; border-color: #4a6c62; background: #8ce5d20f; }
+    .tag.prog { color: #6dbdf7; border-color: #3b5f7b; background: #6dbdf70f; }
+    .tag.codex { color: #c49df5; border-color: #5c4978; background: #c49df50f; }
+    
+    .screen-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 9/16;
+      object-fit: cover;
+      object-position: top;
+      border: 1px solid #2e3e50;
+      border-radius: 10px;
+      background: #080d12;
+      transition: opacity 0.2s ease;
+    }
+    
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #05090de0;
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(8px);
+    }
+    .modal.open {
+      display: flex;
+    }
+    .modal-box {
+      display: grid;
+      grid-template-columns: minmax(240px, 310px) minmax(280px, 440px);
+      gap: 24px;
+      width: min(800px, 100%);
+      max-height: 92vh;
+      overflow-y: auto;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 25px 80px #000000cc, 0 0 1px var(--teal-glow);
+    }
+    .modal-box #modal-sketch {
+      align-self: start;
+    }
+    .modal-box .phone.real-sketch {
+      min-height: 0;
+      transform: none !important;
+    }
+    .modal-box .screen-image {
+      max-height: 60vh;
+      object-fit: contain;
+      background: #080d12;
+    }
+    .details {
+      display: flex;
+      flex-direction: column;
+    }
+    .details-head {
+      margin-bottom: 12px;
+    }
+    .details h2 {
+      margin: 10px 0 6px;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+    .details p {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0 0 16px;
+      line-height: 1.5;
+    }
+    .pill {
+      display: inline-block;
+      border: 1px solid #8ce5d250;
+      color: var(--teal);
+      background: #8ce5d210;
+      border-radius: 5px;
+      padding: 3px 7px;
+      font: 10px ui-monospace, monospace;
+      margin-right: 5px;
+    }
+    .pill.shared {
+      border-color: #f5b94260;
+      color: var(--amber);
+      background: #f5b94215;
+    }
+    .close {
+      float: right;
+      border: 1px solid var(--line);
+      background: #0b1017;
+      color: var(--ink);
+      border-radius: 6px;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      font-size: 16px;
+      display: grid;
+      place-items: center;
+      transition: all 0.15s ease;
+    }
+    .close:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+    .meta {
+      display: grid;
+      gap: 10px;
+      margin-top: auto;
+    }
+    .meta div {
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #0d141d;
+      color: #c7d5de;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .meta b {
+      display: block;
+      color: var(--teal);
+      font: 700 9px ui-monospace, monospace;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    .meta .flow-pill {
+      display: inline-block;
+      margin: 2px 4px 2px 0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: #8ce5d215;
+      border: 1px solid #8ce5d240;
+      color: var(--teal);
+      font: 10px ui-monospace, monospace;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .meta .flow-pill:hover {
+      background: #8ce5d233;
+    }
+    .nav-sketches {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr 1fr;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .nav-sketches button {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #0b1017;
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 700;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .nav-sketches button:hover:not(:disabled) {
+      border-color: var(--teal);
+      color: var(--teal);
+      background: #8ce5d20c;
+    }
+    .nav-sketches .go-next {
+      border-color: #8ce5d260;
+      background: #8ce5d218;
+      color: var(--teal);
+    }
+    .nav-sketches .go-next:hover:not(:disabled) {
+      background: #8ce5d22d;
+      box-shadow: 0 0 10px var(--teal-dim);
+    }
+    .nav-sketches button:disabled {
+      cursor: not-allowed;
+      opacity: 0.35;
+    }
+
+    @media (max-width: 680px) {
+      .topbar { min-height: 62px; }
+      .topbar .brand p, .legend { display: none; }
+      .toolbar { flex-direction: column; align-items: stretch; }
+      .search { width: 100%; max-width: none; }
+      .modal-box { grid-template-columns: 1fr; padding: 18px; }
+      .modal-box #modal-sketch { width: 230px; margin: 0 auto; }
+      .intro { display: block; }
+      .count { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="mark">LUM</div>
+      <div>
+        <h1>Diagrama de Secuencia · LUMEN</h1>
+        <p>Práctica 07 · Ecosistema Mobile Companion (17 Pantallas)</p>
+      </div>
+    </div>
+    <div class="count" id="total-count">17 PANTALLAS</div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div>
+        <h2>Flujo interactivo de navegación y sketches.</h2>
+        <p>Catálogo interactivo con los 17 bocetos reales disponibles en <code>assets/pantallas</code>. Haz clic en cualquier tarjeta para abrir el visor con su flujo guiado y disparadores de navegación.</p>
+      </div>
+      <div class="legend">Click en un sketch para ampliar su ruta</div>
+    </section>
+
+    <div class="toolbar">
+      <div class="filters" id="filters"></div>
+      <input class="search" id="search" placeholder="⌕ Buscar por código, título o categoría…">
+    </div>
+
+    <div id="content"></div>
+  </main>
+
+  <div class="modal" id="modal" aria-modal="true" role="dialog">
+    <div class="modal-box">
+      <div id="modal-sketch"></div>
+      <section class="details">
+        <div class="details-head">
+          <button class="close" id="close" title="Cerrar (Esc)">×</button>
+          <span class="pill" id="m-id"></span>
+          <span class="pill" id="m-role"></span>
+          <span class="pill" id="m-category"></span>
+          <h2 id="m-title"></h2>
+          <p id="m-desc"></p>
+        </div>
+        <div class="meta">
+          <div><b>Disparador</b><span id="m-trigger"></span></div>
+          <div><b>Acción Principal</b><span id="m-action"></span></div>
+          <div><b>Flujo de Salida</b><div id="m-next-pills"></div></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
 <script>
-const screens=[['SCR-01','Splash / Onboarding','Shared','Autenticación','Apertura de app','Carga automática','Inicio de LUMEN y estado del sistema.','SCR-02'],['SCR-02','Inicio de Sesión','Shared','Autenticación','Splash o logout','Enviar credenciales','Acceso con correo, contraseña o SSO.','SCR-03 · SCR-04 · SCR-05 · SCR-18'],['SCR-03','Registro de Cuenta','Shared','Autenticación','Crear cuenta','Completar formulario','Alta de usuario con proveedores vinculados.','SCR-05'],['SCR-04','Recuperación de Contraseña','Shared','Autenticación','Olvidé mi contraseña','Validar código','Restablecimiento en tres pasos.','SCR-02'],['SCR-17','Confirmación Acción Crítica','Shared','Perfil','Cerrar sesión o borrar cuenta','Confirmar acción','Modal de seguridad antes de una acción irreversible.','SCR-02 · SCR-06'],['SCR-05','Home / Dashboard','Jugador','Dashboard','Login exitoso','Elegir función','Resumen del acto, progreso y accesos principales.','SCR-06 · SCR-07 · SCR-08 · SCR-10 · SCR-14'],['SCR-06','Perfil de Usuario','Jugador','Perfil','Tap en avatar','Ajustar perfil','Avatar, identidad y proveedores vinculados.','SCR-13 · SCR-16 · SCR-17'],['SCR-07','Progreso de Partida','Jugador','Progreso','Tap en progreso','Ver zona','Avance general de actos y objetivos.','SCR-12 · SCR-15'],['SCR-12','Mapa de Zonas y Progreso','Jugador','Progreso','Abrir una zona','Explorar mapa','Zonas desbloqueadas y porcentaje de avance.','SCR-07'],['SCR-13','Configuración General','Shared','Configuración','Abrir configuración','Cambiar preferencia','Ajustes de cuenta, sonido y accesibilidad.','SCR-06'],['SCR-14','Centro de Notificaciones','Jugador','Dashboard','Tap en campana','Revisar alerta','Bandeja de eventos, avisos y novedades.','SCR-05'],['SCR-16','Soporte y Reporte de Errores','Jugador','Soporte','Tap en soporte','Enviar reporte','Ayuda, diagnóstico y comunicación con soporte.','SCR-06'],['SCR-08','Códex de Personajes','Jugador','Códex','Abrir CODEX_INDEX','Elegir personaje','Registro de aliados, perfiles y descubrimientos.','SCR-09 · SCR-11'],['SCR-09','Códex de Enemigos y Jefes','Jugador','Códex','Elegir sección enemigos','Consultar ficha','Cuadrícula de enemigos, niveles de alerta y jefes.','SCR-08'],['SCR-10','Logros / Achievements','Jugador','Progreso','Abrir logros','Reclamar recompensa','Lista de logros y progreso de desbloqueo.','SCR-15'],['SCR-11','Fragmentos de Memoria','Jugador','Códex','Abrir recuerdos','Leer fragmento','Archivo narrativo de memorias encontradas.','SCR-08'],['SCR-15','Detalle de Recompensa','Jugador','Progreso','Reclamar logro','Confirmar recompensa','Resumen del objeto desbloqueado.','SCR-10'],['SCR-18','Dashboard Administrador','Administrador','Administración','Login de admin','Elegir módulo','Panel de métricas y herramientas operativas.','SCR-19 · SCR-20 · SCR-21'],['SCR-19','Gestión de Usuarios','Administrador','Administración','Abrir usuarios','Administrar cuenta','Búsqueda, estado y moderación de usuarios.','SCR-18'],['SCR-20','Emisor de Anuncios Push','Administrador','Administración','Crear anuncio','Enviar campaña','Editor, audiencia y confirmación de envío.','SCR-18'],['SCR-21','Auditoría de Logs del Sistema','Administrador','Administración','Abrir logs','Inspeccionar evento','Trazabilidad de eventos y alertas del sistema.','SCR-18']].map(([id,title,role,category,trigger,action,desc,next])=>({id,title,role,category,trigger,action,desc,next}));
-const phases=[['01 · ENTRADA E INICIO',['SCR-01','SCR-02','SCR-03','SCR-04','SCR-17']],['02 · NÚCLEO DE JUEGO',['SCR-05','SCR-06','SCR-07','SCR-12','SCR-13','SCR-14','SCR-16']],['03 · CÓDEX Y PROGRESO',['SCR-08','SCR-09','SCR-10','SCR-11','SCR-15']],['04 · ADMINISTRACIÓN',['SCR-18','SCR-19','SCR-20','SCR-21']]],labels={Autenticación:'ACCESO',Dashboard:'INICIO',Perfil:'PERFIL',Progreso:'AVANCE',Configuración:'AJUSTES',Soporte:'SOPORTE','Códex':'CÓDEX',Administración:'ADMIN'};
-function sketch(s,large=false){const n=s.id.slice(-2),codex=s.category==='Códex',admin=s.role==='Administrador',auth=s.category==='Autenticación',items=codex?'<div class="cards"><i class="card"></i><i class="card"></i><i class="card"></i></div><div class="cards"><i class="card"></i><i class="card"></i><i class="card"></i></div>':auth?'<div class="scribble">✉ USUARIO@LUMEN.APP</div><div class="scribble">••••••••••</div><div class="button">CONTINUAR →</div>':admin?'<div class="scribble">◉ SISTEMA · ONLINE</div><div class="rows"><div class="row">USUARIOS ACTIVOS</div><div class="row">EVENTOS DE HOY</div><div class="row">REVISAR ALERTAS</div></div>':'<div class="rows"><div class="row">RESUMEN ACTUAL</div><div class="row">EXPLORAR REGISTRO</div><div class="row">VER DETALLES</div></div>';return `<div class="phone" style="--r:${(Number(n)%3-1)*.42}deg;${large?'min-height:390px':''}"><div class="notch"></div><div class="sketch-head"><span>[H: ${s.id}]</span><span>⌁</span></div><div class="tag">${labels[s.category]}</div><div class="sketch-title">${s.title}</div>${(codex||!auth)?'<div class="art"></div>':''}${items}<div class="button">${codex?'ABRIR FICHA':'ACCEDER →'}</div></div>`}
-const filters=['Todas','Shared','Jugador','Administrador'],filterBox=document.querySelector('#filters');filterBox.innerHTML=filters.map((f,i)=>`<button class="filter ${i===0?'active':''}" data-filter="${f}">${f}${f==='Todas'?' (21)':''}</button>`).join('');function render(){const f=document.querySelector('.filter.active').dataset.filter,q=document.querySelector('#search').value.toLowerCase();document.querySelector('#content').innerHTML=phases.map(([name,ids])=>{const listed=ids.map(id=>screens.find(s=>s.id===id)).filter(s=>(f==='Todas'||s.role===f)&&(`${s.title} ${s.id} ${s.category}`.toLowerCase().includes(q)));return listed.length?`<section><div class="phase"><h3>${name}</h3><i></i><small>${listed.length} PANTALLA${listed.length>1?'S':''}</small></div><div class="grid">${listed.map(s=>`<article class="screen" data-id="${s.id}"><div class="caption"><b>${s.id} · ${s.title}</b><small>${s.role}</small></div>${sketch(s)}</article>`).join('')}</div></section>`:''}).join('');document.querySelectorAll('.screen').forEach(el=>el.addEventListener('click',()=>open(screens.find(s=>s.id===el.dataset.id))))}function open(s){document.querySelector('#m-id').textContent=s.id;document.querySelector('#m-role').textContent=s.role;document.querySelector('#m-title').textContent=s.title;document.querySelector('#m-desc').textContent=s.desc;document.querySelector('#m-trigger').textContent=s.trigger;document.querySelector('#m-action').textContent=s.action;document.querySelector('#m-next').textContent=`Siguiente: ${s.next}`;document.querySelector('#modal-sketch').innerHTML=sketch(s,true);document.querySelector('#modal').classList.add('open')}filterBox.addEventListener('click',e=>{if(!e.target.matches('.filter'))return;document.querySelectorAll('.filter').forEach(b=>b.classList.toggle('active',b===e.target));render()});document.querySelector('#search').addEventListener('input',render);document.querySelector('#close').onclick=()=>document.querySelector('#modal').classList.remove('open');document.querySelector('#modal').addEventListener('click',e=>{if(e.target.id==='modal')e.currentTarget.classList.remove('open')});document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelector('#modal').classList.remove('open')});render();
-</script><style>
-.nav-sketches{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:7px;margin-top:17px}.nav-sketches button{min-height:37px;border:1px solid var(--line);border-radius:7px;background:#0b1017;color:var(--ink);cursor:pointer;font-size:11px;font-weight:700}.nav-sketches button:hover{border-color:var(--teal);color:var(--teal)}.nav-sketches .go-next{border-color:#8ce5d260;background:#8ce5d216;color:var(--teal)}.nav-sketches button:disabled{cursor:not-allowed;opacity:.35}
-</style><script>
-let lumenCurrentIndex=0;
-open=function(s){
-  lumenCurrentIndex=screens.indexOf(s);
-  document.querySelector('#m-id').textContent=s.id;document.querySelector('#m-role').textContent=s.role;document.querySelector('#m-title').textContent=s.title;document.querySelector('#m-desc').textContent=s.desc;document.querySelector('#m-trigger').textContent=s.trigger;document.querySelector('#m-action').textContent=s.action;document.querySelector('#m-next').textContent='Siguiente: '+s.next;document.querySelector('#modal-sketch').innerHTML=sketch(s,true);
-  const primary=screens.find(x=>s.next.includes(x.id)&&x.id!==s.id);document.querySelector('.nav-sketches')?.remove();const nav=document.createElement('nav');nav.className='nav-sketches';nav.innerHTML='<button id="previous-sketch" '+(lumenCurrentIndex===0?'disabled':'')+'>← Anterior</button><button class="go-next" id="flow-sketch" '+(primary?'':'disabled')+'>'+ (primary?'Seguir ruta →':'Fin de ruta') +'</button><button id="following-sketch" '+(lumenCurrentIndex===screens.length-1?'disabled':'')+'>Siguiente →</button>';document.querySelector('.details').append(nav);
-  nav.querySelector('#previous-sketch').onclick=()=>open(screens[lumenCurrentIndex-1]);nav.querySelector('#following-sketch').onclick=()=>open(screens[lumenCurrentIndex+1]);nav.querySelector('#flow-sketch').onclick=()=>primary&&open(primary);document.querySelector('#modal').classList.add('open')
+// Mapa de recursos de imagen exactos en assets/pantallas
+const realSketches = {
+  'SCR-01': 'splash_screen.png',
+  'SCR-02': 'login_screen.png',
+  'SCR-03': 'register_screen.png',
+  'SCR-04': 'password_recovery_screen.png',
+  'SCR-05': 'home_screen.png',
+  'SCR-06': 'profile_screen.png',
+  'SCR-07': 'progress_user_screen.png',
+  'SCR-08': 'character_codex_screen.png',
+  'SCR-09': 'enemy_and_boss_codex_screen.png',
+  'SCR-10': 'achievements_list_screen.png',
+  'SCR-11': 'memory_fragments_screen.png',
+  'SCR-12': 'zone_progress_map_screen.png',
+  'SCR-13': 'settings_screen.png',
+  'SCR-14': 'inventory_screen.png',
+  'SCR-15': 'quest_log_screen.png',
+  'SCR-16': 'skill_tree_screen.png',
+  'SCR-17': 'leaderboard_screen.png'
 };
-document.addEventListener('keydown',e=>{const dialog=document.querySelector('#modal');if(!dialog.classList.contains('open'))return;if(e.key==='ArrowLeft'&&lumenCurrentIndex>0)open(screens[lumenCurrentIndex-1]);if(e.key==='ArrowRight'&&lumenCurrentIndex<screens.length-1)open(screens[lumenCurrentIndex+1])});
-</script>
-<style>
-/* Sketches reales: las miniaturas proceden de assets/pantallas. */
-.phone.real-sketch{min-height:0;padding:8px;background:#101820;border-color:#405267;border-radius:18px;box-shadow:3px 4px 0 #0007;font-family:Inter,ui-sans-serif,system-ui,sans-serif}
-.phone.real-sketch:after{display:none}.phone.real-sketch .sketch-head{padding:2px 3px 7px;border-color:#405267;color:#d9e8ed}.phone.real-sketch .sketch-head span:last-child{color:var(--teal);border-color:#568678}.phone.real-sketch .sketch-title{margin:8px 3px 7px;color:#f3f7f8;font-size:14px;line-height:1.15}.phone.real-sketch .tag{margin:0 3px 7px;border-color:#568678;color:var(--teal)}
-.screen-image{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;object-position:top;border:1px solid #405267;border-radius:10px;background:#0b1017}.modal-box .phone.real-sketch{min-height:0}.modal-box .screen-image{max-height:64vh;object-fit:contain;background:#080d12}.modal-box #modal-sketch{align-self:start}
-</style>
-<script>
-// Catálogo respaldado únicamente por los sketches disponibles en assets/pantallas.
-const realSketches={
- 'SCR-01':'splash_screen.png','SCR-02':'login_screen.png','SCR-03':'register_screen.png',
- 'SCR-04':'password_recovery_screen.png','SCR-05':'home_screen.png','SCR-06':'profile_screen.png',
- 'SCR-07':'progress_user_screen.png','SCR-08':'character_codex_screen.png',
- 'SCR-09':'enemy_and_boss_codex_screen.png','SCR-10':'achievements_list_screen.png',
- 'SCR-11':'memory_fragments_screen.png','SCR-12':'zone_progress_map_screen.png',
- 'SCR-13':'settings_screen.png'
+
+// Catálogo ordenado lógicamente con sentido de ruta e interacción
+const screens = [
+  // FASE 01: ENTRADA E INICIO (Autenticación y Registro)
+  {
+    id: 'SCR-01',
+    title: 'Splash / Onboarding',
+    role: 'Shared',
+    category: 'Autenticación',
+    trigger: 'Apertura de la aplicación',
+    action: 'Carga automática de recursos y comprobación de sesión',
+    desc: 'Pantalla de bienvenida, verificación de estado del sistema e inicialización del ecosistema LUMEN.',
+    next: 'SCR-02'
+  },
+  {
+    id: 'SCR-02',
+    title: 'Inicio de Sesión',
+    role: 'Shared',
+    category: 'Autenticación',
+    trigger: 'Splash completado o cierre de sesión previo',
+    action: 'Enviar credenciales (Email / Contraseña / SSO)',
+    desc: 'Autenticación de usuario con soporte de validación de identidad y acceso a cuenta existente.',
+    next: 'SCR-05 · SCR-03 · SCR-04'
+  },
+  {
+    id: 'SCR-03',
+    title: 'Registro de Cuenta',
+    role: 'Shared',
+    category: 'Autenticación',
+    trigger: 'Tap en "Crear cuenta" desde login',
+    action: 'Completar y enviar formulario de registro',
+    desc: 'Creación de credenciales para nuevos jugadores con sincronización de perfil y telemetría en la nube.',
+    next: 'SCR-05 · SCR-02'
+  },
+  {
+    id: 'SCR-04',
+    title: 'Recuperación de Contraseña',
+    role: 'Shared',
+    category: 'Autenticación',
+    trigger: 'Tap en "¿Olvidaste tu contraseña?"',
+    action: 'Solicitar y validar código de verificación vía email',
+    desc: 'Flujo de restablecimiento seguro en tres pasos para recuperar el acceso a la cuenta.',
+    next: 'SCR-02'
+  },
+
+  // FASE 02: NÚCLEO DE JUEGO Y SISTEMAS (Hub, Perfil, Configuración, Inventario, Árbol de Habilidades)
+  {
+    id: 'SCR-05',
+    title: 'Home / Dashboard',
+    role: 'Jugador',
+    category: 'Dashboard',
+    trigger: 'Autenticación exitosa',
+    action: 'Seleccionar módulo principal o continuar partida',
+    desc: 'Centro neurálgico del jugador con resumen del estado de M-4, progreso del acto actual y accesos directos.',
+    next: 'SCR-14 · SCR-15 · SCR-07 · SCR-06 · SCR-08 · SCR-17'
+  },
+  {
+    id: 'SCR-06',
+    title: 'Perfil de Usuario',
+    role: 'Jugador',
+    category: 'Perfil',
+    trigger: 'Tap en avatar de M-4 o cabecera de perfil',
+    action: 'Inspeccionar estadísticas de juego y sincronización',
+    desc: 'Ficha de identidad del jugador, nivel de operador, fecha de inicio y acceso a configuración general.',
+    next: 'SCR-13 · SCR-05'
+  },
+  {
+    id: 'SCR-13',
+    title: 'Configuración General',
+    role: 'Shared',
+    category: 'Configuración',
+    trigger: 'Tap en icono de engrane desde Perfil o Home',
+    action: 'Modificar preferencias de audio, gráficos y controles',
+    desc: 'Ajustes de accesibilidad, alternar filtro visual CRT, volumen de efectos sonoros y gestión de cuenta.',
+    next: 'SCR-06 · SCR-05'
+  },
+  {
+    id: 'SCR-14',
+    title: 'Inventario y Equipamiento',
+    role: 'Jugador',
+    category: 'Inventario',
+    trigger: 'Tap en "Inventario" desde el Dashboard o atajo rápido',
+    action: 'Gestionar ítems, armas, módulos y kit de reparación',
+    desc: 'Cuadrícula de almacenamiento de recursos recolectados por M-4, ranuras de equipo activo e inspección de estadísticas.',
+    next: 'SCR-16 · SCR-05'
+  },
+  {
+    id: 'SCR-16',
+    title: 'Árbol de Habilidades',
+    role: 'Jugador',
+    category: 'Habilidades',
+    trigger: 'Tap en "Habilidades / Circuitos" desde Inventario o Dashboard',
+    action: 'Desbloquear mejoras de combate, movilidad y escaneo',
+    desc: 'Grafo tecnológico de progresión con nodos de habilidades activas y pasivas para optimizar las capacidades de M-4.',
+    next: 'SCR-14 · SCR-15 · SCR-05'
+  },
+
+  // FASE 03: AVANCE, MISIONES Y SOCIAL (Bitácora, Progreso de Acto, Mapa de Zonas, Leaderboard)
+  {
+    id: 'SCR-15',
+    title: 'Registro de Misiones',
+    role: 'Jugador',
+    category: 'Misiones',
+    trigger: 'Tap en "Misiones" o bitácora de objetivos desde el Dashboard',
+    action: 'Consultar misiones activas, completadas y reclamar recompensas',
+    desc: 'Bitácora detallada de directivas de exploración, reactivación de generadores y objetivos de supervivencia en Lumen.',
+    next: 'SCR-07 · SCR-12 · SCR-05'
+  },
+  {
+    id: 'SCR-07',
+    title: 'Progreso de Partida',
+    role: 'Jugador',
+    category: 'Progreso',
+    trigger: 'Tap en indicador de progreso o desde Misiones',
+    action: 'Inspeccionar avance global de actos y zonas desbloqueadas',
+    desc: 'Métricas de finalización de campaña, porcentaje de sectores restaurados y acceso a la cartografía.',
+    next: 'SCR-12 · SCR-17 · SCR-10'
+  },
+  {
+    id: 'SCR-12',
+    title: 'Mapa de Zonas y Progreso',
+    role: 'Jugador',
+    category: 'Progreso',
+    trigger: 'Seleccionar sector en la pantalla de progreso o misiones',
+    action: 'Explorar cuadrantes, nodos de viaje rápido y puntos de calor',
+    desc: 'Cartografía isométrica e interactiva de los distritos de la ciudad subterránea de Lumen con estado de terminales.',
+    next: 'SCR-07 · SCR-15 · SCR-05'
+  },
+  {
+    id: 'SCR-17',
+    title: 'Tabla de Clasificación',
+    role: 'Jugador',
+    category: 'Social',
+    trigger: 'Tap en "Clasificación / Ránking" desde el Dashboard o Progreso',
+    action: 'Filtrar puestos por categoría global, semanal o entre amigos',
+    desc: 'Marcador competitivo con los mejores tiempos de reparación, puntuaciones de combate y posición del jugador.',
+    next: 'SCR-10 · SCR-05'
+  },
+
+  // FASE 04: CÓDEX Y NARRATIVA (Aliados, Enemigos y Jefes, Logros, Fragmentos)
+  {
+    id: 'SCR-08',
+    title: 'Códex de Personajes',
+    role: 'Jugador',
+    category: 'Códex',
+    trigger: 'Tap en "Terminal Códex" desde el Dashboard',
+    action: 'Consultar fichas biográficas de androides y aliados',
+    desc: 'Enciclopedia con perfiles, registros de voz y antecedentes de los personajes y unidades autoconscientes encontradas.',
+    next: 'SCR-09 · SCR-11 · SCR-10'
+  },
+  {
+    id: 'SCR-09',
+    title: 'Códex de Enemigos y Jefes',
+    role: 'Jugador',
+    category: 'Códex',
+    trigger: 'Pestaña "Amenazas" en el Códex',
+    action: 'Inspeccionar debilidades elementales y patrones de combate',
+    desc: 'Catálogo de autómatas corruptos, drones de vigilancia y jefes de sector con su nivel de alerta y tácticas sugeridas.',
+    next: 'SCR-11 · SCR-08'
+  },
+  {
+    id: 'SCR-10',
+    title: 'Logros / Achievements',
+    role: 'Jugador',
+    category: 'Progreso',
+    trigger: 'Tap en medalla de logros desde Códex, Progreso o Ránking',
+    action: 'Reclamar insignias y recompensas de hazañas cumplidas',
+    desc: 'Listado completo de trofeos de exploración, combate sin daño y recolección de piezas raras.',
+    next: 'SCR-11 · SCR-07 · SCR-05'
+  },
+  {
+    id: 'SCR-11',
+    title: 'Fragmentos de Memoria',
+    role: 'Jugador',
+    category: 'Códex',
+    trigger: 'Sección "Archivos de Memoria" en el Códex',
+    action: 'Reproducir y descifrar grabaciones de audio y registros holísticos',
+    desc: 'Bóveda de archivos narrativos recuperados que revelan los eventos que provocaron la caída y abandono de Lumen.',
+    next: 'SCR-08 · SCR-05'
+  }
+];
+
+// Fases de navegación con sus respectivas pantallas
+const phases = [
+  ['01 · ENTRADA E INICIO', ['SCR-01', 'SCR-02', 'SCR-03', 'SCR-04']],
+  ['02 · NÚCLEO DE JUEGO Y SISTEMAS', ['SCR-05', 'SCR-06', 'SCR-13', 'SCR-14', 'SCR-16']],
+  ['03 · AVANCE, MISIONES Y SOCIAL', ['SCR-15', 'SCR-07', 'SCR-12', 'SCR-17']],
+  ['04 · CÓDEX Y NARRATIVA', ['SCR-08', 'SCR-09', 'SCR-10', 'SCR-11']]
+];
+
+// Etiquetas HUD por categoría
+const labels = {
+  Autenticación: 'ACCESO',
+  Dashboard: 'INICIO',
+  Perfil: 'PERFIL',
+  Configuración: 'AJUSTES',
+  Inventario: 'EQUIPO',
+  Habilidades: 'HABILIDADES',
+  Misiones: 'MISIONES',
+  Progreso: 'AVANCE',
+  Social: 'RÁNKINGS',
+  Códex: 'CÓDEX'
 };
-const availableIds=Object.keys(realSketches);
-const settings=screens.find(s=>s.id==='SCR-13');
-settings.title='Configuración General';settings.role='Shared';settings.category='Configuración';
-settings.trigger='Abrir configuración';settings.action='Cambiar preferencia';settings.desc='Ajustes de cuenta, sonido y accesibilidad.';settings.next='SCR-06';
-screens.splice(0,screens.length,...screens.filter(s=>availableIds.includes(s.id)));
-phases.splice(0,phases.length,
- ['01 · ENTRADA E INICIO',['SCR-01','SCR-02','SCR-03','SCR-04']],
- ['02 · NÚCLEO DE JUEGO',['SCR-05','SCR-06','SCR-07','SCR-12','SCR-13']],
- ['03 · CÓDEX Y PROGRESO',['SCR-08','SCR-09','SCR-10','SCR-11']]
-);
-document.querySelector('.count').textContent=`${screens.length} PANTALLAS`;
-document.querySelector('.intro p').textContent='Cada tarjeta presenta el sketch real disponible en la carpeta assets/pantallas. Selecciona una pantalla para ampliarla y consultar su flujo.';
-document.querySelector('#filters').querySelector('[data-filter="Todas"]').textContent=`Todas (${screens.length})`;
-sketch=function(s,large=false){
- const src=`../../assets/pantallas/${realSketches[s.id]}`;
- return `<div class="phone real-sketch" style="--r:${(Number(s.id.slice(-2))%3-1)*.42}deg;${large?'min-height:0':''}"><div class="sketch-head"><span>[${s.id}]</span><span>↗</span></div><div class="tag">${labels[s.category]||s.category}</div><div class="sketch-title">${s.title}</div><img class="screen-image" src="${src}" alt="Sketch de ${s.title}"></div>`;
+
+const categoryClasses = {
+  Autenticación: 'auth',
+  Dashboard: 'game',
+  Perfil: 'game',
+  Configuración: 'auth',
+  Inventario: 'game',
+  Habilidades: 'game',
+  Misiones: 'prog',
+  Progreso: 'prog',
+  Social: 'prog',
+  Códex: 'codex'
 };
+
+// Generador de tarjeta visual de sketch
+function sketch(s, large = false) {
+  const num = Number(s.id.slice(-2)) || 0;
+  const rot = ((num % 3) - 1) * 0.42;
+  const tagClass = categoryClasses[s.category] || '';
+  const src = `../../assets/pantallas/${realSketches[s.id]}`;
+
+  return `
+    <div class="phone real-sketch" style="--r:${rot}deg; ${large ? 'min-height:0; transform:none;' : ''}">
+      <div class="sketch-head">
+        <span>[${s.id}]</span>
+        <span>↗</span>
+      </div>
+      <div class="tag ${tagClass}">${labels[s.category] || s.category}</div>
+      <div class="sketch-title">${s.title}</div>
+      <img class="screen-image" src="${src}" alt="Sketch de ${s.title}" loading="lazy">
+    </div>
+  `;
+}
+
+// Configuración de Filtros
+const filters = ['Todas', 'Shared', 'Jugador'];
+const filterBox = document.querySelector('#filters');
+
+function updateFilterButtons() {
+  const sharedCount = screens.filter(s => s.role === 'Shared').length;
+  const playerCount = screens.filter(s => s.role === 'Jugador').length;
+  const counts = {
+    'Todas': screens.length,
+    'Shared': sharedCount,
+    'Jugador': playerCount
+  };
+
+  filterBox.innerHTML = filters.map((f, i) => `
+    <button class="filter ${i === 0 ? 'active' : ''}" data-filter="${f}">
+      ${f} (${counts[f]})
+    </button>
+  `).join('');
+}
+updateFilterButtons();
+
+// Renderizado de las secciones y cuadrículas de pantallas
+function render() {
+  const activeBtn = document.querySelector('.filter.active');
+  const currentFilter = activeBtn ? activeBtn.dataset.filter : 'Todas';
+  const query = document.querySelector('#search').value.toLowerCase().trim();
+
+  let visibleCount = 0;
+
+  const html = phases.map(([name, ids]) => {
+    const matchedScreens = ids
+      .map(id => screens.find(s => s.id === id))
+      .filter(Boolean)
+      .filter(s => {
+        const matchesRole = (currentFilter === 'Todas' || s.role === currentFilter);
+        const searchText = `${s.id} ${s.title} ${s.category} ${s.role} ${s.desc} ${s.trigger} ${s.action}`.toLowerCase();
+        const matchesSearch = !query || searchText.includes(query);
+        return matchesRole && matchesSearch;
+      });
+
+    visibleCount += matchedScreens.length;
+
+    if (!matchedScreens.length) return '';
+
+    return `
+      <section>
+        <div class="phase">
+          <h3>${name}</h3>
+          <i></i>
+          <small>${matchedScreens.length} PANTALLA${matchedScreens.length > 1 ? 'S' : ''}</small>
+        </div>
+        <div class="grid">
+          ${matchedScreens.map(s => `
+            <article class="screen" data-id="${s.id}">
+              <div class="caption">
+                <b>${s.id} · ${s.title}</b>
+                <small>${s.role}</small>
+              </div>
+              ${sketch(s)}
+            </article>
+          `).join('')}
+        </div>
+      </section>
+    `;
+  }).join('');
+
+  document.querySelector('#content').innerHTML = html || `
+    <div style="text-align:center; padding: 60px 20px; color: var(--muted);">
+      <p style="font-size: 16px; margin-bottom: 8px;">No se encontraron pantallas que coincidan con la búsqueda.</p>
+      <small style="font-family: ui-monospace, monospace;">Prueba con otro término o selecciona el filtro "Todas".</small>
+    </div>
+  `;
+
+  document.querySelector('#total-count').textContent = `${visibleCount} PANTALLAS`;
+
+  // Asignar eventos de click a cada tarjeta
+  document.querySelectorAll('.screen').forEach(el => {
+    el.addEventListener('click', () => {
+      const found = screens.find(s => s.id === el.dataset.id);
+      if (found) open(found);
+    });
+  });
+}
+
+// Navegación en modal
+let lumenCurrentIndex = 0;
+
+function open(s) {
+  lumenCurrentIndex = screens.indexOf(s);
+
+  document.querySelector('#m-id').textContent = s.id;
+  
+  const roleEl = document.querySelector('#m-role');
+  roleEl.textContent = s.role;
+  roleEl.className = `pill ${s.role.toLowerCase()}`;
+
+  document.querySelector('#m-category').textContent = labels[s.category] || s.category;
+  document.querySelector('#m-title').textContent = s.title;
+  document.querySelector('#m-desc').textContent = s.desc;
+  document.querySelector('#m-trigger').textContent = s.trigger;
+  document.querySelector('#m-action').textContent = s.action;
+
+  // Generar píldoras clicables para los siguientes pasos del flujo
+  const nextIds = s.next.split('·').map(id => id.trim()).filter(Boolean);
+  const nextPillsContainer = document.querySelector('#m-next-pills');
+  nextPillsContainer.innerHTML = nextIds.map(id => {
+    const target = screens.find(x => x.id === id);
+    const titleText = target ? `${id} · ${target.title}` : id;
+    return `<span class="flow-pill" data-target="${id}">${titleText} ↗</span>`;
+  }).join('');
+
+  nextPillsContainer.querySelectorAll('.flow-pill').forEach(pill => {
+    pill.onclick = (e) => {
+      e.stopPropagation();
+      const targetScreen = screens.find(x => x.id === pill.dataset.target);
+      if (targetScreen) open(targetScreen);
+    };
+  });
+
+  document.querySelector('#modal-sketch').innerHTML = sketch(s, true);
+
+  // Primer destino de ruta principal
+  const primary = screens.find(x => s.next.includes(x.id) && x.id !== s.id);
+
+  // Barra de navegación entre sketches
+  document.querySelector('.nav-sketches')?.remove();
+  const nav = document.createElement('nav');
+  nav.className = 'nav-sketches';
+  nav.innerHTML = `
+    <button id="previous-sketch" ${lumenCurrentIndex === 0 ? 'disabled' : ''} title="Pantalla anterior (←)">
+      ← Anterior
+    </button>
+    <button class="go-next" id="flow-sketch" ${primary ? '' : 'disabled'} title="Seguir ruta principal recomendada">
+      ${primary ? `Seguir ruta (${primary.id}) →` : 'Fin de ruta'}
+    </button>
+    <button id="following-sketch" ${lumenCurrentIndex === screens.length - 1 ? 'disabled' : ''} title="Siguiente pantalla (→)">
+      Siguiente →
+    </button>
+  `;
+  document.querySelector('.details').append(nav);
+
+  nav.querySelector('#previous-sketch').onclick = () => {
+    if (lumenCurrentIndex > 0) open(screens[lumenCurrentIndex - 1]);
+  };
+  nav.querySelector('#following-sketch').onclick = () => {
+    if (lumenCurrentIndex < screens.length - 1) open(screens[lumenCurrentIndex + 1]);
+  };
+  nav.querySelector('#flow-sketch').onclick = () => {
+    if (primary) open(primary);
+  };
+
+  document.querySelector('#modal').classList.add('open');
+}
+
+// Eventos de barra de herramientas y filtros
+filterBox.addEventListener('click', e => {
+  if (!e.target.matches('.filter')) return;
+  document.querySelectorAll('.filter').forEach(b => b.classList.toggle('active', b === e.target));
+  render();
+});
+
+document.querySelector('#search').addEventListener('input', render);
+
+// Cerrar modal
+const modalEl = document.querySelector('#modal');
+document.querySelector('#close').onclick = () => modalEl.classList.remove('open');
+modalEl.addEventListener('click', e => {
+  if (e.target.id === 'modal') modalEl.classList.remove('open');
+});
+
+// Navegación por teclado (Flechas y Escape)
+document.addEventListener('keydown', e => {
+  if (!modalEl.classList.contains('open')) return;
+  if (e.key === 'Escape') {
+    modalEl.classList.remove('open');
+  } else if (e.key === 'ArrowLeft' && lumenCurrentIndex > 0) {
+    open(screens[lumenCurrentIndex - 1]);
+  } else if (e.key === 'ArrowRight' && lumenCurrentIndex < screens.length - 1) {
+    open(screens[lumenCurrentIndex + 1]);
+  }
+});
+
+// Render inicial
 render();
-</script></body></html>
+</script>
+</body>
+</html>
