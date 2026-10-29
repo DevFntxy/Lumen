@@ -27,6 +27,9 @@
 - [Equipo de desarrollo](#equipo-de-desarrollo)
 - [Organigrama](#organigrama)
 - [Diagramas](#diagramas)
+  - [Business Model Canvas Interactivo](#business-model-canvas-interactivo)
+  - [Diagrama de Roles de Usuario](#diagrama-de-roles-de-usuario)
+  - [Diagrama de Navegación de Sketches](#diagrama-de-navegación-de-sketches)
 
 <br>
 
@@ -255,7 +258,7 @@ Como jugador, quiero desactivar el efecto CRT, para adaptar la experiencia a las
 
 - La opción de configuración está disponible.
 - El efecto deja de aplicarse cuando se desactiva.
-- Las demás funciones del videojuego continúan operando.
+- Las demás funciones del videojuego продолжают operando.
 
 ## Reglas de negocio
 
@@ -332,8 +335,21 @@ Antes de utilizarla como especificación definitiva, se deberán verificar las f
 
 ## Diagramas
 
-| # | Diagrama | Descripción | Firmas | Estatus |
-|---:|---|---|---:|---|
-| 04 | [Práctica 04 - Business Model Canvas Interactivo del Proyecto Integrador utilizando Achify](https://devfntxy.github.io/Lumen/models/canvas/proyecto_lumen_business_model_canvas.html) | El estudiante realizará un prompt para solicitar el modelo business canvas de su proyecto integrador  | -- | ✅ Completada |
-| 05 | [Práctica 05 - Diagrama de Roles de Usuario del Proyecto Integrador](https://devfntxy.github.io/Lumen/models/role/AFTERLIGHT%20%C2%B7%20Diagrama%20de%20roles%20y%20permisos.html) | El estudiante realizará un prompt para generar un diagrama interactivo de roles de usuario de su proyecto integrador  | -- | ✅ Completada |
-| 07 | [Práctica 07 - Diagrama de Navigation de Sketches del Proyecto Integrador](https://devfntxy.github.io/Lumen/models/diagrama%20de%20frecuencia/DiagramaDeSketchesLumen.html) | El estudiante realizará un prompt para generar un diagrama interactivo de los sketches de su proyecto integrador  | -- | Realizando |
+### Business Model Canvas Interactivo
+- **Descripción:** El estudiante realizará un prompt para solicitar el modelo business canvas de su proyecto integrador utilizando Achify.
+- **Estatus:** ✅ Completada
+- **Enlace:** [Ver Canvas Interactivo](https://devfntxy.github.io/Lumen/models/canvas/proyecto_lumen_business_model_canvas.html)
+
+---
+
+### Diagrama de Roles de Usuario
+- **Descripción:** El estudiante realizará un prompt para generar un diagrama interactivo de roles de usuario y permisos de su proyecto integrador.
+- **Estatus:** ✅ Completada
+- **Enlace:** [Ver Diagrama de Roles](https://devfntxy.github.io/Lumen/models/role/AFTERLIGHT%20%C2%B7%20Diagrama%20de%20roles%20y%20permisos.html)
+
+---
+
+### Diagrama de Navegación de Sketches
+- **Descripción:** El estudiante realizará un prompt para generar un diagrama interactivo de los sketches de su proyecto integrador.
+- **Estatus:** ⏳ Realizando
+- **Enlace:** [Ver Diagrama de Sketches](https://devfntxy.github.io/Lumen/models/diagrama%20de%20frecuencia/DiagramaDeSketchesLumen.html)
