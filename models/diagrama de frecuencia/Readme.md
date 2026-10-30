@@ -1,58 +1,61 @@
 # 🤖 LUMEN // Diagrama de Secuencia de Pantallas Móviles
 
-Un visualizador interactivo y suite de arquitectura UX/UI diseñado con estética **Cyberpunk HUD** para mapear, analizar y documentar el flujo de navegación de **13 pantallas móviles** del videojuego / companion app **LUMEN**.
+Un visualizador interactivo y catálogo de arquitectura UX/UI diseñado con estética **Cyberpunk HUD** para mapear, analizar y documentar el flujo de navegación de **22 pantallas móviles** del videojuego / companion app **LUMEN**.
 
 ---
 
 ## 📐 Descripción General
 
-Este archivo es una aplicación **single-file** (`LUMEN_Diagrama_frecuencia_pantallas.html`) desarrollada en HTML5, CSS3 y Vanilla JavaScript. Proporciona una interfaz interactiva tipo *Heads-Up Display* (HUD) que permite a diseñadores UX/UI, desarrolladores y arquitectos de software visualizar la arquitectura de navegación, transiciones, eventos de disparo (triggers) y especificaciones del flujo de la aplicación.
+Este archivo es una aplicación interactiva (`DiagramaDeSketchesLumen.html`) desarrollada en HTML5, CSS3 y Vanilla JavaScript. Proporciona una interfaz tipo *Heads-Up Display* (HUD) que permite a diseñadores UX/UI, desarrolladores y arquitectos de software visualizar la arquitectura de navegación, bocetos reales a mano alzada en cuadrícula isométrica, transiciones, eventos de disparo (triggers) y especificaciones del flujo de la aplicación.
 
 ---
 
 ## ✨ Características Principales
 
-1. **Diagrama de Nodos Interactivo (Canvas SVG)**:
-   - Visualización por capas (*Tiers*) temporales y funcionales.
-   - Renderizado dinámico de flechas con curvas de Bézier mediante SVG para mostrar la dirección de navegación.
-   - Resaltado dinámico de rutas al interactuar con los botones disparadores (*triggers*).
+1. **Visor de Sketches Reales**:
+   - Catálogo completo con las 22 ilustraciones a mano alzada ubicadas en `assets/pantallas/`.
+   - Efecto de perspectiva y rotación orgánica de bocetos.
+   - Píldoras de etiquetas dinámicas (`ACCESO`, `SEGURIDAD`, `CARGA`, `INICIO`, `PERFIL`, `AJUSTES`, `EQUIPO`, `HABILIDADES`, `MISIONES`, `AVANCE`, `RÁNKINGS`, `CÓDEX`, `SISTEMA`).
 
-2. **Matriz de Secuencia UX (Tabla)**:
-   - Vista detallada en formato tabla con el mapa completo de transiciones: Pantalla Origen $\rightarrow$ Acción Disparadora $\rightarrow$ Pantalla Destino + Notas de UX/Lore.
+2. **Modal de Inspección Detallada**:
+   - Vista ampliada de alta fidelidad del sketch seleccionado.
+   - Metadatos de ingeniería de software: ID, rol de usuario, disparador, acción principal y flujo de salida interactivo.
+   - Botón guiado de "Seguir ruta principal" y navegación por teclado (← / → / Esc).
 
-3. **Modo Recorrido Guiado (Walkthrough Simulator)**:
-   - Asistente flotante paso a paso que realiza un tour guiado a través del flujo principal de usuario, desplazando la vista y enfocando la pantalla activa.
-
-4. **Filtros por Categoría**:
-   - Permite aislar y examinar secciones específicas: `INICIO (1)`, `AUTH (3)`, `HUB (2)`, `PROGRESO (2)`, `CÓDEX (4)`, `AJUSTES (1)`.
-
-5. **Integración con Archify AI**:
-   - Generador automático de prompts estructurados en JSON listos para copiar o descargar como `LUMEN_Screens_Sequence_Config.json`, optimizados para alimentar agentes de IA y herramientas de documentación técnica.
-
-6. **Renderizado de Wireframes en Canvas 2D**:
-   - Esquemas gráficos dibujados mediante `<canvas>` como vista previa de respaldo cuando las imágenes de pantallas reales no están disponibles.
+3. **Filtros por Rol y Búsqueda en Vivo**:
+   - Filtros instantáneos: `Todas (22)`, `Shared (10)` y `Jugador (12)`.
+   - Búsqueda en tiempo real por ID, nombre de pantalla o categoría temática.
 
 ---
 
-## 📂 Estructura de Pantallas (13 Nodos)
+## 📂 Estructura de Pantallas (22 Bocetos Reales)
 
-El sistema organiza las 13 pantallas en 6 capas funcionales (*Tiers*):
+El sistema organiza las 22 pantallas en 5 fases funcionales:
 
-| ID | Nombre de Pantalla | Categoría | Pantalla(s) Destino Principales |
-| :--- | :--- | :--- | :--- |
-| **SCR-13** | Splash / Loading Screen | Inicio | `SCR-01` |
-| **SCR-01** | Account Login | Autenticación | `SCR-04`, `SCR-02`, `SCR-03` |
-| **SCR-02** | Account Registration | Autenticación | `SCR-01`, `SCR-04` |
-| **SCR-03** | Password Recovery | Autenticación | `SCR-01` |
-| **SCR-04** | Home Dashboard | Hub Central | `SCR-05`, `SCR-06`, `SCR-07`, `SCR-08` |
-| **SCR-05** | User Profile & Account | Hub Central | `SCR-01`, `SCR-12` |
-| **SCR-06** | Game Progress & Mission | Progreso | `SCR-04` |
-| **SCR-07** | Achievements List | Progreso | `SCR-04` |
-| **SCR-08** | Codex Main Index | Códex | `SCR-09`, `SCR-10`, `SCR-11` |
-| **SCR-09** | Character Codex | Códex | `SCR-08` |
-| **SCR-10** | Enemy & Boss Codex | Códex | `SCR-08` |
-| **SCR-11** | Memory Fragments | Códex | `SCR-08` |
-| **SCR-12** | App Settings & Audio | Ajustes | `SCR-05` |
+| ID | Nombre de Pantalla | Categoría | Rol | Archivo de Boceto | Destino(s) Principal(es) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **SCR-01** | Splash / Onboarding | Autenticación | Shared | `splash_screen.png` | `SCR-18`, `SCR-02` |
+| **SCR-18** | Pantalla de Carga | Carga | Shared | `loading_screen.png` | `SCR-05`, `SCR-12` |
+| **SCR-02** | Inicio de Sesión | Autenticación | Shared | `login_screen.png` | `SCR-05`, `SCR-03`, `SCR-04`, `SCR-19` |
+| **SCR-03** | Registro de Cuenta | Autenticación | Shared | `register_screen.png` | `SCR-05`, `SCR-02` |
+| **SCR-04** | Recuperación de Contraseña | Autenticación | Shared | `password_recovery_screen.png` | `SCR-02` |
+| **SCR-19** | Bloqueo de Cuenta | Seguridad | Shared | `lock_account_screen.png` | `SCR-20`, `SCR-02` |
+| **SCR-20** | Desbloqueo de Cuenta (OTP) | Seguridad | Shared | `unlock_account_screen.png` | `SCR-02`, `SCR-05` |
+| **SCR-05** | Home / Dashboard | Dashboard | Jugador | `home_screen.png` | `SCR-14`, `SCR-15`, `SCR-07`, `SCR-06`, `SCR-08`, `SCR-17` |
+| **SCR-06** | Perfil de Usuario | Perfil | Jugador | `profile_screen.png` | `SCR-13`, `SCR-05` |
+| **SCR-13** | Configuración General | Configuración | Shared | `settings_screen.png` | `SCR-06`, `SCR-21`, `SCR-22`, `SCR-05` |
+| **SCR-14** | Inventario y Equipamiento | Inventario | Jugador | `inventory_screen.png` | `SCR-16`, `SCR-05` |
+| **SCR-16** | Árbol de Habilidades | Habilidades | Jugador | `skill_tree_screen.png` | `SCR-14`, `SCR-15`, `SCR-05` |
+| **SCR-15** | Registro de Misiones | Misiones | Jugador | `quest_log_screen.png` | `SCR-07`, `SCR-12`, `SCR-05` |
+| **SCR-07** | Progreso de Partida | Progreso | Jugador | `progress_user_screen.png` | `SCR-12`, `SCR-17`, `SCR-10` |
+| **SCR-12** | Mapa de Zonas y Progreso | Progreso | Jugador | `zone_progress_map_screen.png` | `SCR-07`, `SCR-15`, `SCR-05` |
+| **SCR-17** | Tabla de Clasificación | Social | Jugador | `leaderboard_screen.png` | `SCR-10`, `SCR-05` |
+| **SCR-08** | Códex de Personajes | Códex | Jugador | `character_codex_screen.png` | `SCR-09`, `SCR-11`, `SCR-10` |
+| **SCR-09** | Códex de Enemigos y Jefes | Códex | Jugador | `enemy_and_boss_codex_screen.png` | `SCR-11`, `SCR-08` |
+| **SCR-10** | Logros / Achievements | Progreso | Jugador | `achievements_list_screen.png` | `SCR-11`, `SCR-07`, `SCR-05` |
+| **SCR-11** | Fragmentos de Memoria | Códex | Jugador | `memory_fragments_screen.png` | `SCR-08`, `SCR-05` |
+| **SCR-21** | Información del Software | Sistema | Shared | `about_software_screen.png` | `SCR-13`, `SCR-22`, `SCR-05` |
+| **SCR-22** | Acerca del Equipo y Estudio | Sistema | Shared | `about_team_screen.png` | `SCR-21`, `SCR-13`, `SCR-05` |
 
 ---
 

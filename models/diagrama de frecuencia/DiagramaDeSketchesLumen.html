@@ -277,6 +277,8 @@
     .tag.game { color: #8ce5d2; border-color: #4a6c62; background: #8ce5d20f; }
     .tag.prog { color: #6dbdf7; border-color: #3b5f7b; background: #6dbdf70f; }
     .tag.codex { color: #c49df5; border-color: #5c4978; background: #c49df50f; }
+    .tag.sec { color: #ff7b72; border-color: #7a3236; background: #ff7b720f; }
+    .tag.sys { color: #e5a4f7; border-color: #6d427d; background: #e5a4f70f; }
     
     .screen-image {
       display: block;
@@ -477,17 +479,17 @@
       <div class="mark">LUM</div>
       <div>
         <h1>Diagrama de Secuencia · LUMEN</h1>
-        <p>Práctica 07 · Ecosistema Mobile Companion (17 Pantallas)</p>
+        <p>Práctica 07 · Ecosistema Mobile Companion (22 Pantallas)</p>
       </div>
     </div>
-    <div class="count" id="total-count">17 PANTALLAS</div>
+    <div class="count" id="total-count">22 PANTALLAS</div>
   </header>
 
   <main>
     <section class="intro">
       <div>
         <h2>Flujo interactivo de navegación y sketches.</h2>
-        <p>Catálogo interactivo con los 17 bocetos reales disponibles en <code>assets/pantallas</code>. Haz clic en cualquier tarjeta para abrir el visor con su flujo guiado y disparadores de navegación.</p>
+        <p>Catálogo interactivo con los 22 bocetos reales disponibles en <code>assets/pantallas</code>. Haz clic en cualquier tarjeta para abrir el visor con su flujo guiado y disparadores de navegación.</p>
       </div>
       <div class="legend">Click en un sketch para ampliar su ruta</div>
     </section>
@@ -540,7 +542,12 @@ const realSketches = {
   'SCR-14': 'inventory_screen.png',
   'SCR-15': 'quest_log_screen.png',
   'SCR-16': 'skill_tree_screen.png',
-  'SCR-17': 'leaderboard_screen.png'
+  'SCR-17': 'leaderboard_screen.png',
+  'SCR-18': 'loading_screen.png',
+  'SCR-19': 'lock_account_screen.png',
+  'SCR-20': 'unlock_account_screen.png',
+  'SCR-21': 'about_software_screen.png',
+  'SCR-22': 'about_team_screen.png'
 };
 
 // Catálogo ordenado lógicamente con sentido de ruta e interacción
@@ -554,7 +561,7 @@ const screens = [
     trigger: 'Apertura de la aplicación',
     action: 'Carga automática de recursos y comprobación de sesión',
     desc: 'Pantalla de bienvenida, verificación de estado del sistema e inicialización del ecosistema LUMEN.',
-    next: 'SCR-02'
+    next: 'SCR-18 · SCR-02'
   },
   {
     id: 'SCR-02',
@@ -564,7 +571,7 @@ const screens = [
     trigger: 'Splash completado o cierre de sesión previo',
     action: 'Enviar credenciales (Email / Contraseña / SSO)',
     desc: 'Autenticación de usuario con soporte de validación de identidad y acceso a cuenta existente.',
-    next: 'SCR-05 · SCR-03 · SCR-04'
+    next: 'SCR-05 · SCR-03 · SCR-04 · SCR-19'
   },
   {
     id: 'SCR-03',
@@ -616,7 +623,7 @@ const screens = [
     trigger: 'Tap en icono de engrane desde Perfil o Home',
     action: 'Modificar preferencias de audio, gráficos y controles',
     desc: 'Ajustes de accesibilidad, alternar filtro visual CRT, volumen de efectos sonoros y gestión de cuenta.',
-    next: 'SCR-06 · SCR-05'
+    next: 'SCR-06 · SCR-21 · SCR-22 · SCR-05'
   },
   {
     id: 'SCR-14',
@@ -721,23 +728,81 @@ const screens = [
     action: 'Reproducir y descifrar grabaciones de audio y registros holísticos',
     desc: 'Bóveda de archivos narrativos recuperados que revelan los eventos que provocaron la caída y abandono de Lumen.',
     next: 'SCR-08 · SCR-05'
+  },
+
+  // FASE 01 (COMPLEMENTOS): SEGURIDAD, DESBLOQUEO Y TRANSICIÓN
+  {
+    id: 'SCR-18',
+    title: 'Pantalla de Carga',
+    role: 'Shared',
+    category: 'Carga',
+    trigger: 'Transición tras login, carga inicial o viaje rápido entre distritos',
+    action: 'Precarga de texturas, sincronización de telemetría y búfer de datos de M-4',
+    desc: 'Pantalla de espera interactiva con engranajes cinéticos de orbe, porcentaje de carga en tiempo real (60%) y consejos tácticos de supervivencia en Lumen.',
+    next: 'SCR-05 · SCR-12'
+  },
+  {
+    id: 'SCR-19',
+    title: 'Bloqueo de Cuenta',
+    role: 'Shared',
+    category: 'Seguridad',
+    trigger: 'Múltiples intentos fallidos de autenticación en Inicio de Sesión (SCR-02)',
+    action: 'Ingresar código de seguridad temporal o solicitar asistencia de soporte técnico',
+    desc: 'Mecanismo de protección biométrico y criptográfico que restringe el acceso al ecosistema tras detectar anomalías repetidas en credenciales.',
+    next: 'SCR-20 · SCR-02'
+  },
+  {
+    id: 'SCR-20',
+    title: 'Desbloqueo de Cuenta (OTP)',
+    role: 'Shared',
+    category: 'Seguridad',
+    trigger: 'Tap en "Desbloquear Cuenta" desde la pantalla de bloqueo (SCR-19)',
+    action: 'Validar token OTP de 6 dígitos enviado por correo o solicitar reenvío',
+    desc: 'Interfaz de verificación en dos pasos (2FA) con 6 casillas de autenticación numérica para restaurar credenciales bloqueadas y garantizar la integridad de la cuenta.',
+    next: 'SCR-02 · SCR-05'
+  },
+
+  // FASE 05: SISTEMA, MOTOR Y CRÉDITOS
+  {
+    id: 'SCR-21',
+    title: 'Información del Software',
+    role: 'Shared',
+    category: 'Sistema',
+    trigger: 'Tap en "Versión del Software / Motor" desde Ajustes (SCR-13)',
+    action: 'Inspeccionar versión de compilación, motor gráfico y especificaciones del dispositivo',
+    desc: 'Ficha técnica de arquitectura: Sketch Engine Pro v3.1, compilación #00A2E8 (v1.2.5), requisitos mínimos de hardware y capacidades de la API gráfica procedimental.',
+    next: 'SCR-13 · SCR-22 · SCR-05'
+  },
+  {
+    id: 'SCR-22',
+    title: 'Acerca del Equipo y Estudio',
+    role: 'Shared',
+    category: 'Sistema',
+    trigger: 'Tap en "Créditos del Estudio" desde Ajustes (SCR-13) o Software (SCR-21)',
+    action: 'Visualizar créditos de desarrollo, directivos de Global Sketchworks y misión del proyecto',
+    desc: 'Reconocimiento al equipo de "El Cartel Creativo" (Alex, Skye, Finn, Echo, Tara) y directiva de Global Sketchworks, Inc., junto con la misión institucional y agradecimientos especiales.',
+    next: 'SCR-21 · SCR-13 · SCR-05'
   }
 ];
 
 // Fases de navegación con sus respectivas pantallas
 const phases = [
-  ['01 · ENTRADA E INICIO', ['SCR-01', 'SCR-02', 'SCR-03', 'SCR-04']],
+  ['01 · ENTRADA, AUTENTICACIÓN Y SEGURIDAD', ['SCR-01', 'SCR-18', 'SCR-02', 'SCR-03', 'SCR-04', 'SCR-19', 'SCR-20']],
   ['02 · NÚCLEO DE JUEGO Y SISTEMAS', ['SCR-05', 'SCR-06', 'SCR-13', 'SCR-14', 'SCR-16']],
   ['03 · AVANCE, MISIONES Y SOCIAL', ['SCR-15', 'SCR-07', 'SCR-12', 'SCR-17']],
-  ['04 · CÓDEX Y NARRATIVA', ['SCR-08', 'SCR-09', 'SCR-10', 'SCR-11']]
+  ['04 · CÓDEX Y NARRATIVA', ['SCR-08', 'SCR-09', 'SCR-10', 'SCR-11']],
+  ['05 · INFORMACIÓN TÉCNICA Y CRÉDITOS', ['SCR-21', 'SCR-22']]
 ];
 
 // Etiquetas HUD por categoría
 const labels = {
   Autenticación: 'ACCESO',
+  Seguridad: 'SEGURIDAD',
+  Carga: 'CARGA',
   Dashboard: 'INICIO',
   Perfil: 'PERFIL',
   Configuración: 'AJUSTES',
+  Sistema: 'SISTEMA',
   Inventario: 'EQUIPO',
   Habilidades: 'HABILIDADES',
   Misiones: 'MISIONES',
@@ -748,9 +813,12 @@ const labels = {
 
 const categoryClasses = {
   Autenticación: 'auth',
+  Seguridad: 'sec',
+  Carga: 'auth',
   Dashboard: 'game',
   Perfil: 'game',
   Configuración: 'auth',
+  Sistema: 'sys',
   Inventario: 'game',
   Habilidades: 'game',
   Misiones: 'prog',
