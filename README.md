@@ -351,5 +351,5 @@ Antes de utilizarla como especificación definitiva, se deberán verificar las f
 
 ### Diagrama de Navegación de Sketches
 - **Descripción:** El estudiante realizará un prompt para generar un diagrama interactivo de los sketches de su proyecto integrador.
-- **Estatus:** ⏳ Realizando
+- **Estatus:** 🐕 Completado
 - **Enlace:** [Ver Diagrama de Sketches](https://devfntxy.github.io/Lumen/models/diagrama%20de%20frecuencia/DiagramaDeSketchesLumen.html)
