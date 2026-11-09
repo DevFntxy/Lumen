@@ -353,3 +353,8 @@ Antes de utilizarla como especificación definitiva, se deberán verificar las f
 - **Descripción:** El estudiante realizará un prompt para generar un diagrama interactivo de los sketches de su proyecto integrador.
 - **Estatus:** 🐕 Completado
 - **Enlace:** [Ver Diagrama de Sketches](https://devfntxy.github.io/Lumen/models/diagrama%20de%20frecuencia/DiagramaDeSketchesLumen.html)
+
+### Diagrama RACI
+- **Descripción:** Modelo conceptual que establece la gobernanza, ejecución y canalización de avances entre los 4 integrantes del equipo de desarrollo de LUMEN..
+- **Estatus:** 🐕 Completado
+- **Enlace:** [Ver Diagrama RACI](https://devfntxy.github.io/Lumen/models/RACI/Diagrama-raci.html)
