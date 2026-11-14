@@ -1,0 +1,1036 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1017">
+  <title>LUMEN · Diagrama de pantallas</title>
+  <style>
+    :root {
+      --bg: #0b1017;
+      --panel: #121a24;
+      --panel-alt: #16212e;
+      --line: #2b3b4b;
+      --ink: #edf3f6;
+      --muted: #9aaab6;
+      --teal: #8ce5d2;
+      --teal-dim: #8ce5d222;
+      --teal-glow: #8ce5d255;
+      --amber: #f5b942;
+      --amber-dim: #f5b9421c;
+      --pencil: #262626;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(ellipse at 85% 0, #17352f 0, transparent 40rem),
+                  radial-gradient(ellipse at 10% 100%, #152736 0, transparent 35rem),
+                  var(--bg);
+      color: var(--ink);
+      font: 14px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      min-height: 100vh;
+    }
+    .topbar {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 13px clamp(18px, 4vw, 52px);
+      background: #0b1017ee;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .mark {
+      height: 38px;
+      width: 38px;
+      border: 1px solid var(--teal);
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      color: var(--teal);
+      font: 700 12px ui-monospace, monospace;
+      background: var(--teal-dim);
+      box-shadow: 0 0 15px var(--teal-dim);
+    }
+    .brand h1 {
+      font-size: 16px;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+    .brand p {
+      font: 11px ui-monospace, monospace;
+      color: var(--muted);
+      margin: 2px 0 0;
+    }
+    .count {
+      font: 11px ui-monospace, monospace;
+      color: var(--teal);
+      border: 1px solid var(--teal-glow);
+      padding: 6px 12px;
+      border-radius: 6px;
+      background: var(--teal-dim);
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+    }
+    main {
+      padding: 32px clamp(18px, 4vw, 52px) 60px;
+    }
+    .intro {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 26px;
+    }
+    .intro h2 {
+      font-size: clamp(23px, 3.4vw, 34px);
+      margin: 0;
+      letter-spacing: -0.045em;
+    }
+    .intro p {
+      max-width: 640px;
+      color: var(--muted);
+      margin: 8px 0 0;
+      line-height: 1.5;
+    }
+    .legend {
+      font: 10px ui-monospace, monospace;
+      color: var(--muted);
+      text-transform: uppercase;
+      white-space: nowrap;
+      background: #121a24;
+      border: 1px solid var(--line);
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 11px 14px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      margin-bottom: 28px;
+    }
+    .filters {
+      display: flex;
+      gap: 7px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+    .filter {
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: #0d141d;
+      border-radius: 6px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 650;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .filter:hover, .filter.active {
+      border-color: var(--teal);
+      color: var(--teal);
+      background: var(--teal-dim);
+    }
+    .search {
+      width: 220px;
+      max-width: 40vw;
+      background: #0d141d;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 7px 11px;
+      color: var(--ink);
+      font-size: 11px;
+      outline: 0;
+      transition: border-color 0.15s ease;
+    }
+    .search:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 8px var(--teal-dim);
+    }
+    .phase {
+      margin: 36px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .phase h3 {
+      font: 700 11px ui-monospace, monospace;
+      letter-spacing: 0.09em;
+      color: var(--teal);
+      margin: 0;
+      text-transform: uppercase;
+    }
+    .phase i {
+      height: 1px;
+      flex: 1;
+      background: var(--line);
+    }
+    .phase small {
+      font: 10px ui-monospace, monospace;
+      color: var(--muted);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+    .caption {
+      min-height: 38px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: baseline;
+      padding: 0 3px 6px;
+    }
+    .caption b {
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .caption small {
+      font: 9px ui-monospace, monospace;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .screen {
+      cursor: pointer;
+      border-radius: 20px;
+      transition: transform 0.18s ease;
+    }
+    .screen:hover {
+      transform: translateY(-4px);
+    }
+    .phone.real-sketch {
+      min-height: 0;
+      padding: 10px;
+      background: #101820;
+      border: 1px solid #36485c;
+      border-radius: 18px;
+      box-shadow: 0 6px 18px #00000066;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      transform: rotate(var(--r, 0deg));
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+    .screen:hover .phone.real-sketch {
+      border-color: var(--teal);
+      box-shadow: 0 10px 24px #00000099, 0 0 12px var(--teal-dim);
+    }
+    .sketch-head {
+      padding: 2px 3px 7px;
+      border-bottom: 1px solid #2e3e50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #d9e8ed;
+      font-family: ui-monospace, monospace;
+    }
+    .sketch-head span:last-child {
+      color: var(--teal);
+      border: 1px solid #568678;
+      border-radius: 99px;
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 10px;
+    }
+    .sketch-title {
+      margin: 9px 3px 6px;
+      color: #f3f7f8;
+      font-size: 13.5px;
+      font-weight: 700;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .tag {
+      display: inline-block;
+      font: 9px ui-monospace, monospace;
+      padding: 2px 7px;
+      border: 1px solid #4a6c62;
+      border-radius: 6px;
+      margin: 0 3px 8px;
+      color: var(--teal);
+      background: #8ce5d20f;
+    }
+    .tag.auth { color: #f5b942; border-color: #7d632c; background: #f5b9420f; }
+    .tag.game { color: #8ce5d2; border-color: #4a6c62; background: #8ce5d20f; }
+    .tag.prog { color: #6dbdf7; border-color: #3b5f7b; background: #6dbdf70f; }
+    .tag.codex { color: #c49df5; border-color: #5c4978; background: #c49df50f; }
+    .tag.sec { color: #ff7b72; border-color: #7a3236; background: #ff7b720f; }
+    .tag.sys { color: #e5a4f7; border-color: #6d427d; background: #e5a4f70f; }
+    
+    .screen-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 9/16;
+      object-fit: cover;
+      object-position: top;
+      border: 1px solid #2e3e50;
+      border-radius: 10px;
+      background: #080d12;
+      transition: opacity 0.2s ease;
+    }
+    
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #05090de0;
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(8px);
+    }
+    .modal.open {
+      display: flex;
+    }
+    .modal-box {
+      display: grid;
+      grid-template-columns: minmax(240px, 310px) minmax(280px, 440px);
+      gap: 24px;
+      width: min(800px, 100%);
+      max-height: 92vh;
+      overflow-y: auto;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 25px 80px #000000cc, 0 0 1px var(--teal-glow);
+    }
+    .modal-box #modal-sketch {
+      align-self: start;
+    }
+    .modal-box .phone.real-sketch {
+      min-height: 0;
+      transform: none !important;
+    }
+    .modal-box .screen-image {
+      max-height: 60vh;
+      object-fit: contain;
+      background: #080d12;
+    }
+    .details {
+      display: flex;
+      flex-direction: column;
+    }
+    .details-head {
+      margin-bottom: 12px;
+    }
+    .details h2 {
+      margin: 10px 0 6px;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+    .details p {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0 0 16px;
+      line-height: 1.5;
+    }
+    .pill {
+      display: inline-block;
+      border: 1px solid #8ce5d250;
+      color: var(--teal);
+      background: #8ce5d210;
+      border-radius: 5px;
+      padding: 3px 7px;
+      font: 10px ui-monospace, monospace;
+      margin-right: 5px;
+    }
+    .pill.shared {
+      border-color: #f5b94260;
+      color: var(--amber);
+      background: #f5b94215;
+    }
+    .close {
+      float: right;
+      border: 1px solid var(--line);
+      background: #0b1017;
+      color: var(--ink);
+      border-radius: 6px;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      font-size: 16px;
+      display: grid;
+      place-items: center;
+      transition: all 0.15s ease;
+    }
+    .close:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+    .meta {
+      display: grid;
+      gap: 10px;
+      margin-top: auto;
+    }
+    .meta div {
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #0d141d;
+      color: #c7d5de;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .meta b {
+      display: block;
+      color: var(--teal);
+      font: 700 9px ui-monospace, monospace;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    .meta .flow-pill {
+      display: inline-block;
+      margin: 2px 4px 2px 0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: #8ce5d215;
+      border: 1px solid #8ce5d240;
+      color: var(--teal);
+      font: 10px ui-monospace, monospace;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .meta .flow-pill:hover {
+      background: #8ce5d233;
+    }
+    .nav-sketches {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr 1fr;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .nav-sketches button {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #0b1017;
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 700;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .nav-sketches button:hover:not(:disabled) {
+      border-color: var(--teal);
+      color: var(--teal);
+      background: #8ce5d20c;
+    }
+    .nav-sketches .go-next {
+      border-color: #8ce5d260;
+      background: #8ce5d218;
+      color: var(--teal);
+    }
+    .nav-sketches .go-next:hover:not(:disabled) {
+      background: #8ce5d22d;
+      box-shadow: 0 0 10px var(--teal-dim);
+    }
+    .nav-sketches button:disabled {
+      cursor: not-allowed;
+      opacity: 0.35;
+    }
+
+    @media (max-width: 680px) {
+      .topbar { min-height: 62px; }
+      .topbar .brand p, .legend { display: none; }
+      .toolbar { flex-direction: column; align-items: stretch; }
+      .search { width: 100%; max-width: none; }
+      .modal-box { grid-template-columns: 1fr; padding: 18px; }
+      .modal-box #modal-sketch { width: 230px; margin: 0 auto; }
+      .intro { display: block; }
+      .count { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="mark">LUM</div>
+      <div>
+        <h1>Diagrama de Secuencia · LUMEN</h1>
+        <p>Práctica 07 · Ecosistema Mobile Companion (22 Pantallas)</p>
+      </div>
+    </div>
+    <div class="count" id="total-count">22 PANTALLAS</div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div>
+        <h2>Flujo interactivo de navegación y sketches.</h2>
+        <p>Catálogo interactivo con los 22 bocetos reales disponibles en <code>assets/pantallas</code>. Haz clic en cualquier tarjeta para abrir el visor con su flujo guiado y disparadores de navegación.</p>
+      </div>
+      <div class="legend">Click en un sketch para ampliar su ruta</div>
+    </section>
+
+    <div class="toolbar">
+      <div class="filters" id="filters"></div>
+      <input class="search" id="search" placeholder="⌕ Buscar por código, título o categoría…">
+    </div>
+
+    <div id="content"></div>
+  </main>
+
+  <div class="modal" id="modal" aria-modal="true" role="dialog">
+    <div class="modal-box">
+      <div id="modal-sketch"></div>
+      <section class="details">
+        <div class="details-head">
+          <button class="close" id="close" title="Cerrar (Esc)">×</button>
+          <span class="pill" id="m-id"></span>
+          <span class="pill" id="m-role"></span>
+          <span class="pill" id="m-category"></span>
+          <h2 id="m-title"></h2>
+          <p id="m-desc"></p>
+        </div>
+        <div class="meta">
+          <div><b>Disparador</b><span id="m-trigger"></span></div>
+          <div><b>Acción Principal</b><span id="m-action"></span></div>
+          <div><b>Flujo de Salida</b><div id="m-next-pills"></div></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+<script>
+// Mapa de recursos de imagen exactos en assets/pantallas
+const realSketches = {
+  'SCR-01': 'splash_screen.png',
+  'SCR-02': 'login_screen.png',
+  'SCR-03': 'register_screen.png',
+  'SCR-04': 'password_recovery_screen.png',
+  'SCR-05': 'home_screen.png',
+  'SCR-06': 'profile_screen.png',
+  'SCR-07': 'progress_user_screen.png',
+  'SCR-08': 'character_codex_screen.png',
+  'SCR-09': 'enemy_and_boss_codex_screen.png',
+  'SCR-10': 'achievements_list_screen.png',
+  'SCR-11': 'memory_fragments_screen.png',
+  'SCR-12': 'zone_progress_map_screen.png',
+  'SCR-13': 'settings_screen.png',
+  'SCR-14': 'inventory_screen.png',
+  'SCR-15': 'quest_log_screen.png',
+  'SCR-16': 'skill_tree_screen.png',
+  'SCR-17': 'leaderboard_screen.png',
+  'SCR-18': 'loading_screen.png',
+  'SCR-19': 'lock_account_screen.png',
+  'SCR-20': 'unlock_account_screen.png',
+  'SCR-21': 'about_software_screen.png',
+  'SCR-22': 'about_team_screen.png'
+};
+
+// Catálogo ordenado lógicamente con sentido de ruta e interacción
+const screens = [
+  // FASE 01: ENTRADA E INICIO (Autenticación y Registro)
+  {
+    id: 'SCR-01',
+    title: 'Splash / Onboarding',
+    role: 'Shared',
+    category: 'Autenticación',
+    trigger: 'Apertura de la aplicación',
+    action: 'Carga automática de recursos y comprobación de sesión',
+    desc: 'Pantalla de bienvenida, verificación de estado del sistema e inicialización del ecosistema LUMEN.',
+    next: 'SCR-18 · SCR-02'
+  },
+  {
+    id: 'SCR-02',
+    title: 'Inicio de Sesión',
+    role: 'Shared',
+    category: 'Autenticación',
+    trigger: 'Splash completado o cierre de sesión previo',
+    action: 'Enviar credenciales (Email / Contraseña / SSO)',
+    desc: 'Autenticación de usuario con soporte de validación de identidad y acceso a cuenta existente.',
+    next: 'SCR-05 · SCR-03 · SCR-04 · SCR-19'
+  },
+  {
+    id: 'SCR-03',
+    title: 'Registro de Cuenta',
+    role: 'Shared',
+    category: 'Autenticación',
+    trigger: 'Tap en "Crear cuenta" desde login',
+    action: 'Completar y enviar formulario de registro',
+    desc: 'Creación de credenciales para nuevos jugadores con sincronización de perfil y telemetría en la nube.',
+    next: 'SCR-05 · SCR-02'
+  },
+  {
+    id: 'SCR-04',
+    title: 'Recuperación de Contraseña',
+    role: 'Shared',
+    category: 'Autenticación',
+    trigger: 'Tap en "¿Olvidaste tu contraseña?"',
+    action: 'Solicitar y validar código de verificación vía email',
+    desc: 'Flujo de restablecimiento seguro en tres pasos para recuperar el acceso a la cuenta.',
+    next: 'SCR-02'
+  },
+
+  // FASE 02: NÚCLEO DE JUEGO Y SISTEMAS (Hub, Perfil, Configuración, Inventario, Árbol de Habilidades)
+  {
+    id: 'SCR-05',
+    title: 'Home / Dashboard',
+    role: 'Jugador',
+    category: 'Dashboard',
+    trigger: 'Autenticación exitosa',
+    action: 'Seleccionar módulo principal o continuar partida',
+    desc: 'Centro neurálgico del jugador con resumen del estado de M-4, progreso del acto actual y accesos directos.',
+    next: 'SCR-14 · SCR-15 · SCR-07 · SCR-06 · SCR-08 · SCR-17'
+  },
+  {
+    id: 'SCR-06',
+    title: 'Perfil de Usuario',
+    role: 'Jugador',
+    category: 'Perfil',
+    trigger: 'Tap en avatar de M-4 o cabecera de perfil',
+    action: 'Inspeccionar estadísticas de juego y sincronización',
+    desc: 'Ficha de identidad del jugador, nivel de operador, fecha de inicio y acceso a configuración general.',
+    next: 'SCR-13 · SCR-05'
+  },
+  {
+    id: 'SCR-13',
+    title: 'Configuración General',
+    role: 'Shared',
+    category: 'Configuración',
+    trigger: 'Tap en icono de engrane desde Perfil o Home',
+    action: 'Modificar preferencias de audio, gráficos y controles',
+    desc: 'Ajustes de accesibilidad, alternar filtro visual CRT, volumen de efectos sonoros y gestión de cuenta.',
+    next: 'SCR-06 · SCR-21 · SCR-22 · SCR-05'
+  },
+  {
+    id: 'SCR-14',
+    title: 'Inventario y Equipamiento',
+    role: 'Jugador',
+    category: 'Inventario',
+    trigger: 'Tap en "Inventario" desde el Dashboard o atajo rápido',
+    action: 'Gestionar ítems, armas, módulos y kit de reparación',
+    desc: 'Cuadrícula de almacenamiento de recursos recolectados por M-4, ranuras de equipo activo e inspección de estadísticas.',
+    next: 'SCR-16 · SCR-05'
+  },
+  {
+    id: 'SCR-16',
+    title: 'Árbol de Habilidades',
+    role: 'Jugador',
+    category: 'Habilidades',
+    trigger: 'Tap en "Habilidades / Circuitos" desde Inventario o Dashboard',
+    action: 'Desbloquear mejoras de combate, movilidad y escaneo',
+    desc: 'Grafo tecnológico de progresión con nodos de habilidades activas y pasivas para optimizar las capacidades de M-4.',
+    next: 'SCR-14 · SCR-15 · SCR-05'
+  },
+
+  // FASE 03: AVANCE, MISIONES Y SOCIAL (Bitácora, Progreso de Acto, Mapa de Zonas, Leaderboard)
+  {
+    id: 'SCR-15',
+    title: 'Registro de Misiones',
+    role: 'Jugador',
+    category: 'Misiones',
+    trigger: 'Tap en "Misiones" o bitácora de objetivos desde el Dashboard',
+    action: 'Consultar misiones activas, completadas y reclamar recompensas',
+    desc: 'Bitácora detallada de directivas de exploración, reactivación de generadores y objetivos de supervivencia en Lumen.',
+    next: 'SCR-07 · SCR-12 · SCR-05'
+  },
+  {
+    id: 'SCR-07',
+    title: 'Progreso de Partida',
+    role: 'Jugador',
+    category: 'Progreso',
+    trigger: 'Tap en indicador de progreso o desde Misiones',
+    action: 'Inspeccionar avance global de actos y zonas desbloqueadas',
+    desc: 'Métricas de finalización de campaña, porcentaje de sectores restaurados y acceso a la cartografía.',
+    next: 'SCR-12 · SCR-17 · SCR-10'
+  },
+  {
+    id: 'SCR-12',
+    title: 'Mapa de Zonas y Progreso',
+    role: 'Jugador',
+    category: 'Progreso',
+    trigger: 'Seleccionar sector en la pantalla de progreso o misiones',
+    action: 'Explorar cuadrantes, nodos de viaje rápido y puntos de calor',
+    desc: 'Cartografía isométrica e interactiva de los distritos de la ciudad subterránea de Lumen con estado de terminales.',
+    next: 'SCR-07 · SCR-15 · SCR-05'
+  },
+  {
+    id: 'SCR-17',
+    title: 'Tabla de Clasificación',
+    role: 'Jugador',
+    category: 'Social',
+    trigger: 'Tap en "Clasificación / Ránking" desde el Dashboard o Progreso',
+    action: 'Filtrar puestos por categoría global, semanal o entre amigos',
+    desc: 'Marcador competitivo con los mejores tiempos de reparación, puntuaciones de combate y posición del jugador.',
+    next: 'SCR-10 · SCR-05'
+  },
+
+  // FASE 04: CÓDEX Y NARRATIVA (Aliados, Enemigos y Jefes, Logros, Fragmentos)
+  {
+    id: 'SCR-08',
+    title: 'Códex de Personajes',
+    role: 'Jugador',
+    category: 'Códex',
+    trigger: 'Tap en "Terminal Códex" desde el Dashboard',
+    action: 'Consultar fichas biográficas de androides y aliados',
+    desc: 'Enciclopedia con perfiles, registros de voz y antecedentes de los personajes y unidades autoconscientes encontradas.',
+    next: 'SCR-09 · SCR-11 · SCR-10'
+  },
+  {
+    id: 'SCR-09',
+    title: 'Códex de Enemigos y Jefes',
+    role: 'Jugador',
+    category: 'Códex',
+    trigger: 'Pestaña "Amenazas" en el Códex',
+    action: 'Inspeccionar debilidades elementales y patrones de combate',
+    desc: 'Catálogo de autómatas corruptos, drones de vigilancia y jefes de sector con su nivel de alerta y tácticas sugeridas.',
+    next: 'SCR-11 · SCR-08'
+  },
+  {
+    id: 'SCR-10',
+    title: 'Logros / Achievements',
+    role: 'Jugador',
+    category: 'Progreso',
+    trigger: 'Tap en medalla de logros desde Códex, Progreso o Ránking',
+    action: 'Reclamar insignias y recompensas de hazañas cumplidas',
+    desc: 'Listado completo de trofeos de exploración, combate sin daño y recolección de piezas raras.',
+    next: 'SCR-11 · SCR-07 · SCR-05'
+  },
+  {
+    id: 'SCR-11',
+    title: 'Fragmentos de Memoria',
+    role: 'Jugador',
+    category: 'Códex',
+    trigger: 'Sección "Archivos de Memoria" en el Códex',
+    action: 'Reproducir y descifrar grabaciones de audio y registros holísticos',
+    desc: 'Bóveda de archivos narrativos recuperados que revelan los eventos que provocaron la caída y abandono de Lumen.',
+    next: 'SCR-08 · SCR-05'
+  },
+
+  // FASE 01 (COMPLEMENTOS): SEGURIDAD, DESBLOQUEO Y TRANSICIÓN
+  {
+    id: 'SCR-18',
+    title: 'Pantalla de Carga',
+    role: 'Shared',
+    category: 'Carga',
+    trigger: 'Transición tras login, carga inicial o viaje rápido entre distritos',
+    action: 'Precarga de texturas, sincronización de telemetría y búfer de datos de M-4',
+    desc: 'Pantalla de espera interactiva con engranajes cinéticos de orbe, porcentaje de carga en tiempo real (60%) y consejos tácticos de supervivencia en Lumen.',
+    next: 'SCR-05 · SCR-12'
+  },
+  {
+    id: 'SCR-19',
+    title: 'Bloqueo de Cuenta',
+    role: 'Shared',
+    category: 'Seguridad',
+    trigger: 'Múltiples intentos fallidos de autenticación en Inicio de Sesión (SCR-02)',
+    action: 'Ingresar código de seguridad temporal o solicitar asistencia de soporte técnico',
+    desc: 'Mecanismo de protección biométrico y criptográfico que restringe el acceso al ecosistema tras detectar anomalías repetidas en credenciales.',
+    next: 'SCR-20 · SCR-02'
+  },
+  {
+    id: 'SCR-20',
+    title: 'Desbloqueo de Cuenta (OTP)',
+    role: 'Shared',
+    category: 'Seguridad',
+    trigger: 'Tap en "Desbloquear Cuenta" desde la pantalla de bloqueo (SCR-19)',
+    action: 'Validar token OTP de 6 dígitos enviado por correo o solicitar reenvío',
+    desc: 'Interfaz de verificación en dos pasos (2FA) con 6 casillas de autenticación numérica para restaurar credenciales bloqueadas y garantizar la integridad de la cuenta.',
+    next: 'SCR-02 · SCR-05'
+  },
+
+  // FASE 05: SISTEMA, MOTOR Y CRÉDITOS
+  {
+    id: 'SCR-21',
+    title: 'Información del Software',
+    role: 'Shared',
+    category: 'Sistema',
+    trigger: 'Tap en "Versión del Software / Motor" desde Ajustes (SCR-13)',
+    action: 'Inspeccionar versión de compilación, motor gráfico y especificaciones del dispositivo',
+    desc: 'Ficha técnica de arquitectura: Sketch Engine Pro v3.1, compilación #00A2E8 (v1.2.5), requisitos mínimos de hardware y capacidades de la API gráfica procedimental.',
+    next: 'SCR-13 · SCR-22 · SCR-05'
+  },
+  {
+    id: 'SCR-22',
+    title: 'Acerca del Equipo y Estudio',
+    role: 'Shared',
+    category: 'Sistema',
+    trigger: 'Tap en "Créditos del Estudio" desde Ajustes (SCR-13) o Software (SCR-21)',
+    action: 'Visualizar créditos de desarrollo, directivos de Global Sketchworks y misión del proyecto',
+    desc: 'Reconocimiento al equipo de "El Cartel Creativo" (Alex, Skye, Finn, Echo, Tara) y directiva de Global Sketchworks, Inc., junto con la misión institucional y agradecimientos especiales.',
+    next: 'SCR-21 · SCR-13 · SCR-05'
+  }
+];
+
+// Fases de navegación con sus respectivas pantallas
+const phases = [
+  ['01 · ENTRADA, AUTENTICACIÓN Y SEGURIDAD', ['SCR-01', 'SCR-18', 'SCR-02', 'SCR-03', 'SCR-04', 'SCR-19', 'SCR-20']],
+  ['02 · NÚCLEO DE JUEGO Y SISTEMAS', ['SCR-05', 'SCR-06', 'SCR-13', 'SCR-14', 'SCR-16']],
+  ['03 · AVANCE, MISIONES Y SOCIAL', ['SCR-15', 'SCR-07', 'SCR-12', 'SCR-17']],
+  ['04 · CÓDEX Y NARRATIVA', ['SCR-08', 'SCR-09', 'SCR-10', 'SCR-11']],
+  ['05 · INFORMACIÓN TÉCNICA Y CRÉDITOS', ['SCR-21', 'SCR-22']]
+];
+
+// Etiquetas HUD por categoría
+const labels = {
+  Autenticación: 'ACCESO',
+  Seguridad: 'SEGURIDAD',
+  Carga: 'CARGA',
+  Dashboard: 'INICIO',
+  Perfil: 'PERFIL',
+  Configuración: 'AJUSTES',
+  Sistema: 'SISTEMA',
+  Inventario: 'EQUIPO',
+  Habilidades: 'HABILIDADES',
+  Misiones: 'MISIONES',
+  Progreso: 'AVANCE',
+  Social: 'RÁNKINGS',
+  Códex: 'CÓDEX'
+};
+
+const categoryClasses = {
+  Autenticación: 'auth',
+  Seguridad: 'sec',
+  Carga: 'auth',
+  Dashboard: 'game',
+  Perfil: 'game',
+  Configuración: 'auth',
+  Sistema: 'sys',
+  Inventario: 'game',
+  Habilidades: 'game',
+  Misiones: 'prog',
+  Progreso: 'prog',
+  Social: 'prog',
+  Códex: 'codex'
+};
+
+// Generador de tarjeta visual de sketch
+function sketch(s, large = false) {
+  const num = Number(s.id.slice(-2)) || 0;
+  const rot = ((num % 3) - 1) * 0.42;
+  const tagClass = categoryClasses[s.category] || '';
+  const src = `../../assets/pantallas/${realSketches[s.id]}`;
+
+  return `
+    <div class="phone real-sketch" style="--r:${rot}deg; ${large ? 'min-height:0; transform:none;' : ''}">
+      <div class="sketch-head">
+        <span>[${s.id}]</span>
+        <span>↗</span>
+      </div>
+      <div class="tag ${tagClass}">${labels[s.category] || s.category}</div>
+      <div class="sketch-title">${s.title}</div>
+      <img class="screen-image" src="${src}" alt="Sketch de ${s.title}" loading="lazy">
+    </div>
+  `;
+}
+
+// Configuración de Filtros
+const filters = ['Todas', 'Shared', 'Jugador'];
+const filterBox = document.querySelector('#filters');
+
+function updateFilterButtons() {
+  const sharedCount = screens.filter(s => s.role === 'Shared').length;
+  const playerCount = screens.filter(s => s.role === 'Jugador').length;
+  const counts = {
+    'Todas': screens.length,
+    'Shared': sharedCount,
+    'Jugador': playerCount
+  };
+
+  filterBox.innerHTML = filters.map((f, i) => `
+    <button class="filter ${i === 0 ? 'active' : ''}" data-filter="${f}">
+      ${f} (${counts[f]})
+    </button>
+  `).join('');
+}
+updateFilterButtons();
+
+// Renderizado de las secciones y cuadrículas de pantallas
+function render() {
+  const activeBtn = document.querySelector('.filter.active');
+  const currentFilter = activeBtn ? activeBtn.dataset.filter : 'Todas';
+  const query = document.querySelector('#search').value.toLowerCase().trim();
+
+  let visibleCount = 0;
+
+  const html = phases.map(([name, ids]) => {
+    const matchedScreens = ids
+      .map(id => screens.find(s => s.id === id))
+      .filter(Boolean)
+      .filter(s => {
+        const matchesRole = (currentFilter === 'Todas' || s.role === currentFilter);
+        const searchText = `${s.id} ${s.title} ${s.category} ${s.role} ${s.desc} ${s.trigger} ${s.action}`.toLowerCase();
+        const matchesSearch = !query || searchText.includes(query);
+        return matchesRole && matchesSearch;
+      });
+
+    visibleCount += matchedScreens.length;
+
+    if (!matchedScreens.length) return '';
+
+    return `
+      <section>
+        <div class="phase">
+          <h3>${name}</h3>
+          <i></i>
+          <small>${matchedScreens.length} PANTALLA${matchedScreens.length > 1 ? 'S' : ''}</small>
+        </div>
+        <div class="grid">
+          ${matchedScreens.map(s => `
+            <article class="screen" data-id="${s.id}">
+              <div class="caption">
+                <b>${s.id} · ${s.title}</b>
+                <small>${s.role}</small>
+              </div>
+              ${sketch(s)}
+            </article>
+          `).join('')}
+        </div>
+      </section>
+    `;
+  }).join('');
+
+  document.querySelector('#content').innerHTML = html || `
+    <div style="text-align:center; padding: 60px 20px; color: var(--muted);">
+      <p style="font-size: 16px; margin-bottom: 8px;">No se encontraron pantallas que coincidan con la búsqueda.</p>
+      <small style="font-family: ui-monospace, monospace;">Prueba con otro término o selecciona el filtro "Todas".</small>
+    </div>
+  `;
+
+  document.querySelector('#total-count').textContent = `${visibleCount} PANTALLAS`;
+
+  // Asignar eventos de click a cada tarjeta
+  document.querySelectorAll('.screen').forEach(el => {
+    el.addEventListener('click', () => {
+      const found = screens.find(s => s.id === el.dataset.id);
+      if (found) open(found);
+    });
+  });
+}
+
+// Navegación en modal
+let lumenCurrentIndex = 0;
+
+function open(s) {
+  lumenCurrentIndex = screens.indexOf(s);
+
+  document.querySelector('#m-id').textContent = s.id;
+  
+  const roleEl = document.querySelector('#m-role');
+  roleEl.textContent = s.role;
+  roleEl.className = `pill ${s.role.toLowerCase()}`;
+
+  document.querySelector('#m-category').textContent = labels[s.category] || s.category;
+  document.querySelector('#m-title').textContent = s.title;
+  document.querySelector('#m-desc').textContent = s.desc;
+  document.querySelector('#m-trigger').textContent = s.trigger;
+  document.querySelector('#m-action').textContent = s.action;
+
+  // Generar píldoras clicables para los siguientes pasos del flujo
+  const nextIds = s.next.split('·').map(id => id.trim()).filter(Boolean);
+  const nextPillsContainer = document.querySelector('#m-next-pills');
+  nextPillsContainer.innerHTML = nextIds.map(id => {
+    const target = screens.find(x => x.id === id);
+    const titleText = target ? `${id} · ${target.title}` : id;
+    return `<span class="flow-pill" data-target="${id}">${titleText} ↗</span>`;
+  }).join('');
+
+  nextPillsContainer.querySelectorAll('.flow-pill').forEach(pill => {
+    pill.onclick = (e) => {
+      e.stopPropagation();
+      const targetScreen = screens.find(x => x.id === pill.dataset.target);
+      if (targetScreen) open(targetScreen);
+    };
+  });
+
+  document.querySelector('#modal-sketch').innerHTML = sketch(s, true);
+
+  // Primer destino de ruta principal
+  const primary = screens.find(x => s.next.includes(x.id) && x.id !== s.id);
+
+  // Barra de navegación entre sketches
+  document.querySelector('.nav-sketches')?.remove();
+  const nav = document.createElement('nav');
+  nav.className = 'nav-sketches';
+  nav.innerHTML = `
+    <button id="previous-sketch" ${lumenCurrentIndex === 0 ? 'disabled' : ''} title="Pantalla anterior (←)">
+      ← Anterior
+    </button>
+    <button class="go-next" id="flow-sketch" ${primary ? '' : 'disabled'} title="Seguir ruta principal recomendada">
+      ${primary ? `Seguir ruta (${primary.id}) →` : 'Fin de ruta'}
+    </button>
+    <button id="following-sketch" ${lumenCurrentIndex === screens.length - 1 ? 'disabled' : ''} title="Siguiente pantalla (→)">
+      Siguiente →
+    </button>
+  `;
+  document.querySelector('.details').append(nav);
+
+  nav.querySelector('#previous-sketch').onclick = () => {
+    if (lumenCurrentIndex > 0) open(screens[lumenCurrentIndex - 1]);
+  };
+  nav.querySelector('#following-sketch').onclick = () => {
+    if (lumenCurrentIndex < screens.length - 1) open(screens[lumenCurrentIndex + 1]);
+  };
+  nav.querySelector('#flow-sketch').onclick = () => {
+    if (primary) open(primary);
+  };
+
+  document.querySelector('#modal').classList.add('open');
+}
+
+// Eventos de barra de herramientas y filtros
+filterBox.addEventListener('click', e => {
+  if (!e.target.matches('.filter')) return;
+  document.querySelectorAll('.filter').forEach(b => b.classList.toggle('active', b === e.target));
+  render();
+});
+
+document.querySelector('#search').addEventListener('input', render);
+
+// Cerrar modal
+const modalEl = document.querySelector('#modal');
+document.querySelector('#close').onclick = () => modalEl.classList.remove('open');
+modalEl.addEventListener('click', e => {
+  if (e.target.id === 'modal') modalEl.classList.remove('open');
+});
+
+// Navegación por teclado (Flechas y Escape)
+document.addEventListener('keydown', e => {
+  if (!modalEl.classList.contains('open')) return;
+  if (e.key === 'Escape') {
+    modalEl.classList.remove('open');
+  } else if (e.key === 'ArrowLeft' && lumenCurrentIndex > 0) {
+    open(screens[lumenCurrentIndex - 1]);
+  } else if (e.key === 'ArrowRight' && lumenCurrentIndex < screens.length - 1) {
+    open(screens[lumenCurrentIndex + 1]);
+  }
+});
+
+// Render inicial
+render();
+</script>
+</body>
+</html>
