@@ -30,6 +30,8 @@
   - [Business Model Canvas Interactivo](#business-model-canvas-interactivo)
   - [Diagrama de Roles de Usuario](#diagrama-de-roles-de-usuario)
   - [Diagrama de Navegación de Sketches](#diagrama-de-navegación-de-sketches)
+- [Interfaces](#interfaces)
+  - [Wireframes](#wireframes)
 
 <br>
 
