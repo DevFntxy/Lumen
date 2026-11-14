@@ -358,3 +358,10 @@ Antes de utilizarla como especificación definitiva, se deberán verificar las f
 - **Descripción:** Modelo conceptual que establece la gobernanza, ejecución y canalización de avances entre los 4 integrantes del equipo de desarrollo de LUMEN..
 - **Estatus:** 🐕 Completado
 - **Enlace:** [Ver Diagrama RACI](https://devfntxy.github.io/Lumen/models/RACI/Diagrama-raci.html)
+
+## Interfaces
+
+### Wireframes
+**Descripción:** Un wireframe es el esquema visual o plano estructural de un sitio web, una aplicación móvil o un producto digital. Su objetivo principal es definir la distribución del contenido, la jerarquía de la información y los flujos de navegación antes de invertir tiempo en colores, tipografías o programación..
+- **Estatus:** 🐕 Completado
+- **Enlace:** [Ver Wireframes](https://devfntxy.github.io/Lumen/Interfaces/wireframes/index.html )
